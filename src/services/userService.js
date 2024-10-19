@@ -70,3 +70,27 @@ export const deleteUser = async (id) => {
     await prisma.$disconnect();
   }
 };
+export const checkPhone = async (id = null, phone) => {
+  try {
+    let result = "";
+
+    if (id) {
+      result = await prisma.users.findMany({
+        where: {
+          phone: phone,
+          id: {
+            not: id,
+          },
+        },
+      });
+    } else {
+      result = await prisma.users.findMany({
+        where: { phone: phone },
+      });
+    }
+
+    return result.length;
+  } catch (error) {
+    throw error;
+  }
+};

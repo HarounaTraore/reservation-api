@@ -8,5 +8,17 @@
         "deleteFailed": "Erreur de suppression d'utilisateur",
         "getAllUsersFailed": "Erreur d'affichage des utilisateurs",
         "getUserById": "Erreur de recuperation de l'utilisateur"
+    },
+    "userValidator": {
+        "requierdName": "Nom est obligatoire",
+        "lengthName": "Le Nom doit contenir entre 5 et 100 caractères!",
+        "requierdEmail": "Email est obligatoire",
+        "requierdValidEmail": "Email saisit n'est pas valide",
+        "requierdAddress": "Adresse doit contenir entre 2 et 100 caractères!",
+        "requierdPhone": "Numéro de téléphone doit contenir entre 8 et 15 caractères",
+        "phoneUnique": "Deux utilisateur ne peuvent pas avoir le même numero de téléphone!",
+        "passwordLength": "Mot de passe doit avoir au moins 8 caractères",
+        "requierdRole": "Le role de l'utilisateur est obligatoire",
+        "selectRole": "Role soit Admin ou Manager"
     }
 }
