@@ -1,12 +1,26 @@
 {
     "userController": {
-        "createSuccfull": "تمت إضافة المستخدم بنجاح",
-        "createFailed": "خطأ في إنشاء المستخدم",
-        "updateSuccefull": "تم تحديث المستخدم بنجاح",
-        "updateFailed": "خطأ في تعديل المستخدم",
-        "deleteSuccessful": "تم حذف المستخدم بنجاح",
-        "deleteFailed": "خطأ في حذف المستخدم",
-        "getAllUsersFailed": "خطأ في عرض المستخدمين",
-        "getUserById": "خطأ في استرجاع المستخدم"
+      "createSuccfull": "تم إضافة المستخدم بنجاح",
+      "createFailed": "خطأ في إنشاء المستخدم",
+      "updateSuccefull": "تم تحديث المستخدم بنجاح",
+      "updateFailed": "خطأ في تعديل المستخدم",
+      "deleteSuccessful": "تم حذف المستخدم بنجاح",
+      "deleteFailed": "خطأ في حذف المستخدم",
+      "getAllUsersFailed": "خطأ في عرض المستخدمين",
+      "getUserById": "خطأ في جلب بيانات المستخدم"
+    },
+    "userValidator": {
+      "requierdName": "الاسم مطلوب",
+      "lengthName": "يجب أن يحتوي الاسم على ما بين 5 و 100 حرفًا!",
+      "requierdEmail": "البريد الإلكتروني مطلوب",
+      "requierdValidEmail": "البريد الإلكتروني المدخل غير صالح",
+      "requierdAddress": "يجب أن تحتوي العنوان على ما بين 2 و 100 حرفًا!",
+      "requierdPhone": "يجب أن يحتوي رقم الهاتف على ما بين 8 و 15 رقمًا",
+      "phoneUnique": "رقم الهاتف هذا موجود بالفعل!",
+      "passwordLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+      "requierdRole": "دور المستخدم مطلوب",
+      "selectRole": "يجب أن يكون الدور إما مدير أو مدير",
+      "emailUnique": "البريد الإلكتروني هذا موجود بالفعل"
     }
-}
+  }
+  

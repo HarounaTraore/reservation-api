@@ -20,6 +20,8 @@
         "passwordLength": "Mot de passe doit avoir au moins 8 caractères",
         "requierdRole": "Le role de l'utilisateur est obligatoire",
         "selectRole": "Role soit Admin ou Manager",
-        "emailUnique": "Cet email existe déja"
+        "emailUnique": "Cet email existe déja",
+        "requieredId": "L'id est obligatoire",
+        "existUser": "Cet utilisateur n'existe pas!"
     }
 }
