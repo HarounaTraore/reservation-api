@@ -52,7 +52,7 @@ export const updateUser = async (
   try {
     const result = await prisma.users.update({
       where: { id },
-      data: { name, email, address, phone, password },
+      data: { name, email, address, phone, password, role },
     });
     return result;
   } catch (error) {

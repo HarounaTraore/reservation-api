@@ -1,26 +1,50 @@
 {
-    "userController": {
-      "createSuccfull": "تم إضافة المستخدم بنجاح",
+  "userController": {
+      "createSuccfull": "تمت إضافة المستخدم بنجاح",
       "createFailed": "خطأ في إنشاء المستخدم",
       "updateSuccefull": "تم تحديث المستخدم بنجاح",
-      "updateFailed": "خطأ في تعديل المستخدم",
+      "updateFailed": "خطأ في تحديث المستخدم",
       "deleteSuccessful": "تم حذف المستخدم بنجاح",
       "deleteFailed": "خطأ في حذف المستخدم",
       "getAllUsersFailed": "خطأ في عرض المستخدمين",
-      "getUserById": "خطأ في جلب بيانات المستخدم"
-    },
-    "userValidator": {
+      "getUserById": "خطأ في استرجاع المستخدم"
+  },
+  "userValidator": {
       "requierdName": "الاسم مطلوب",
-      "lengthName": "يجب أن يحتوي الاسم على ما بين 5 و 100 حرفًا!",
+      "lengthName": "يجب أن يتراوح الاسم بين 5 و 100 حرف!",
       "requierdEmail": "البريد الإلكتروني مطلوب",
       "requierdValidEmail": "البريد الإلكتروني المدخل غير صالح",
-      "requierdAddress": "يجب أن تحتوي العنوان على ما بين 2 و 100 حرفًا!",
-      "requierdPhone": "يجب أن يحتوي رقم الهاتف على ما بين 8 و 15 رقمًا",
+      "requierdAddress": "يجب أن يتراوح العنوان بين 2 و 100 حرف!",
+      "requierdPhone": "يجب أن يتراوح رقم الهاتف بين 8 و 15 رقمًا",
       "phoneUnique": "رقم الهاتف هذا موجود بالفعل!",
-      "passwordLength": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+      "passwordLength": "يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل",
       "requierdRole": "دور المستخدم مطلوب",
-      "selectRole": "يجب أن يكون الدور إما مدير أو مدير",
-      "emailUnique": "البريد الإلكتروني هذا موجود بالفعل"
-    }
+      "selectRole": "يجب أن يكون الدور إما مدير أو مسؤول",
+      "emailUnique": "هذا البريد الإلكتروني موجود بالفعل",
+      "requieredId": "المعرف مطلوب",
+      "existUser": "هذا المستخدم غير موجود!"
+  },
+  "roomController": {
+      "createSuccfull": "تمت إضافة الغرفة بنجاح",
+      "createFailed": "خطأ في إنشاء الغرفة",
+      "updateSuccefull": "تم تحديث الغرفة بنجاح",
+      "updateFailed": "خطأ في تحديث الغرفة",
+      "deleteSuccessful": "تم حذف الغرفة بنجاح",
+      "deleteFailed": "خطأ في حذف الغرفة",
+      "getAllRoomsFailed": "خطأ في عرض الغرف",
+      "getRoomById": "خطأ في استرجاع الغرفة"
+  },
+  "roomValidator": {
+      "requiredName": "اسم الغرفة مطلوب.",
+      "lengthName": "يجب أن يتراوح الاسم بين 2 و 50 حرفًا.",
+      "nameUnique": "اسم الغرفة هذا موجود بالفعل.",
+      "requiredCapacity": "سعة الغرفة مطلوبة.",
+      "capacityIsInt": "يجب أن تكون السعة عددًا صحيحًا.",
+      "requiredEquipment": "يجب تقديم المعدات وأن تتراوح بين 2 و 500 حرف.",
+      "requiredStatus": "حالة الغرفة مطلوبة.",
+      "selectRole": "يجب أن تكون الحالة إما 'محجوزة' أو 'غير محجوزة'.",
+      "requiredUserId": "المستخدم المعين مطلوب.",
+      "existroom": "معرف الغرفة المحدد غير موجود.",
+      "requieredId": "معرف الغرفة مطلوب للحذف."
   }
-  
+}

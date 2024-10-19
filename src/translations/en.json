@@ -1,26 +1,50 @@
 {
-    "userController": {
-      "createSuccfull": "User successfully added",
-      "createFailed": "Error in creating user",
-      "updateSuccefull": "User successfully updated",
-      "updateFailed": "Error in updating user",
-      "deleteSuccessful": "User successfully deleted",
-      "deleteFailed": "Error in deleting user",
-      "getAllUsersFailed": "Error in displaying users",
-      "getUserById": "Error in retrieving user data"
-    },
-    "userValidator": {
+  "userController": {
+      "createSuccfull": "User added successfully",
+      "createFailed": "Error creating user",
+      "updateSuccefull": "User updated successfully",
+      "updateFailed": "Error updating user",
+      "deleteSuccessful": "User deleted successfully",
+      "deleteFailed": "Error deleting user",
+      "getAllUsersFailed": "Error displaying users",
+      "getUserById": "Error retrieving user"
+  },
+  "userValidator": {
       "requierdName": "Name is required",
-      "lengthName": "The name must be between 5 and 100 characters!",
+      "lengthName": "Name must be between 5 and 100 characters!",
       "requierdEmail": "Email is required",
-      "requierdValidEmail": "The entered email is not valid",
+      "requierdValidEmail": "Entered email is not valid",
       "requierdAddress": "Address must be between 2 and 100 characters!",
-      "requierdPhone": "Phone number must be between 8 and 15 digits",
+      "requierdPhone": "Phone number must be between 8 and 15 characters",
       "phoneUnique": "This phone number already exists!",
       "passwordLength": "Password must be at least 8 characters long",
-      "requierdRole": "The user's role is required",
+      "requierdRole": "User role is required",
       "selectRole": "Role must be either Admin or Manager",
-      "emailUnique": "This email already exists"
-    }
+      "emailUnique": "This email already exists",
+      "requieredId": "ID is required",
+      "existUser": "This user does not exist!"
+  },
+  "roomController": {
+      "createSuccfull": "Room added successfully",
+      "createFailed": "Error creating room",
+      "updateSuccefull": "Room updated successfully",
+      "updateFailed": "Error updating room",
+      "deleteSuccessful": "Room deleted successfully",
+      "deleteFailed": "Error deleting room",
+      "getAllRoomsFailed": "Error displaying rooms",
+      "getRoomById": "Error retrieving room"
+  },
+  "roomValidator": {
+      "requiredName": "Room name is required.",
+      "lengthName": "Name must be between 2 and 50 characters.",
+      "nameUnique": "This room name already exists.",
+      "requiredCapacity": "Room capacity is required.",
+      "capacityIsInt": "Capacity must be an integer.",
+      "requiredEquipment": "Equipment must be provided and be between 2 and 500 characters.",
+      "requiredStatus": "Room status is required.",
+      "selectRole": "Status must be either 'Reserved' or 'Not Reserved'.",
+      "requiredUserId": "Assigned user is required.",
+      "existroom": "The specified room ID does not exist.",
+      "requieredId": "Room ID is required for deletion."
   }
-  
+}

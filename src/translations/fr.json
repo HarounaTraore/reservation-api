@@ -23,5 +23,41 @@
         "emailUnique": "Cet email existe déja",
         "requieredId": "L'id est obligatoire",
         "existUser": "Cet utilisateur n'existe pas!"
-    }
+    },
+    "roomController": {
+        "createSuccfull": "Salle ajoutée avec succès",
+        "createFailed": "Erreur de creation de la salle",
+        "updateSuccefull": "Salle mise à jour avec succès",
+        "updateFailed": "Erreur de modification de la salle",
+        "deleteSuccessful": "Salle supprimé avec succès",
+        "deleteFailed": "Erreur de suppression de la salle",
+        "getAllRoomsFailed": "Erreur d'affichage des salles",
+        "getRoomById": "Erreur de recuperation de la salle"
+    },
+    "roomValidator": {
+        "requiredName": "Le nom de la chambre est obligatoire.",
+        "lengthName": "Le nom doit contenir entre 2 et 50 caractères.",
+        "nameUnique": "Ce nom de chambre existe déjà.",
+        "requiredCapacity": "La capacité de la chambre est obligatoire.",
+        "capacityIsInt": "La capacité doit être un nombre entier.",
+        "requiredEquipment": "Les équipements doivent être fournis et contenir entre 2 et 500 caractères.",
+        "requiredStatus": "Le statut de la chambre est obligatoire.",
+        "selectRole": "Le statut doit être soit 'Réservée' soit 'Non Réservée'.",
+        "requiredUserId": "L'utilisateur assigné est obligatoire.",
+        "existroom": "L'ID de la chambre spécifié n'existe pas.",
+        "requieredId": "L'ID de la chambre est requis pour la suppression."
+    },
+    
+        "customerController": {
+          "getCustomerById": "Erreur de récupération du client",
+          "getAllCustomersFailed": "Erreur d'affichage des clients",
+          "createSuccfull": "Client ajouté avec succès",
+          "createFailed": "Erreur de création du client",
+          "updateSuccefull": "Client mis à jour avec succès",
+          "updateFailed": "Erreur de modification du client",
+          "deleteSuccessful": "Client supprimé avec succès",
+          "deleteFailed": "Erreur de suppression du client"
+        }
+      
+      
 }
