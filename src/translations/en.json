@@ -1,0 +1,13 @@
+{
+    "userController": {
+        "createSuccfull": "User added successfully",
+        "createFailed": "Error creating user",
+        "updateSuccefull": "User updated successfully",
+        "updateFailed": "Error updating user",
+        "deleteSuccessful": "User deleted successfully",
+        "deleteFailed": "Error deleting user",
+        "getAllUsersFailed": "Error displaying users",
+        "getUserById": "Error retrieving user"
+    }
+}
+

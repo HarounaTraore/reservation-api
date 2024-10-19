@@ -1,0 +1,12 @@
+{
+    "userController": {
+        "createSuccfull": "تمت إضافة المستخدم بنجاح",
+        "createFailed": "خطأ في إنشاء المستخدم",
+        "updateSuccefull": "تم تحديث المستخدم بنجاح",
+        "updateFailed": "خطأ في تعديل المستخدم",
+        "deleteSuccessful": "تم حذف المستخدم بنجاح",
+        "deleteFailed": "خطأ في حذف المستخدم",
+        "getAllUsersFailed": "خطأ في عرض المستخدمين",
+        "getUserById": "خطأ في استرجاع المستخدم"
+    }
+}

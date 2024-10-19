@@ -1,0 +1,12 @@
+{
+    "userController": {
+        "createSuccfull": "Utililateur ajoutée avec succès",
+        "createFailed": "Erreur de creation d'utilisateur",
+        "updateSuccefull": "Utililateur mise à jour avec succès",
+        "updateFailed": "Erreur de modification d'utilisateur",
+        "deleteSuccessful": "Utililateur supprimé avec succès",
+        "deleteFailed": "Erreur de suppression d'utilisateur",
+        "getAllUsersFailed": "Erreur d'affichage des utilisateurs",
+        "getUserById": "Erreur de recuperation de l'utilisateur"
+    }
+}
