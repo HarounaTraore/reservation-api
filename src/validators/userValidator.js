@@ -1,6 +1,6 @@
 import { check, validationResult } from "express-validator";
 import i18next from "i18next";
-import { checkPhone } from "../services/userService.js";
+import { checkEmail, checkPhone } from "../services/userService.js";
 import { StatusCodes } from "http-status-codes";
 
 export const addRequestValidator = [
@@ -20,7 +20,14 @@ export const addRequestValidator = [
     .bail()
     .isEmail()
     .withMessage(i18next.t("userValidator.requiredValidEmail"))
-    .bail(),
+    .bail()
+    .custom(async (value, { req }) => {
+      const id = Number(req.params.id);
+      const result = await checkEmail(id, value);
+      if (result !== 0) {
+        throw new Error(i18next.t("userValidator.emailUnique"));
+      } else return true;
+    }),
 
   check("address")
     .isLength({ min: 2, max: 100 })
@@ -31,8 +38,9 @@ export const addRequestValidator = [
     .isLength({ min: 8, max: 15 })
     .withMessage(i18next.t("userValidator.requiredPhone"))
     .bail()
-    .custom(async (value) => {
-      const result = await checkPhone(null, value);
+    .custom(async (value, { req }) => {
+      const id = Number(req.params.id);
+      const result = await checkPhone(id, value);
       if (result !== 0) {
         throw new Error(i18next.t("userValidator.phoneUnique"));
       }

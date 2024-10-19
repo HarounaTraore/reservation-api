@@ -94,3 +94,28 @@ export const checkPhone = async (id = null, phone) => {
     throw error;
   }
 };
+
+export const checkEmail = async (id = null, email) => {
+  try {
+    let result = "";
+
+    if (id) {
+      result = await prisma.users.findMany({
+        where: {
+          email: email,
+          id: {
+            not: id,
+          },
+        },
+      });
+    } else {
+      result = await prisma.users.findMany({
+        where: { email: email },
+      });
+    }
+
+    return result.length;
+  } catch (error) {
+    throw error;
+  }
+};
