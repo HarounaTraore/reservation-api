@@ -47,17 +47,26 @@
         "existroom": "L'ID de la chambre spécifié n'existe pas.",
         "requieredId": "L'ID de la chambre est requis pour la suppression."
     },
-    
-        "customerController": {
-          "getCustomerById": "Erreur de récupération du client",
-          "getAllCustomersFailed": "Erreur d'affichage des clients",
-          "createSuccfull": "Client ajouté avec succès",
-          "createFailed": "Erreur de création du client",
-          "updateSuccefull": "Client mis à jour avec succès",
-          "updateFailed": "Erreur de modification du client",
-          "deleteSuccessful": "Client supprimé avec succès",
-          "deleteFailed": "Erreur de suppression du client"
-        }
-      
-      
+    "customerController": {
+        "getCustomerById": "Erreur de récupération du client",
+        "getAllCustomersFailed": "Erreur d'affichage des clients",
+        "createSuccfull": "Client ajouté avec succès",
+        "createFailed": "Erreur de création du client",
+        "updateSuccefull": "Client mis à jour avec succès",
+        "updateFailed": "Erreur de modification du client",
+        "deleteSuccessful": "Client supprimé avec succès",
+        "deleteFailed": "Erreur de suppression du client"
+    },
+    "customerValidator": {
+        "requiredName": "Le nom est obligatoire",
+        "lengthName": "Le nom doit contenir entre 2 et 100 caractères",
+        "requiredAddress": "L'adresse est obligatoire",
+        "lengthAddress": "L'adresse doit contenir entre 2 et 100 caractères",
+        "requiredPhone": "Le numéro de téléphone doit contenir entre 8 et 15 caractères",
+        "phoneUnique": "Ce numéro de téléphone existe déjà",
+        "requiredUserId": "L'ID de l'utilisateur est obligatoire",
+        "existCustomer": "Cet utilisateur n'existe pas",
+        "requieredId": "L'ID est obligatoire",
+        "existcustomer": "Ce client n'existe pas"
+    }
 }

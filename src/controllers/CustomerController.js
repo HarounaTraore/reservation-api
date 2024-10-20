@@ -4,7 +4,7 @@ import {
   getAllCustomers,
   getByIdCustomer,
   updateCustomer,
-} from "../services/CustomerService.js";
+} from "../services/customerService.js";
 import i18next from "i18next";
 
 export default class Customer {
