@@ -12,7 +12,13 @@ export default class Customer {
     try {
       const id = parseInt(req.params.id);
       const result = await getByIdCustomer(id);
-      res.json({ result });
+      if (result) {
+        res.status(200).json({ result });
+      } else {
+        res
+          .status(404)
+          .json({ message: i18next.t("customerController.getCustomerById") });
+      }
     } catch (error) {
       res.json({ message: i18next.t("customerController.getCustomerById") });
     }

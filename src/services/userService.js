@@ -61,9 +61,12 @@ export const updateUser = async (
     await prisma.$disconnect();
   }
 };
+
+
 export const deleteUser = async (id) => {
   try {
     await prisma.users.delete({ where: { id } });
+   return true
   } catch (error) {
     throw error;
   } finally {

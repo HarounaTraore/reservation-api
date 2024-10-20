@@ -56,6 +56,7 @@ export const updateRoom = async (
 export const deleteRoom = async (id) => {
   try {
     await prisma.rooms.delete({ where: { id } });
+    return true
   } catch (error) {
     throw error;
   } finally {

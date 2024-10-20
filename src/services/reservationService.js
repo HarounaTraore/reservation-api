@@ -29,6 +29,9 @@ export const createReservation = async (
   customerId
 ) => {
   try {
+    dateReservation = new Date(dateReservation).toISOString();
+    dateStart = new Date(dateStart).toISOString();
+    dateEnd = new Date(dateEnd).toISOString();
     const result = await prisma.reservations.create({
       data: { dateReservation, dateStart, dateEnd, userId, roomId, customerId },
     });
@@ -50,6 +53,9 @@ export const updateReservation = async (
   customerId
 ) => {
   try {
+    dateReservation = new Date(dateReservation).toISOString();
+    dateStart = new Date(dateStart).toISOString();
+    dateEnd = new Date(dateEnd).toISOString();
     const result = await prisma.reservations.update({
       where: { id },
       data: { dateReservation, dateStart, dateEnd, userId, roomId, customerId },
@@ -64,6 +70,7 @@ export const updateReservation = async (
 export const deleteReservation = async (id) => {
   try {
     await prisma.reservations.delete({ where: { id } });
+    return true;
   } catch (error) {
     throw error;
   } finally {
