@@ -68,5 +68,15 @@
         "existCustomer": "هذا المستخدم غير موجود",
         "requieredId": "المعرف مطلوب",
         "existcustomer": "هذا العميل غير موجود"
+    },
+    "reservationController": {
+        "getReservationById": "فشل في استرجاع الحجز بهذا المعرف.",
+        "getAllReservationsFailed": "فشل في استرجاع جميع الحجوزات.",
+        "createSuccfull": "تم إنشاء الحجز بنجاح.",
+        "createFailed": "فشل في إنشاء الحجز.",
+        "updateSuccefull": "تم تحديث الحجز بنجاح.",
+        "updateFailed": "فشل في تحديث الحجز.",
+        "deleteSuccessful": "تم حذف الحجز بنجاح.",
+        "deleteFailed": "فشل في حذف الحجز."
     }
 }

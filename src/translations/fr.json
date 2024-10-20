@@ -68,5 +68,15 @@
         "existCustomer": "Cet utilisateur n'existe pas",
         "requieredId": "L'ID est obligatoire",
         "existcustomer": "Ce client n'existe pas"
+    },
+    "reservationController": {
+        "getReservationById": "Impossible de récupérer la réservation avec cet ID.",
+        "getAllReservationsFailed": "Échec de la récupération de toutes les réservations.",
+        "createSuccfull": "Réservation créée avec succès.",
+        "createFailed": "Échec de la création de la réservation.",
+        "updateSuccefull": "Réservation mise à jour avec succès.",
+        "updateFailed": "Échec de la mise à jour de la réservation.",
+        "deleteSuccessful": "Réservation supprimée avec succès.",
+        "deleteFailed": "Échec de la suppression de la réservation."
     }
 }

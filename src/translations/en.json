@@ -68,5 +68,15 @@
         "existCustomer": "This user does not exist",
         "requieredId": "ID is required",
         "existcustomer": "This customer does not exist"
+    },
+    "reservationController": {
+        "getReservationById": "Failed to retrieve reservation with this ID.",
+        "getAllReservationsFailed": "Failed to retrieve all reservations.",
+        "createSuccfull": "Reservation created successfully.",
+        "createFailed": "Failed to create reservation.",
+        "updateSuccefull": "Reservation updated successfully.",
+        "updateFailed": "Failed to update reservation.",
+        "deleteSuccessful": "Reservation deleted successfully.",
+        "deleteFailed": "Failed to delete reservation."
     }
 }
