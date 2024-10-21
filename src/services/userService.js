@@ -1,5 +1,7 @@
-import prisma from "../config/prisma.js";
 
+import prisma from "../config/prisma.js";
+import pkg from 'bcryptjs';
+const { hash, compare } = pkg;
 export const getAllUsers = async () => {
   try {
     const result = await prisma.users.findMany();
@@ -28,9 +30,10 @@ export const createUser = async (
   password,
   role
 ) => {
+  const hashedPassword = await hash(password, 10);
   try {
     const result = await prisma.users.create({
-      data: { name, email, address, phone, password, role },
+      data: { name, email, address, phone, hashedPassword, role },
     });
     return result;
   } catch (error) {
@@ -49,10 +52,12 @@ export const updateUser = async (
   password,
   role
 ) => {
+  const hashedPassword = await hash(password, 10);
+
   try {
     const result = await prisma.users.update({
       where: { id },
-      data: { name, email, address, phone, password, role },
+      data: { name, email, address, phone, hashedPassword, role },
     });
     return result;
   } catch (error) {
@@ -62,11 +67,10 @@ export const updateUser = async (
   }
 };
 
-
 export const deleteUser = async (id) => {
   try {
     await prisma.users.delete({ where: { id } });
-   return true
+    return true;
   } catch (error) {
     throw error;
   } finally {
@@ -103,7 +107,7 @@ export const checkEmail = async (id = null, email) => {
     let result = "";
 
     if (id) {
-      result = await prisma.users.findMany({
+      result = await prisma.users.findFirst({
         where: {
           email: email,
           id: {
@@ -112,12 +116,12 @@ export const checkEmail = async (id = null, email) => {
         },
       });
     } else {
-      result = await prisma.users.findMany({
+      result = await prisma.users.findFirst({
         where: { email: email },
       });
     }
 
-    return result.length;
+    return result;
   } catch (error) {
     throw error;
   }
