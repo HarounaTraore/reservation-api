@@ -16,7 +16,7 @@ app.use(i18nextMiddleware.handle(translate));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use("/api", authRoute);
-app.use("/api", authenticateJWT, routes);
+app.use("/api", routes);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}...`);
