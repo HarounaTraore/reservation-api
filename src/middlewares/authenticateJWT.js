@@ -15,7 +15,7 @@ const authenticateJWT = (req, res, next) => {
       next();
     });
   } else {
-    res.status(401).json({ message: i18next.t("authJWS.accessDenied") });
+    res.status(401).json({ message: i18next.t("authController.accessDenied") });
   }
 };
 

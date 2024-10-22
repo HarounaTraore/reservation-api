@@ -90,5 +90,14 @@
     "userNotFound": "Utilisateur non trouvé.",
     "roomNotFound": "Salle non trouvée.",
     "customerNotFound": "Client non trouvé."
+  },
+  "authService": {
+    "invalidCredentials": "Email ou mot de passe invalide.",
+    "userNotExist": "L'utilisateur n'existe pas.",
+    "pwsNotExist": "Mot de passe incorrect.",
+    "loginSuccess": "Connexion réussie."
+  },
+  "authController": {
+    "accessDenied": "Accès refusé."
   }
 }

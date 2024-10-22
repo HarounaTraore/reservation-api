@@ -90,5 +90,14 @@
     "roomNotFound": "Room not found.",
     "customerNotFound": "Customer not found.",
     "existreservation": "Reservation not found."
+  },
+  "authService": {
+    "invalidCredentials": "Invalid email or password.",
+    "userNotExist": "User does not exist.",
+    "pwsNotExist": "Incorrect password.",
+    "loginSuccess": "Login successful."
+  },
+  "authController": {
+    "accessDenied": "Access denied."
   }
 }

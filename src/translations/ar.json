@@ -90,5 +90,14 @@
     "roomNotFound": "الغرفة غير موجودة.",
     "customerNotFound": "العميل غير موجود.",
     "existreservation": "الحجز غير موجود."
+  },
+  "authService": {
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "userNotExist": "المستخدم غير موجود.",
+    "pwsNotExist": "كلمة المرور غير صحيحة.",
+    "loginSuccess": "تم تسجيل الدخول بنجاح."
+  },
+  "authController": {
+    "accessDenied": "تم رفض الوصول."
   }
 }
