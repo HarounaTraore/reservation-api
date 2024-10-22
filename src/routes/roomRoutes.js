@@ -13,35 +13,35 @@ const router = Router();
 
 router.get(
   "/rooms",
-  // authenticateJWT,
-  // authorizeRoles("Admin", "Manager")
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
   Room.getAllRooms,
 );
 router.get(
   "/room/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin", "Manager"),
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
   getRequestValidator,
   Room.getByIdRoom,
 );
 router.post(
   "/room",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   addRequestValidator,
   Room.createRoom,
 );
 router.put(
   "/room/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin", "Manager"),
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
   updateRequestValidator,
   Room.updateRoom,
 );
 router.delete(
   "/room/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   deleteRequestValidator,
   Room.deleteRoom,
 );

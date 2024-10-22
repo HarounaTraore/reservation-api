@@ -13,35 +13,35 @@ const router = Router();
 
 router.get(
   "/users",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   User.getAllUsers,
 );
 router.get(
   "/user/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   getRequestValidator,
   User.getByIdUser,
 );
 router.post(
   "/user",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   addRequestValidator,
   User.createUser,
 );
 router.put(
   "/user/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   updateRequestValidator,
   User.updateUser,
 );
 router.delete(
   "/user/:id",
-  // authenticateJWT,
-  // authorizeRoles("Admin"),
+  authenticateJWT,
+  authorizeRoles("Admin"),
   deleteRequestValidator,
   User.deleteUser,
 );

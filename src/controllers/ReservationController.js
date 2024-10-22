@@ -39,17 +39,20 @@ export default class Reservation {
 
   static async createReservation(req, res) {
     try {
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const { dateReservation, dateStart, dateEnd, roomId, customerId } =
         req.body;
       await createReservation(
         dateReservation,
         dateStart,
         dateEnd,
-        token,
         roomId,
         customerId,
+        token,
       );
       res
         .status(201)
@@ -57,15 +60,18 @@ export default class Reservation {
     } catch (error) {
       res
         .status(500)
-        .json({ message: i18next.t("reservationController.createFailed") });
+        .json({ message: error });
     }
   }
 
   static async updateReservation(req, res) {
     try {
       const id = Number(req.params.id);
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const { dateReservation, dateStart, dateEnd, roomId, customerId } =
         req.body;
       await updateReservation(
@@ -73,9 +79,9 @@ export default class Reservation {
         dateReservation,
         dateStart,
         dateEnd,
-        token,
         roomId,
         customerId,
+        token,
       );
       res
         .status(200)

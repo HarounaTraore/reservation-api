@@ -37,8 +37,11 @@ export default class Room {
 
   static async createRoom(req, res, next) {
     try {
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const { name, capacity, equipment, status } = req.body;
       await createRoom(name, capacity, equipment, status, token);
       res
@@ -52,8 +55,11 @@ export default class Room {
 
   static async updateRoom(req, res, next) {
     try {
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const id = Number(req.params.id);
       const { name, capacity, equipment, status } = req.body;
       await updateRoom(id, name, capacity, equipment, status, token);

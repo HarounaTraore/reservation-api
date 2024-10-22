@@ -1,7 +1,6 @@
 import { check, param, validationResult } from "express-validator";
 import i18next from "i18next";
 import { StatusCodes } from "http-status-codes";
-import { getByIdUser } from "../services/userService.js";
 import { getByIdCustomer, checkPhone } from "../services/customerService.js";
 
 const validateIdExists = async (id, service, errorMessage) => {
@@ -42,14 +41,6 @@ export const addRequestValidator = [
       return true;
     }),
 
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("customerValidator.requiredUserId"))
-    .bail()
-    .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
-    ),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -70,8 +61,8 @@ export const updateRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer",
-      ),
+        "customerValidator.existCustomer"
+      )
     ),
 
   check("name")
@@ -103,14 +94,6 @@ export const updateRequestValidator = [
       return true;
     }),
 
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("customerValidator.requiredUserId"))
-    .bail()
-    .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
-    ),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -131,8 +114,8 @@ export const deleteRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer",
-      ),
+        "customerValidator.existCustomer"
+      )
     ),
 
   (req, res, next) => {
@@ -154,8 +137,8 @@ export const getRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer",
-      ),
+        "customerValidator.existCustomer"
+      )
     ),
 
   (req, res, next) => {

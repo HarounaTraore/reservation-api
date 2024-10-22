@@ -1,7 +1,6 @@
 import { check, param, validationResult } from "express-validator";
 import i18next from "i18next";
 import { getByIdReservation } from "../services/reservationService.js";
-import { getByIdUser } from "../services/userService.js";
 import { getByIdCustomer } from "../services/customerService.js";
 import { getByIdRoom } from "../services/roomService.js";
 import { StatusCodes } from "http-status-codes";
@@ -40,25 +39,25 @@ const idValidation = (field, service, messageKey) =>
           return validateIdExists(
             value,
             service,
-            "reservationValidator.userNotFound",
+            "reservationValidator.userNotFound"
           );
         case "roomId":
           return validateIdExists(
             value,
             service,
-            "reservationValidator.roomNotFound",
+            "reservationValidator.roomNotFound"
           );
         case "customerId":
           return validateIdExists(
             value,
             service,
-            "reservationValidator.customerNotFound",
+            "reservationValidator.customerNotFound"
           );
         default:
           return validateIdExists(
             value,
             service,
-            "reservationValidator.existreservation",
+            "reservationValidator.existreservation"
           );
       }
     })
@@ -67,16 +66,15 @@ const idValidation = (field, service, messageKey) =>
 export const addRequestValidator = [
   dateValidation(
     "dateReservation",
-    "reservationValidator.requiredDateReservation",
+    "reservationValidator.requiredDateReservation"
   ),
   dateValidation("dateStart", "reservationValidator.requiredDateStart"),
   dateValidation("dateEnd", "reservationValidator.requiredDateEnd"),
-  idValidation("userId", getByIdUser, "reservationValidator.requiredRole"),
   idValidation("roomId", getByIdRoom, "reservationValidator.requiredRole"),
   idValidation(
     "customerId",
     getByIdCustomer,
-    "reservationValidator.requiredRole",
+    "reservationValidator.requiredRole"
   ),
   (req, res, next) => {
     const errors = validationResult(req);
@@ -98,22 +96,21 @@ export const updateRequestValidator = [
       validateIdExists(
         value,
         getByIdReservation,
-        "reservationValidator.existreservation",
-      ),
+        "reservationValidator.existreservation"
+      )
     )
     .bail(),
   dateValidation(
     "dateReservation",
-    "reservationValidator.requiredDateReservation",
+    "reservationValidator.requiredDateReservation"
   ),
   dateValidation("dateStart", "reservationValidator.requiredDateStart"),
   dateValidation("dateEnd", "reservationValidator.requiredDateEnd"),
-  idValidation("userId", getByIdUser, "reservationValidator.requiredRole"),
   idValidation("roomId", getByIdRoom, "reservationValidator.requiredRole"),
   idValidation(
     "customerId",
     getByIdCustomer,
-    "reservationValidator.requiredRole",
+    "reservationValidator.requiredRole"
   ),
   (req, res, next) => {
     const errors = validationResult(req);
@@ -135,8 +132,8 @@ export const getRequestValidator = [
       validateIdExists(
         value,
         getByIdReservation,
-        "reservationValidator.existreservation",
-      ),
+        "reservationValidator.existreservation"
+      )
     ),
   (req, res, next) => {
     const errors = validationResult(req);
@@ -158,8 +155,8 @@ export const deleteRequestValidator = [
       validateIdExists(
         value,
         getByIdReservation,
-        "reservationValidator.existreservation",
-      ),
+        "reservationValidator.existreservation"
+      )
     ),
   (req, res, next) => {
     const errors = validationResult(req);

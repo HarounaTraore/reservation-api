@@ -39,8 +39,11 @@ export default class Customer {
 
   static async createCustomer(req, res, next) {
     try {
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const { name, address, phone } = req.body;
       await createCustomer(name, address, phone, token);
       res
@@ -55,8 +58,11 @@ export default class Customer {
   static async updateCustomer(req, res, next) {
     try {
       const id = Number(req.params.id);
+      let token = null;
       const authHeader = req.headers.authorization;
-      const token = authHeader.split(" ")[1];
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
       const { name, address, phone } = req.body;
       await updateCustomer(id, name, address, phone, token);
       res.json({ message: i18next.t("customerController.updateSuccefull") });

@@ -1,5 +1,5 @@
 import prisma from "../config/prisma.js";
-
+import jwt from "jsonwebtoken";
 export const getAllReservations = async () => {
   try {
     const result = await prisma.reservations.findMany();
@@ -26,11 +26,11 @@ export const createReservation = async (
   dateEnd,
   roomId,
   customerId,
-  token = null,
+  token = null
 ) => {
   let userId = null;
   if (token) {
-    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET)
     userId = tokenDecoded.id;
   }
   try {
@@ -55,7 +55,7 @@ export const updateReservation = async (
   dateEnd,
   roomId,
   customerId,
-  token = null,
+  token = null
 ) => {
   let userId = null;
   if (token) {

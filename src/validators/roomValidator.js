@@ -2,7 +2,6 @@ import { check, param, validationResult } from "express-validator";
 import i18next from "i18next";
 import { checkName, getByIdRoom } from "../services/roomService.js";
 import { StatusCodes } from "http-status-codes";
-import { getByIdUser } from "../services/userService.js";
 
 const validateIdExists = async (id, service, errorMessage) => {
   const result = await service(Number(id));
@@ -47,14 +46,6 @@ export const addRequestValidator = [
     .isIn(["Réservée", "Non Réservée"])
     .withMessage(i18next.t("roomValidator.selectStatus")),
 
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredUserId"))
-    .bail()
-    .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
-    ),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -72,7 +63,7 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   check("name")
@@ -109,14 +100,6 @@ export const updateRequestValidator = [
     .isIn(["Réservée", "Non Réservée"])
     .withMessage(i18next.t("roomValidator.selectStatus")),
 
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredUserId"))
-    .bail()
-    .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
-    ),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -134,7 +117,7 @@ export const deleteRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   (req, res, next) => {
@@ -154,7 +137,7 @@ export const getRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   (req, res, next) => {
