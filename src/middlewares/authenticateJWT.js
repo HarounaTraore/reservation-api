@@ -6,7 +6,7 @@ const authenticateJWT = (req, res, next) => {
 
   if (authHeader && authHeader.startsWith("Bearer ")) {
     const token = authHeader.split(" ")[1];
-    jsonwebtoken.verify(token, process.env.SECRET_AUTH, (err, user) => {
+    jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
         return res.sendStatus(403);
       }

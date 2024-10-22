@@ -20,6 +20,7 @@ model users {
   address   String    @db.VarChar(100)
   phone     String    @db.VarChar(15) @unique
   password  String
+  status    Boolean   @default(true)
   role      String    @db.VarChar(20)
   rooms     rooms[]   
   customers customers[] 
@@ -32,8 +33,8 @@ model rooms {
   capacity   Int
   equipment  String
   status     String    @db.VarChar(20)
-  userId     Int       
-  user       users     @relation(fields: [userId], references: [id]) 
+  userId     Int?       
+  user       users?     @relation(fields: [userId], references: [id]) 
   reservations reservations[] 
 }
 
@@ -42,8 +43,8 @@ model customers {
   name      String    @db.VarChar(100)
   address   String    @db.VarChar(100)
   phone     String    @db.VarChar(15) @unique
-  userId    Int       
-  user      users     @relation(fields: [userId], references: [id])
+  userId    Int?       
+  user      users?     @relation(fields: [userId], references: [id])
   reservations reservations[]
 }
 
@@ -52,10 +53,10 @@ model reservations {
   dateReservation DateTime @default(now())
   dateStart       DateTime
   dateEnd         DateTime
-  userId          Int       
+  userId          Int?       
   roomId          Int      
   customerId      Int       
-  user            users     @relation(fields: [userId], references: [id])
+  user            users?     @relation(fields: [userId], references: [id])
   room            rooms     @relation(fields: [roomId], references: [id]) 
   customer        customers @relation(fields: [customerId], references: [id])
 }

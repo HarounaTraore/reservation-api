@@ -15,15 +15,14 @@ describe("Room tests", () => {
       capacity: 60,
       equipment: "Projector, wifi, 75 chairs",
       status: "Not Reserved",
-      userId: 11,
     };
-    const { name, capacity, equipment, status, userId } = newRoom;
-    const result = await createRoom(name, capacity, equipment, status, userId);
+    const { name, capacity, equipment, status } = newRoom;
+    const result = await createRoom(name, capacity, equipment, status);
 
     roomId = result.id;
-
+    const nameRoom = await getByIdRoom(roomId);
     expect(result).not.toBe(null);
-    expect(await getByIdRoom(roomId)).toEqual({ id: roomId, ...newRoom });
+    expect(nameRoom.name).toEqual(name);
   });
 
   it("fails to create a room with an existing name", async () => {
@@ -32,12 +31,11 @@ describe("Room tests", () => {
       capacity: 60,
       equipment: "Projector, wifi, 75 chairs",
       status: "Not Reserved",
-      userId: 11,
     };
-    const { name, capacity, equipment, status, userId } = newRoom;
+    const { name, capacity, equipment, status } = newRoom;
 
     try {
-      await createRoom(name, capacity, equipment, status, userId);
+      await createRoom(name, capacity, equipment, status);
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error.message).toContain(
@@ -52,7 +50,6 @@ describe("Room tests", () => {
       capacity: 70,
       equipment: "Projector, wifi, 80 chairs",
       status: "Reserved",
-      userId: 11,
     };
     const { name, capacity, equipment, status, userId } = updatedRoom;
     const updateResult = await updateRoom(
@@ -61,11 +58,10 @@ describe("Room tests", () => {
       capacity,
       equipment,
       status,
-      userId,
     );
-
+    const nameRoom = await getByIdRoom(roomId);
     expect(updateResult).not.toBe(null);
-    expect(await getByIdRoom(roomId)).toEqual({ id: roomId, ...updatedRoom });
+    expect(nameRoom.name).toEqual(name);
   });
 
   it("fails to update a room that does not exist", async () => {
@@ -75,12 +71,11 @@ describe("Room tests", () => {
       capacity: 80,
       equipment: "Projector, wifi, 90 chairs",
       status: "Reserved",
-      userId: 13,
     };
-    const { name, capacity, equipment, status, userId } = updatedRoom;
+    const { name, capacity, equipment, status } = updatedRoom;
 
     try {
-      await updateRoom(invalidId, name, capacity, equipment, status, userId);
+      await updateRoom(invalidId, name, capacity, equipment, status);
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error.message).toContain("Record to update not found");

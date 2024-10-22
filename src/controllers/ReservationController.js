@@ -1,4 +1,3 @@
-import { ErrorCodes } from "vue";
 import {
   createReservation,
   deleteReservation,
@@ -40,19 +39,15 @@ export default class Reservation {
 
   static async createReservation(req, res) {
     try {
-      const {
-        dateReservation,
-        dateStart,
-        dateEnd,
-        userId,
-        roomId,
-        customerId,
-      } = req.body;
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const { dateReservation, dateStart, dateEnd, roomId, customerId } =
+        req.body;
       await createReservation(
         dateReservation,
         dateStart,
         dateEnd,
-        userId,
+        token,
         roomId,
         customerId,
       );
@@ -69,20 +64,16 @@ export default class Reservation {
   static async updateReservation(req, res) {
     try {
       const id = Number(req.params.id);
-      const {
-        dateReservation,
-        dateStart,
-        dateEnd,
-        userId,
-        roomId,
-        customerId,
-      } = req.body;
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const { dateReservation, dateStart, dateEnd, roomId, customerId } =
+        req.body;
       await updateReservation(
         id,
         dateReservation,
         dateStart,
         dateEnd,
-        userId,
+        token,
         roomId,
         customerId,
       );

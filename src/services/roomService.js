@@ -20,7 +20,18 @@ export const getByIdRoom = async (id) => {
     await prisma.$disconnect();
   }
 };
-export const createRoom = async (name, capacity, equipment, status, userId) => {
+export const createRoom = async (
+  name,
+  capacity,
+  equipment,
+  status,
+  token = null,
+) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     const result = await prisma.rooms.create({
       data: { name, capacity, equipment, status, userId },
@@ -39,8 +50,13 @@ export const updateRoom = async (
   capacity,
   equipment,
   status,
-  userId,
+  token = null,
 ) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     const result = await prisma.rooms.update({
       where: { id },

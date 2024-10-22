@@ -37,8 +37,10 @@ export default class Room {
 
   static async createRoom(req, res, next) {
     try {
-      const { name, capacity, equipment, status, userId } = req.body;
-      await createRoom(name, capacity, equipment, status, userId);
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const { name, capacity, equipment, status } = req.body;
+      await createRoom(name, capacity, equipment, status, token);
       res
         .status(201)
         .json({ message: i18next.t("roomController.createSuccfull") });
@@ -50,9 +52,11 @@ export default class Room {
 
   static async updateRoom(req, res, next) {
     try {
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
       const id = Number(req.params.id);
-      const { name, capacity, equipment, status, userId } = req.body;
-      await updateRoom(id, name, capacity, equipment, status, userId);
+      const { name, capacity, equipment, status } = req.body;
+      await updateRoom(id, name, capacity, equipment, status, token);
       res.json({ message: i18next.t("roomController.updateSuccefull") });
     } catch (error) {
       res.json({ message: i18next.t("roomController.updateFailed") });

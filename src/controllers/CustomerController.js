@@ -39,8 +39,10 @@ export default class Customer {
 
   static async createCustomer(req, res, next) {
     try {
-      const { name, address, phone, userId } = req.body;
-      await createCustomer(name, address, phone, userId);
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const { name, address, phone } = req.body;
+      await createCustomer(name, address, phone, token);
       res
         .status(201)
         .json({ message: i18next.t("customerController.createSuccfull") });
@@ -53,8 +55,10 @@ export default class Customer {
   static async updateCustomer(req, res, next) {
     try {
       const id = Number(req.params.id);
-      const { name, address, phone, userId } = req.body;
-      await updateCustomer(id, name, address, phone, userId);
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const { name, address, phone } = req.body;
+      await updateCustomer(id, name, address, phone, token);
       res.json({ message: i18next.t("customerController.updateSuccefull") });
     } catch (error) {
       res.json({ message: i18next.t("customerController.updateFailed") });

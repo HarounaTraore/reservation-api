@@ -8,14 +8,13 @@ import {
 
 describe("User tests", () => {
   let userId = null;
-  const increment = parseInt(Math.random(1000) * 1000);
 
   it("can be created", async () => {
     const newUser = {
       name: "First User",
-      email: `use${increment}@gmail.com`,
+      email: `user2@gmail.com`,
       address: "NKTT, 2024C",
-      phone: `1245${increment}678`,
+      phone: `1245555678`,
       password: "passwordUser",
       role: "Admin",
     };
@@ -60,9 +59,9 @@ describe("User tests", () => {
   it("can be updated", async () => {
     const user = {
       name: "Mr Gestionnaire",
-      email: `use${increment + 5}@gmail.com`,
+      email: `user00@gmail.com`,
       address: "NKTT, Basra",
-      phone: `1245${increment + 5}678`,
+      phone: `1245231678`,
       password: "POSEIDON",
       role: "Gestionnaire",
     };

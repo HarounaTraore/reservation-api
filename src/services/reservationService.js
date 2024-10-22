@@ -24,10 +24,15 @@ export const createReservation = async (
   dateReservation,
   dateStart,
   dateEnd,
-  userId,
   roomId,
   customerId,
+  token = null,
 ) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     dateReservation = new Date(dateReservation).toISOString();
     dateStart = new Date(dateStart).toISOString();
@@ -48,10 +53,15 @@ export const updateReservation = async (
   dateReservation,
   dateStart,
   dateEnd,
-  userId,
   roomId,
   customerId,
+  token = null,
 ) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     dateReservation = new Date(dateReservation).toISOString();
     dateStart = new Date(dateStart).toISOString();

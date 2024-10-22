@@ -1,4 +1,5 @@
 import prisma from "../config/prisma.js";
+import jwt from "jsonwebtoken";
 
 export const getAllCustomers = async () => {
   try {
@@ -20,7 +21,12 @@ export const getByIdCustomer = async (id) => {
     await prisma.$disconnect();
   }
 };
-export const createCustomer = async (name, address, phone, userId) => {
+export const createCustomer = async (name, address, phone, token = null) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     const result = await prisma.customers.create({
       data: { name, address, phone, userId },
@@ -33,7 +39,18 @@ export const createCustomer = async (name, address, phone, userId) => {
   }
 };
 
-export const updateCustomer = async (id, name, address, phone, userId) => {
+export const updateCustomer = async (
+  id,
+  name,
+  address,
+  phone,
+  token = null,
+) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
   try {
     const result = await prisma.customers.update({
       where: { id },

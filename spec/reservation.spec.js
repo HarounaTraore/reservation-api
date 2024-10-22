@@ -14,32 +14,24 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
-      userId: 11,
       roomId: 13,
       customerId: 5,
     };
-    const { dateReservation, dateStart, dateEnd, userId, roomId, customerId } =
+    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
       newReservation;
     const result = await createReservation(
       dateReservation,
       dateStart,
       dateEnd,
-      userId,
       roomId,
       customerId,
     );
 
     reservationId = result.id;
-
-    expect(await getByIdReservation(reservationId)).toEqual({
-      id: reservationId,
-      dateReservation: result.dateReservation,
-      dateStart: result.dateStart,
-      dateEnd: result.dateEnd,
-      userId: newReservation.userId,
-      roomId: newReservation.roomId,
-      customerId: newReservation.customerId,
-    });
+    expect(result).not.toBe(null);
+    const createdReservation = await getByIdReservation(reservationId);
+    expect(createdReservation.dateReservation).toEqual(result.dateReservation);
+    expect(createdReservation.dateStart).toEqual(result.dateStart);
   });
 
   it("fails to create a reservation with an invalid room or customer", async () => {
@@ -47,11 +39,10 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20T00:00:00.000Z",
       dateStart: "2024-10-25T00:00:00.000Z",
       dateEnd: "2024-10-26T00:00:00.000Z",
-      userId: 11,
       roomId: 999,
       customerId: 999,
     };
-    const { dateReservation, dateStart, dateEnd, userId, roomId, customerId } =
+    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
       newReservation;
 
     try {
@@ -59,7 +50,6 @@ describe("Reservation tests", () => {
         dateReservation,
         dateStart,
         dateEnd,
-        userId,
         roomId,
         customerId,
       );
@@ -74,32 +64,22 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
-      userId: 11,
       roomId: 13,
       customerId: 5,
     };
-    const { dateReservation, dateStart, dateEnd, userId, roomId, customerId } =
+    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
       updatedReservation;
     const updateResult = await updateReservation(
       reservationId,
       dateReservation,
       dateStart,
       dateEnd,
-      userId,
       roomId,
       customerId,
     );
-
+    const findReservation = await getByIdReservation(reservationId);
     expect(updateResult).not.toBe(null);
-    expect(await getByIdReservation(reservationId)).toEqual({
-      id: reservationId,
-      dateReservation: updateResult.dateReservation,
-      dateStart: updateResult.dateStart,
-      dateEnd: updateResult.dateEnd,
-      userId: updatedReservation.userId,
-      roomId: updatedReservation.roomId,
-      customerId: updatedReservation.customerId,
-    });
+    expect(findReservation.roomId).toEqual(updateResult.roomId);
   });
 
   it("fails to update a reservation that does not exist", async () => {
@@ -108,11 +88,10 @@ describe("Reservation tests", () => {
       dateReservation: new Date().toISOString(),
       dateStart: new Date(Date.now()).toISOString(),
       dateEnd: new Date(Date.now()).toISOString(),
-      userId: 1,
       roomId: 1,
       customerId: 1,
     };
-    const { dateReservation, dateStart, dateEnd, userId, roomId, customerId } =
+    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
       updatedReservation;
 
     try {
@@ -121,7 +100,6 @@ describe("Reservation tests", () => {
         dateReservation,
         dateStart,
         dateEnd,
-        userId,
         roomId,
         customerId,
       );

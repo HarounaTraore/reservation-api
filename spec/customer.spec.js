@@ -14,18 +14,17 @@ describe("Customer tests", () => {
       name: "John Doe",
       address: "123 Main St",
       phone: "123-456-7890",
-      userId: 11,
     };
-    const { name, address, phone, userId } = newCustomer;
-    const result = await createCustomer(name, address, phone, userId);
+    const { name, address, phone } = newCustomer;
+    const result = await createCustomer(name, address, phone);
 
     customerId = result.id;
 
     expect(result).not.toBe(null);
-    expect(await getByIdCustomer(customerId)).toEqual({
-      id: customerId,
-      ...newCustomer,
-    });
+    const customerCreate = await getByIdCustomer(customerId);
+    expect(customerCreate.name).toEqual(newCustomer.name);
+    expect(customerCreate.address).toEqual(newCustomer.address);
+    expect(customerCreate.phone).toEqual(newCustomer.phone);
   });
 
   it("fails to create a customer with an existing phone", async () => {
@@ -33,12 +32,11 @@ describe("Customer tests", () => {
       name: "Jane Doe",
       address: "456 Elm St",
       phone: "123-456-7890",
-      userId: 101,
     };
-    const { name, address, phone, userId } = newCustomer;
+    const { name, address, phone } = newCustomer;
 
     try {
-      await createCustomer(name, address, phone, userId);
+      await createCustomer(name, address, phone);
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error.message).toContain(
@@ -52,22 +50,15 @@ describe("Customer tests", () => {
       name: "John Smith",
       address: "789 Oak St",
       phone: "098-765-4321",
-      userId: 11,
     };
-    const { name, address, phone, userId } = updatedCustomer;
-    const updateResult = await updateCustomer(
-      customerId,
-      name,
-      address,
-      phone,
-      userId,
-    );
+    const { name, address, phone } = updatedCustomer;
+    const updateResult = await updateCustomer(customerId, name, address, phone);
 
+    const customerUpdated = await getByIdCustomer(customerId);
     expect(updateResult).not.toBe(null);
-    expect(await getByIdCustomer(customerId)).toEqual({
-      id: customerId,
-      ...updatedCustomer,
-    });
+    expect(customerUpdated.name).toEqual(updatedCustomer.name);
+    expect(customerUpdated.address).toEqual(updatedCustomer.address);
+    expect(customerUpdated.phone).toEqual(updatedCustomer.phone);
   });
 
   it("fails to update a customer that does not exist", async () => {
@@ -76,12 +67,11 @@ describe("Customer tests", () => {
       name: "Nonexistent Customer",
       address: "Unknown Address",
       phone: "000-000-0000",
-      userId: 1,
     };
-    const { name, address, phone, userId } = updatedCustomer;
+    const { name, address, phone } = updatedCustomer;
 
     try {
-      await updateCustomer(invalidId, name, address, phone, userId);
+      await updateCustomer(invalidId, name, address, phone);
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error.message).toContain("Record to update not found");
