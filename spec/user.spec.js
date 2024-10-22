@@ -26,7 +26,7 @@ describe("User tests", () => {
       address,
       phone,
       password,
-      role
+      role,
     );
 
     userId = result.id;
@@ -52,7 +52,7 @@ describe("User tests", () => {
       fail("Expected an error to be thrown");
     } catch (error) {
       expect(error.message).toContain(
-        "Unique constraint failed on the fields: (`email`)"
+        "Unique constraint failed on the fields: (`email`)",
       );
     }
   });
@@ -74,7 +74,7 @@ describe("User tests", () => {
       address,
       phone,
       password,
-      role
+      role,
     );
 
     expect(updateResult).not.toBe(null);

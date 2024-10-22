@@ -26,7 +26,7 @@ export const createReservation = async (
   dateEnd,
   userId,
   roomId,
-  customerId
+  customerId,
 ) => {
   try {
     dateReservation = new Date(dateReservation).toISOString();
@@ -50,7 +50,7 @@ export const updateReservation = async (
   dateEnd,
   userId,
   roomId,
-  customerId
+  customerId,
 ) => {
   try {
     dateReservation = new Date(dateReservation).toISOString();

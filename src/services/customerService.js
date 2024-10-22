@@ -49,7 +49,7 @@ export const updateCustomer = async (id, name, address, phone, userId) => {
 export const deleteCustomer = async (id) => {
   try {
     await prisma.customers.delete({ where: { id } });
-    return true
+    return true;
   } catch (error) {
     throw error;
   } finally {

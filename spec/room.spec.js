@@ -1,4 +1,10 @@
-import { createRoom, getByIdRoom, updateRoom, deleteRoom, getAllRooms } from "../src/services/roomService.js";
+import {
+  createRoom,
+  getByIdRoom,
+  updateRoom,
+  deleteRoom,
+  getAllRooms,
+} from "../src/services/roomService.js";
 
 describe("Room tests", () => {
   let roomId = null;
@@ -34,7 +40,9 @@ describe("Room tests", () => {
       await createRoom(name, capacity, equipment, status, userId);
       fail("Expected an error to be thrown");
     } catch (error) {
-      expect(error.message).toContain("Unique constraint failed on the fields: (`name`)");
+      expect(error.message).toContain(
+        "Unique constraint failed on the fields: (`name`)",
+      );
     }
   });
 
@@ -47,14 +55,21 @@ describe("Room tests", () => {
       userId: 11,
     };
     const { name, capacity, equipment, status, userId } = updatedRoom;
-    const updateResult = await updateRoom(roomId, name, capacity, equipment, status, userId);
+    const updateResult = await updateRoom(
+      roomId,
+      name,
+      capacity,
+      equipment,
+      status,
+      userId,
+    );
 
     expect(updateResult).not.toBe(null);
     expect(await getByIdRoom(roomId)).toEqual({ id: roomId, ...updatedRoom });
   });
 
   it("fails to update a room that does not exist", async () => {
-    const invalidId = 1000000000; 
+    const invalidId = 1000000000;
     const updatedRoom = {
       name: "Room 007",
       capacity: 80,

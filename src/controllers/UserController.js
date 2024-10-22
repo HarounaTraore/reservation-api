@@ -10,13 +10,14 @@ import i18next from "i18next";
 export default class User {
   static async getByIdUser(req, res, next) {
     try {
-      const  id  = parseInt(req.params.id);
+      const id = parseInt(req.params.id);
       const result = await getByIdUser(id);
       if (result) {
         res.status(200).json({ result });
-      }else {
-        res.status(404).json({ message: i18next.t("userController.getUserById") });
-        
+      } else {
+        res
+          .status(404)
+          .json({ message: i18next.t("userController.getUserById") });
       }
     } catch (error) {
       res.json({ message: i18next.t("userController.getUserById") });
@@ -49,7 +50,7 @@ export default class User {
 
   static async updateUser(req, res, next) {
     try {
-      const  id  = Number(req.params.id);
+      const id = Number(req.params.id);
       const { name, email, address, phone, password, role } = req.body;
       await updateUser(id, name, email, address, phone, password, role);
       res.json({ message: i18next.t("userController.updateSuccefull") });
@@ -61,7 +62,7 @@ export default class User {
 
   static async deleteUser(req, res, next) {
     try {
-      const  id  = Number(req.params.id);
+      const id = Number(req.params.id);
       await deleteUser(id);
       res.json({ message: i18next.t("userController.deleteSuccessful") });
     } catch (error) {

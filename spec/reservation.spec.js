@@ -26,7 +26,7 @@ describe("Reservation tests", () => {
       dateEnd,
       userId,
       roomId,
-      customerId
+      customerId,
     );
 
     reservationId = result.id;
@@ -61,7 +61,7 @@ describe("Reservation tests", () => {
         dateEnd,
         userId,
         roomId,
-        customerId
+        customerId,
       );
       fail("Expected an error to be thrown");
     } catch (error) {
@@ -87,7 +87,7 @@ describe("Reservation tests", () => {
       dateEnd,
       userId,
       roomId,
-      customerId
+      customerId,
     );
 
     expect(updateResult).not.toBe(null);
@@ -123,7 +123,7 @@ describe("Reservation tests", () => {
         dateEnd,
         userId,
         roomId,
-        customerId
+        customerId,
       );
       fail("Expected an error to be thrown");
     } catch (error) {

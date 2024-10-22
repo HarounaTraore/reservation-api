@@ -15,12 +15,12 @@ export default class Reservation {
       const result = await getByIdReservation(id);
       if (result) {
         res.status(200).json({ result });
-      }else {
-        res.status(404).json({ message: i18next.t("reservationController.getReservationById") });
-        
+      } else {
+        res.status(404).json({
+          message: i18next.t("reservationController.getReservationById"),
+        });
       }
     } catch (error) {
-      
       res.status(500).json({
         message: i18next.t("reservationController.getReservationById"),
       });
@@ -54,7 +54,7 @@ export default class Reservation {
         dateEnd,
         userId,
         roomId,
-        customerId
+        customerId,
       );
       res
         .status(201)
@@ -84,14 +84,16 @@ export default class Reservation {
         dateEnd,
         userId,
         roomId,
-        customerId
+        customerId,
       );
       res
         .status(200)
         .json({ message: i18next.t("reservationController.updateSuccefull") });
     } catch (error) {
-      if(error.code === "P2025"){
-        res.status(404).json({message: i18next.t("reservationController.existReservation")})
+      if (error.code === "P2025") {
+        res.status(404).json({
+          message: i18next.t("reservationController.existReservation"),
+        });
       }
       res.status(500).json({ message: error });
     }

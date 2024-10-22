@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { findUser } from "../services/userService.js";
 import i18next from "i18next";
 import bcrypt from "bcryptjs";
- 
+
 export const login = async (email, password) => {
   if (!email || !password) {
     throw new Error(i18next.t("authService.invalidCredentials"));
@@ -24,8 +24,8 @@ export const login = async (email, password) => {
     { id: user.id, name: user.name, role: user.role },
     process.env.SECRET_AUTH,
     {
-      expiresIn: process.env.DURATION, 
-    }
+      expiresIn: process.env.DURATION,
+    },
   );
 
   return {
@@ -35,9 +35,7 @@ export const login = async (email, password) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role
-    }
+      role: user.role,
+    },
   };
 };
-
-

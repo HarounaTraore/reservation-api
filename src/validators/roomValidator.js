@@ -52,7 +52,7 @@ export const addRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredUserId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound")
+      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
     ),
 
   (req, res, next) => {
@@ -72,7 +72,7 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   check("name")
@@ -114,7 +114,7 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredUserId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound")
+      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound"),
     ),
 
   (req, res, next) => {
@@ -134,7 +134,7 @@ export const deleteRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   (req, res, next) => {
@@ -154,7 +154,7 @@ export const getRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   (req, res, next) => {

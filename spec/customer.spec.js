@@ -1,4 +1,10 @@
-import { createCustomer, getByIdCustomer, updateCustomer, deleteCustomer, getAllCustomers } from "../src/services/customerService.js";
+import {
+  createCustomer,
+  getByIdCustomer,
+  updateCustomer,
+  deleteCustomer,
+  getAllCustomers,
+} from "../src/services/customerService.js";
 
 describe("Customer tests", () => {
   let customerId = null;
@@ -16,14 +22,17 @@ describe("Customer tests", () => {
     customerId = result.id;
 
     expect(result).not.toBe(null);
-    expect(await getByIdCustomer(customerId)).toEqual({ id: customerId, ...newCustomer });
+    expect(await getByIdCustomer(customerId)).toEqual({
+      id: customerId,
+      ...newCustomer,
+    });
   });
 
   it("fails to create a customer with an existing phone", async () => {
     const newCustomer = {
       name: "Jane Doe",
       address: "456 Elm St",
-      phone: "123-456-7890", 
+      phone: "123-456-7890",
       userId: 101,
     };
     const { name, address, phone, userId } = newCustomer;
@@ -32,7 +41,9 @@ describe("Customer tests", () => {
       await createCustomer(name, address, phone, userId);
       fail("Expected an error to be thrown");
     } catch (error) {
-      expect(error.message).toContain("Unique constraint failed on the fields: (`phone`)");
+      expect(error.message).toContain(
+        "Unique constraint failed on the fields: (`phone`)",
+      );
     }
   });
 
@@ -44,14 +55,23 @@ describe("Customer tests", () => {
       userId: 11,
     };
     const { name, address, phone, userId } = updatedCustomer;
-    const updateResult = await updateCustomer(customerId, name, address, phone, userId);
+    const updateResult = await updateCustomer(
+      customerId,
+      name,
+      address,
+      phone,
+      userId,
+    );
 
     expect(updateResult).not.toBe(null);
-    expect(await getByIdCustomer(customerId)).toEqual({ id: customerId, ...updatedCustomer });
+    expect(await getByIdCustomer(customerId)).toEqual({
+      id: customerId,
+      ...updatedCustomer,
+    });
   });
 
   it("fails to update a customer that does not exist", async () => {
-    const invalidId = 1000000000; 
+    const invalidId = 1000000000;
     const updatedCustomer = {
       name: "Nonexistent Customer",
       address: "Unknown Address",

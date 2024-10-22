@@ -11,7 +11,6 @@ import authorizeRoles from "../middlewares/authorizeRoles.js";
 
 const router = Router();
 
-
 router.get(
   "/rooms",
   // authenticateJWT,
@@ -30,21 +29,21 @@ router.post(
   // authenticateJWT,
   // authorizeRoles("Admin"),
   addRequestValidator,
-  Room.createRoom
+  Room.createRoom,
 );
 router.put(
   "/room/:id",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
   updateRequestValidator,
-  Room.updateRoom
+  Room.updateRoom,
 );
 router.delete(
   "/room/:id",
   // authenticateJWT,
   // authorizeRoles("Admin"),
   deleteRequestValidator,
-  Room.deleteRoom
+  Room.deleteRoom,
 );
 
 export default router;

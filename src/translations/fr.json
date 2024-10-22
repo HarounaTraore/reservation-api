@@ -1,94 +1,94 @@
 {
-    "userController": {
-        "createSuccfull": "Utililateur ajoutée avec succès",
-        "createFailed": "Erreur de creation d'utilisateur",
-        "updateSuccefull": "Utililateur mise à jour avec succès",
-        "updateFailed": "Erreur de modification d'utilisateur",
-        "deleteSuccessful": "Utililateur supprimé avec succès",
-        "deleteFailed": "Erreur de suppression d'utilisateur",
-        "getAllUsersFailed": "Erreur d'affichage des utilisateurs",
-        "getUserById": "Erreur de recuperation de l'utilisateur"
-    },
-    "userValidator": {
-        "requierdName": "Nom est obligatoire",
-        "lengthName": "Le Nom doit contenir entre 5 et 100 caractères!",
-        "requierdEmail": "Email est obligatoire",
-        "requierdValidEmail": "Email saisit n'est pas valide",
-        "requierdAddress": "Adresse doit contenir entre 2 et 100 caractères!",
-        "requierdPhone": "Numéro de téléphone doit contenir entre 8 et 15 caractères",
-        "phoneUnique": "Ce numéro de téléphone existe déja!",
-        "passwordLength": "Mot de passe doit avoir au moins 8 caractères",
-        "requierdRole": "Le role de l'utilisateur est obligatoire",
-        "selectRole": "Role soit Admin ou Manager",
-        "emailUnique": "Cet email existe déja",
-        "requieredId": "L'id est obligatoire",
-        "existUser": "Cet utilisateur n'existe pas!"
-    },
-    "roomController": {
-        "createSuccfull": "Salle ajoutée avec succès",
-        "createFailed": "Erreur de creation de la salle",
-        "updateSuccefull": "Salle mise à jour avec succès",
-        "updateFailed": "Erreur de modification de la salle",
-        "deleteSuccessful": "Salle supprimé avec succès",
-        "deleteFailed": "Erreur de suppression de la salle",
-        "getAllRoomsFailed": "Erreur d'affichage des salles",
-        "getRoomById": "Erreur de recuperation de la salle"
-    },
-    "roomValidator": {
-        "requiredName": "Le nom est requis.",
-        "lengthName": "Le nom doit contenir entre 2 et 50 caractères.",
-        "nameUnique": "Le nom de la salle doit être unique.",
-        "requiredCapacity": "La capacité est requise.",
-        "capacityIsInt": "La capacité doit être un entier.",
-        "requiredEquipment": "L'équipement est requis.",
-        "requiredStatus": "Le statut est requis.",
-        "selectStatus": "Veuillez sélectionner un statut valide.",
-        "requiredUserId": "L'ID de l'utilisateur est requis.",
-        "existRoom": "La salle n'existe pas."
-    },
-    "customerController": {
-        "getCustomerById": "Erreur de récupération du client",
-        "getAllCustomersFailed": "Erreur d'affichage des clients",
-        "createSuccfull": "Client ajouté avec succès",
-        "createFailed": "Erreur de création du client",
-        "updateSuccefull": "Client mis à jour avec succès",
-        "updateFailed": "Erreur de modification du client",
-        "deleteSuccessful": "Client supprimé avec succès",
-        "deleteFailed": "Erreur de suppression du client"
-    },
-    "customerValidator": {
-        "requiredName": "Le nom est obligatoire",
-        "lengthName": "Le nom doit contenir entre 2 et 100 caractères",
-        "requiredAddress": "L'adresse est obligatoire",
-        "lengthAddress": "L'adresse doit contenir entre 2 et 100 caractères",
-        "requiredPhone": "Le numéro de téléphone doit contenir entre 8 et 15 caractères",
-        "phoneUnique": "Ce numéro de téléphone existe déjà",
-        "requiredUserId": "L'ID de l'utilisateur est obligatoire",
-        "existCustomer": "Cet utilisateur n'existe pas",
-        "requieredId": "L'ID est obligatoire",
-        "existcustomer": "Ce client n'existe pas"
-    },
-    "reservationController": {
-        "getReservationById": "Impossible de récupérer la réservation avec cet ID.",
-        "getAllReservationsFailed": "Échec de la récupération de toutes les réservations.",
-        "createSuccfull": "Réservation créée avec succès.",
-        "createFailed": "Échec de la création de la réservation.",
-        "updateSuccefull": "Réservation mise à jour avec succès.",
-        "updateFailed": "Échec de la mise à jour de la réservation.",
-        "existReservation": " Réservation non trouvé",
-        "deleteSuccessful": "Réservation supprimée avec succès.",
-        "deleteFailed": "Échec de la suppression de la réservation."
-    },
-    "reservationValidator": {
-        "requiredDateReservation": "La date de réservation est requise.",
-        "requiredDateStart": "La date de début est requise.",
-        "requiredDateEnd": "La date de fin est requise.",
-        "typeDate": "Le format de la date est invalide.",
-        "requiredRole": "Le rôle est requis.",
-        "requieredId": "L'ID est requis.",
-        "existreservation": "La réservation n'existe pas.",
-        "userNotFound": "Utilisateur non trouvé.",
-        "roomNotFound": "Salle non trouvée.",
-        "customerNotFound": "Client non trouvé."
-    }
+  "userController": {
+    "createSuccfull": "Utililateur ajoutée avec succès",
+    "createFailed": "Erreur de creation d'utilisateur",
+    "updateSuccefull": "Utililateur mise à jour avec succès",
+    "updateFailed": "Erreur de modification d'utilisateur",
+    "deleteSuccessful": "Utililateur supprimé avec succès",
+    "deleteFailed": "Erreur de suppression d'utilisateur",
+    "getAllUsersFailed": "Erreur d'affichage des utilisateurs",
+    "getUserById": "Erreur de recuperation de l'utilisateur"
+  },
+  "userValidator": {
+    "requierdName": "Nom est obligatoire",
+    "lengthName": "Le Nom doit contenir entre 5 et 100 caractères!",
+    "requierdEmail": "Email est obligatoire",
+    "requierdValidEmail": "Email saisit n'est pas valide",
+    "requierdAddress": "Adresse doit contenir entre 2 et 100 caractères!",
+    "requierdPhone": "Numéro de téléphone doit contenir entre 8 et 15 caractères",
+    "phoneUnique": "Ce numéro de téléphone existe déja!",
+    "passwordLength": "Mot de passe doit avoir au moins 8 caractères",
+    "requierdRole": "Le role de l'utilisateur est obligatoire",
+    "selectRole": "Role soit Admin ou Manager",
+    "emailUnique": "Cet email existe déja",
+    "requieredId": "L'id est obligatoire",
+    "existUser": "Cet utilisateur n'existe pas!"
+  },
+  "roomController": {
+    "createSuccfull": "Salle ajoutée avec succès",
+    "createFailed": "Erreur de creation de la salle",
+    "updateSuccefull": "Salle mise à jour avec succès",
+    "updateFailed": "Erreur de modification de la salle",
+    "deleteSuccessful": "Salle supprimé avec succès",
+    "deleteFailed": "Erreur de suppression de la salle",
+    "getAllRoomsFailed": "Erreur d'affichage des salles",
+    "getRoomById": "Erreur de recuperation de la salle"
+  },
+  "roomValidator": {
+    "requiredName": "Le nom est requis.",
+    "lengthName": "Le nom doit contenir entre 2 et 50 caractères.",
+    "nameUnique": "Le nom de la salle doit être unique.",
+    "requiredCapacity": "La capacité est requise.",
+    "capacityIsInt": "La capacité doit être un entier.",
+    "requiredEquipment": "L'équipement est requis.",
+    "requiredStatus": "Le statut est requis.",
+    "selectStatus": "Veuillez sélectionner un statut valide.",
+    "requiredUserId": "L'ID de l'utilisateur est requis.",
+    "existRoom": "La salle n'existe pas."
+  },
+  "customerController": {
+    "getCustomerById": "Erreur de récupération du client",
+    "getAllCustomersFailed": "Erreur d'affichage des clients",
+    "createSuccfull": "Client ajouté avec succès",
+    "createFailed": "Erreur de création du client",
+    "updateSuccefull": "Client mis à jour avec succès",
+    "updateFailed": "Erreur de modification du client",
+    "deleteSuccessful": "Client supprimé avec succès",
+    "deleteFailed": "Erreur de suppression du client"
+  },
+  "customerValidator": {
+    "requiredName": "Le nom est obligatoire",
+    "lengthName": "Le nom doit contenir entre 2 et 100 caractères",
+    "requiredAddress": "L'adresse est obligatoire",
+    "lengthAddress": "L'adresse doit contenir entre 2 et 100 caractères",
+    "requiredPhone": "Le numéro de téléphone doit contenir entre 8 et 15 caractères",
+    "phoneUnique": "Ce numéro de téléphone existe déjà",
+    "requiredUserId": "L'ID de l'utilisateur est obligatoire",
+    "existCustomer": "Cet utilisateur n'existe pas",
+    "requieredId": "L'ID est obligatoire",
+    "existcustomer": "Ce client n'existe pas"
+  },
+  "reservationController": {
+    "getReservationById": "Impossible de récupérer la réservation avec cet ID.",
+    "getAllReservationsFailed": "Échec de la récupération de toutes les réservations.",
+    "createSuccfull": "Réservation créée avec succès.",
+    "createFailed": "Échec de la création de la réservation.",
+    "updateSuccefull": "Réservation mise à jour avec succès.",
+    "updateFailed": "Échec de la mise à jour de la réservation.",
+    "existReservation": " Réservation non trouvé",
+    "deleteSuccessful": "Réservation supprimée avec succès.",
+    "deleteFailed": "Échec de la suppression de la réservation."
+  },
+  "reservationValidator": {
+    "requiredDateReservation": "La date de réservation est requise.",
+    "requiredDateStart": "La date de début est requise.",
+    "requiredDateEnd": "La date de fin est requise.",
+    "typeDate": "Le format de la date est invalide.",
+    "requiredRole": "Le rôle est requis.",
+    "requieredId": "L'ID est requis.",
+    "existreservation": "La réservation n'existe pas.",
+    "userNotFound": "Utilisateur non trouvé.",
+    "roomNotFound": "Salle non trouvée.",
+    "customerNotFound": "Client non trouvé."
+  }
 }

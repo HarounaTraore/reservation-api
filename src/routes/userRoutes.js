@@ -15,35 +15,35 @@ router.get(
   "/users",
   // authenticateJWT,
   // authorizeRoles("Admin"),
-  User.getAllUsers
+  User.getAllUsers,
 );
 router.get(
   "/user/:id",
   // authenticateJWT,
   // authorizeRoles("Admin"),
   getRequestValidator,
-  User.getByIdUser
+  User.getByIdUser,
 );
 router.post(
   "/user",
   // authenticateJWT,
   // authorizeRoles("Admin"),
   addRequestValidator,
-  User.createUser
+  User.createUser,
 );
 router.put(
   "/user/:id",
   // authenticateJWT,
   // authorizeRoles("Admin"),
   updateRequestValidator,
-  User.updateUser
+  User.updateUser,
 );
 router.delete(
   "/user/:id",
   // authenticateJWT,
   // authorizeRoles("Admin"),
   deleteRequestValidator,
-  User.deleteUser
+  User.deleteUser,
 );
 
 export default router;

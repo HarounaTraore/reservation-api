@@ -1,94 +1,94 @@
 {
-    "userController": {
-        "createSuccfull": "User added successfully",
-        "createFailed": "Error creating user",
-        "updateSuccefull": "User updated successfully",
-        "updateFailed": "Error updating user",
-        "deleteSuccessful": "User deleted successfully",
-        "deleteFailed": "Error deleting user",
-        "getAllUsersFailed": "Error displaying users",
-        "getUserById": "Error retrieving user"
-    },
-    "userValidator": {
-        "requierdName": "Name is required",
-        "lengthName": "Name must be between 5 and 100 characters!",
-        "requierdEmail": "Email is required",
-        "requierdValidEmail": "Entered email is not valid",
-        "requierdAddress": "Address must be between 2 and 100 characters!",
-        "requierdPhone": "Phone number must be between 8 and 15 characters",
-        "phoneUnique": "This phone number already exists!",
-        "passwordLength": "Password must be at least 8 characters long",
-        "requierdRole": "User role is required",
-        "selectRole": "Role must be either Admin or Manager",
-        "emailUnique": "This email already exists",
-        "requieredId": "ID is required",
-        "existUser": "This user does not exist!"
-    },
-    "roomController": {
-        "createSuccfull": "Room added successfully",
-        "createFailed": "Error creating room",
-        "updateSuccefull": "Room updated successfully",
-        "updateFailed": "Error updating room",
-        "deleteSuccessful": "Room deleted successfully",
-        "deleteFailed": "Error deleting room",
-        "getAllRoomsFailed": "Error displaying rooms",
-        "getRoomById": "Error retrieving room"
-    },
-    "roomValidator": {
-        "requiredName": "Name is required.",
-        "lengthName": "Name must be between 2 and 50 characters long.",
-        "nameUnique": "Room name must be unique.",
-        "requiredCapacity": "Capacity is required.",
-        "capacityIsInt": "Capacity must be an integer.",
-        "requiredEquipment": "Equipment is required.",
-        "requiredStatus": "Status is required.",
-        "selectStatus": "Please select a valid status.",
-        "requiredUserId": "User ID is required.",
-        "existRoom": "Room does not exist."
-    },
-    "customerController": {
-        "getCustomerById": "Error getting the customer",
-        "getAllCustomersFailed": "Error displaying customers",
-        "createSuccfull": "Customer added successfully",
-        "createFailed": "Error creating the customer",
-        "updateSuccefull": "Customer updated successfully",
-        "updateFailed": "Error updating the customer",
-        "deleteSuccessful": "Customer deleted successfully",
-        "deleteFailed": "Error deleting the customer"
-    },
-    "customerValidator": {
-        "requiredName": "Name is required",
-        "lengthName": "Name must be between 2 and 100 characters long",
-        "requiredAddress": "Address is required",
-        "lengthAddress": "Address must be between 2 and 100 characters long",
-        "requiredPhone": "Phone number must be between 8 and 15 characters long",
-        "phoneUnique": "This phone number already exists",
-        "requiredUserId": "User ID is required",
-        "existCustomer": "This user does not exist",
-        "requieredId": "ID is required",
-        "existcustomer": "This customer does not exist"
-    },
-    "reservationController": {
-        "getReservationById": "Failed to retrieve reservation with this ID.",
-        "getAllReservationsFailed": "Failed to retrieve all reservations.",
-        "createSuccfull": "Reservation created successfully.",
-        "createFailed": "Failed to create reservation.",
-        "updateSuccefull": "Reservation updated successfully.",
-        "updateFailed": "Failed to update reservation.",
-        "existReservation": "Reservation not found",
-        "deleteSuccessful": "Reservation deleted successfully.",
-        "deleteFailed": "Failed to delete reservation."
-    },
-    "reservationValidator": {
-        "requiredDateReservation": "Reservation date is required.",
-        "requiredDateStart": "Start date is required.",
-        "requiredDateEnd": "End date is required.",
-        "typeDate": "Invalid date format.",
-        "requiredRole": "Role is required.",
-        "requieredId": "ID is required.",
-        "userNotFound": "User not found.",
-        "roomNotFound": "Room not found.",
-        "customerNotFound": "Customer not found.",
-        "existreservation": "Reservation not found."
-    }
+  "userController": {
+    "createSuccfull": "User added successfully",
+    "createFailed": "Error creating user",
+    "updateSuccefull": "User updated successfully",
+    "updateFailed": "Error updating user",
+    "deleteSuccessful": "User deleted successfully",
+    "deleteFailed": "Error deleting user",
+    "getAllUsersFailed": "Error displaying users",
+    "getUserById": "Error retrieving user"
+  },
+  "userValidator": {
+    "requierdName": "Name is required",
+    "lengthName": "Name must be between 5 and 100 characters!",
+    "requierdEmail": "Email is required",
+    "requierdValidEmail": "Entered email is not valid",
+    "requierdAddress": "Address must be between 2 and 100 characters!",
+    "requierdPhone": "Phone number must be between 8 and 15 characters",
+    "phoneUnique": "This phone number already exists!",
+    "passwordLength": "Password must be at least 8 characters long",
+    "requierdRole": "User role is required",
+    "selectRole": "Role must be either Admin or Manager",
+    "emailUnique": "This email already exists",
+    "requieredId": "ID is required",
+    "existUser": "This user does not exist!"
+  },
+  "roomController": {
+    "createSuccfull": "Room added successfully",
+    "createFailed": "Error creating room",
+    "updateSuccefull": "Room updated successfully",
+    "updateFailed": "Error updating room",
+    "deleteSuccessful": "Room deleted successfully",
+    "deleteFailed": "Error deleting room",
+    "getAllRoomsFailed": "Error displaying rooms",
+    "getRoomById": "Error retrieving room"
+  },
+  "roomValidator": {
+    "requiredName": "Name is required.",
+    "lengthName": "Name must be between 2 and 50 characters long.",
+    "nameUnique": "Room name must be unique.",
+    "requiredCapacity": "Capacity is required.",
+    "capacityIsInt": "Capacity must be an integer.",
+    "requiredEquipment": "Equipment is required.",
+    "requiredStatus": "Status is required.",
+    "selectStatus": "Please select a valid status.",
+    "requiredUserId": "User ID is required.",
+    "existRoom": "Room does not exist."
+  },
+  "customerController": {
+    "getCustomerById": "Error getting the customer",
+    "getAllCustomersFailed": "Error displaying customers",
+    "createSuccfull": "Customer added successfully",
+    "createFailed": "Error creating the customer",
+    "updateSuccefull": "Customer updated successfully",
+    "updateFailed": "Error updating the customer",
+    "deleteSuccessful": "Customer deleted successfully",
+    "deleteFailed": "Error deleting the customer"
+  },
+  "customerValidator": {
+    "requiredName": "Name is required",
+    "lengthName": "Name must be between 2 and 100 characters long",
+    "requiredAddress": "Address is required",
+    "lengthAddress": "Address must be between 2 and 100 characters long",
+    "requiredPhone": "Phone number must be between 8 and 15 characters long",
+    "phoneUnique": "This phone number already exists",
+    "requiredUserId": "User ID is required",
+    "existCustomer": "This user does not exist",
+    "requieredId": "ID is required",
+    "existcustomer": "This customer does not exist"
+  },
+  "reservationController": {
+    "getReservationById": "Failed to retrieve reservation with this ID.",
+    "getAllReservationsFailed": "Failed to retrieve all reservations.",
+    "createSuccfull": "Reservation created successfully.",
+    "createFailed": "Failed to create reservation.",
+    "updateSuccefull": "Reservation updated successfully.",
+    "updateFailed": "Failed to update reservation.",
+    "existReservation": "Reservation not found",
+    "deleteSuccessful": "Reservation deleted successfully.",
+    "deleteFailed": "Failed to delete reservation."
+  },
+  "reservationValidator": {
+    "requiredDateReservation": "Reservation date is required.",
+    "requiredDateStart": "Start date is required.",
+    "requiredDateEnd": "End date is required.",
+    "typeDate": "Invalid date format.",
+    "requiredRole": "Role is required.",
+    "requieredId": "ID is required.",
+    "userNotFound": "User not found.",
+    "roomNotFound": "Room not found.",
+    "customerNotFound": "Customer not found.",
+    "existreservation": "Reservation not found."
+  }
 }

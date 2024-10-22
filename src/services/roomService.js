@@ -39,7 +39,7 @@ export const updateRoom = async (
   capacity,
   equipment,
   status,
-  userId
+  userId,
 ) => {
   try {
     const result = await prisma.rooms.update({
@@ -56,7 +56,7 @@ export const updateRoom = async (
 export const deleteRoom = async (id) => {
   try {
     await prisma.rooms.delete({ where: { id } });
-    return true
+    return true;
   } catch (error) {
     throw error;
   } finally {

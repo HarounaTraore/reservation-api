@@ -26,7 +26,7 @@ export const createUser = async (
   address,
   phone,
   password,
-  role
+  role,
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
   try {
@@ -48,7 +48,7 @@ export const updateUser = async (
   address,
   phone,
   password,
-  role
+  role,
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
 

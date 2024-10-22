@@ -8,7 +8,10 @@
     "test": "npx jasmine",
     "studio": "npx prisma studio",
     "generate": "npx prisma generate",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "author": "Harouna Traoré",
   "license": "ISC",
@@ -27,8 +30,13 @@
     "jasmine-spec-reporter": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
     "prisma": "^5.21.1",
-    "validator": "^13.12.0",
-    "vue-i18n": "^10.0.4"
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0"
   }
 }

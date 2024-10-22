@@ -14,35 +14,35 @@ router.get(
   "/customers",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
-  Customer.getAllCustomers
+  Customer.getAllCustomers,
 );
 router.get(
   "/customer/:id",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
   getRequestValidator,
-  Customer.getByIdCustomer
+  Customer.getByIdCustomer,
 );
 router.post(
   "/customer",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
   addRequestValidator,
-  Customer.createCustomer
+  Customer.createCustomer,
 );
 router.put(
   "/customer/:id",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
   updateRequestValidator,
-  Customer.updateCustomer
+  Customer.updateCustomer,
 );
 router.delete(
   "/customer/:id",
   // authenticateJWT,
   // authorizeRoles("Admin", "Manager"),
   deleteRequestValidator,
-  Customer.deleteCustomer
+  Customer.deleteCustomer,
 );
 
 export default router;

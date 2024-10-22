@@ -10,13 +10,14 @@ import i18next from "i18next";
 export default class Room {
   static async getByIdRoom(req, res, next) {
     try {
-      const  id  = parseInt(req.params.id);
+      const id = parseInt(req.params.id);
       const result = await getByIdRoom(id);
       if (result) {
         res.status(200).json({ result });
-      }else {
-        res.status(404).json({ message:  i18next.t("roomController.getRoomById") });
-        
+      } else {
+        res
+          .status(404)
+          .json({ message: i18next.t("roomController.getRoomById") });
       }
     } catch (error) {
       res.json({ message: i18next.t("roomController.getRoomById") });
@@ -49,7 +50,7 @@ export default class Room {
 
   static async updateRoom(req, res, next) {
     try {
-      const  id  = Number(req.params.id);
+      const id = Number(req.params.id);
       const { name, capacity, equipment, status, userId } = req.body;
       await updateRoom(id, name, capacity, equipment, status, userId);
       res.json({ message: i18next.t("roomController.updateSuccefull") });
@@ -61,7 +62,7 @@ export default class Room {
 
   static async deleteRoom(req, res, next) {
     try {
-      const  id  = Number(req.params.id);
+      const id = Number(req.params.id);
       await deleteRoom(id);
       res.json({ message: i18next.t("roomController.deleteSuccessful") });
     } catch (error) {
