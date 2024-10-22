@@ -4,10 +4,17 @@ import { checkName, getByIdRoom } from "../services/roomService.js";
 import { StatusCodes } from "http-status-codes";
 import { getByIdUser } from "../services/userService.js";
 
+const validateIdExists = async (id, service, errorMessage) => {
+  const result = await service(Number(id));
+  if (!result) {
+    throw new Error(i18next.t(errorMessage));
+  }
+  return true;
+};
+
 export const addRequestValidator = [
   check("name")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("roomValidator.requiredName"))
     .bail()
     .isLength({ min: 2, max: 50 })
@@ -18,45 +25,35 @@ export const addRequestValidator = [
       const result = await checkName(id, value);
       if (result !== 0) {
         throw new Error(i18next.t("roomValidator.nameUnique"));
-      } else return true;
-    }),
-
-  check("capacity")
-    .not()
-    .isEmpty()
-    .withMessage(i18next.t("roomValidator.requiredCapacity"))
-    .bail()
-
-    .isInt()
-    .withMessage(i18next.t("roomValidator.capacityIsInt"))
-    .bail(),
-
-  check("equipment")
-    .isLength({ min: 2, max: 500 })
-    .withMessage(i18next.t("roomValidator.requiredAddress"))
-    .bail(),
-
-  check("status")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredRole"))
-    .bail()
-    .isIn(["Réservée", "Non Réservée"])
-    .withMessage(i18next.t("roomValidator.selectRole"))
-    .bail(),
-
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredRole"))
-    .bail()
-
-    .custom(async (value) => {
-      const id = Number(value);
-      const result = await getByIdUser(id);
-      if (result === 0) {
-        throw new Error(i18next.t("roomValidator.existroom"));
       }
       return true;
     }),
+
+  check("capacity")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredCapacity"))
+    .bail()
+    .isInt()
+    .withMessage(i18next.t("roomValidator.capacityIsInt")),
+
+  check("equipment")
+    .isLength({ min: 2, max: 500 })
+    .withMessage(i18next.t("roomValidator.requiredEquipment")),
+
+  check("status")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredStatus"))
+    .bail()
+    .isIn(["Réservée", "Non Réservée"])
+    .withMessage(i18next.t("roomValidator.selectStatus")),
+
+  check("userId")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredUserId"))
+    .bail()
+    .custom(async (value) =>
+      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound")
+    ),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -72,19 +69,14 @@ export const addRequestValidator = [
 export const updateRequestValidator = [
   param("id")
     .notEmpty()
-    .withMessage(i18next.t("roomValidator.requieredId"))
+    .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
-    .custom(async (value) => {
-      const id = Number(value);
-      const result = await getByIdRoom(id);
-      if (result === 0) {
-        throw new Error(i18next.t("roomValidator.existroom"));
-      }
-      return true;
-    }),
+    .custom(async (value) =>
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+    ),
+
   check("name")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("roomValidator.requiredName"))
     .bail()
     .isLength({ min: 2, max: 50 })
@@ -95,45 +87,35 @@ export const updateRequestValidator = [
       const result = await checkName(id, value);
       if (result !== 0) {
         throw new Error(i18next.t("roomValidator.nameUnique"));
-      } else return true;
-    }),
-
-  check("capacity")
-    .not()
-    .isEmpty()
-    .withMessage(i18next.t("roomValidator.requiredCapacity"))
-    .bail()
-
-    .isInt()
-    .withMessage(i18next.t("roomValidator.capacityIsInt"))
-    .bail(),
-
-  check("equipment")
-    .isLength({ min: 2, max: 500 })
-    .withMessage(i18next.t("roomValidator.requiredAddress"))
-    .bail(),
-
-  check("status")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredRole"))
-    .bail()
-    .isIn(["Réservée", "Non Réservée"])
-    .withMessage(i18next.t("roomValidator.selectRole"))
-    .bail(),
-
-  check("userId")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredRole"))
-    .bail()
-
-    .custom(async (value) => {
-      const id = Number(value);
-      const result = await getByIdUser(id);
-      if (result === 0) {
-        throw new Error(i18next.t("roomValidator.existroom"));
       }
       return true;
     }),
+
+  check("capacity")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredCapacity"))
+    .bail()
+    .isInt()
+    .withMessage(i18next.t("roomValidator.capacityIsInt")),
+
+  check("equipment")
+    .isLength({ min: 2, max: 500 })
+    .withMessage(i18next.t("roomValidator.requiredEquipment")),
+
+  check("status")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredStatus"))
+    .bail()
+    .isIn(["Réservée", "Non Réservée"])
+    .withMessage(i18next.t("roomValidator.selectStatus")),
+
+  check("userId")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredUserId"))
+    .bail()
+    .custom(async (value) =>
+      validateIdExists(value, getByIdUser, "reservationValidator.userNotFound")
+    ),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -149,16 +131,32 @@ export const updateRequestValidator = [
 export const deleteRequestValidator = [
   param("id")
     .notEmpty()
-    .withMessage(i18next.t("roomValidator.requieredId"))
+    .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
-    .custom(async (value) => {
-      const id = Number(value);
-      const result = await getByIdRoom(id);
-      if (result === 0) {
-        throw new Error(i18next.t("roomValidator.existroom"));
-      }
-      return true;
-    }),
+    .custom(async (value) =>
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+    ),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    }
+    next();
+  },
+];
+
+export const getRequestValidator = [
+  param("id")
+    .notEmpty()
+    .withMessage(i18next.t("roomValidator.requiredId"))
+    .bail()
+    .custom(async (value) =>
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+    ),
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

@@ -35,17 +35,16 @@
         "getRoomById": "خطأ في استرجاع الغرفة"
     },
     "roomValidator": {
-        "requiredName": "اسم الغرفة مطلوب.",
-        "lengthName": "يجب أن يتراوح الاسم بين 2 و 50 حرفًا.",
-        "nameUnique": "اسم الغرفة هذا موجود بالفعل.",
-        "requiredCapacity": "سعة الغرفة مطلوبة.",
+        "requiredName": "الاسم مطلوب.",
+        "lengthName": "يجب أن يتكون الاسم من 2 إلى 50 حرفًا.",
+        "nameUnique": "يجب أن يكون اسم القاعة فريدًا.",
+        "requiredCapacity": "السعة مطلوبة.",
         "capacityIsInt": "يجب أن تكون السعة عددًا صحيحًا.",
-        "requiredEquipment": "يجب تقديم المعدات وأن تتراوح بين 2 و 500 حرف.",
-        "requiredStatus": "حالة الغرفة مطلوبة.",
-        "selectRole": "يجب أن تكون الحالة إما 'محجوزة' أو 'غير محجوزة'.",
-        "requiredUserId": "المستخدم المعين مطلوب.",
-        "existroom": "معرف الغرفة المحدد غير موجود.",
-        "requieredId": "معرف الغرفة مطلوب للحذف."
+        "requiredEquipment": "المعدات مطلوبة.",
+        "requiredStatus": "الحالة مطلوبة.",
+        "selectStatus": "يرجى اختيار حالة صالحة.",
+        "requiredUserId": "معرف المستخدم مطلوب.",
+        "existRoom": "القاعه غير موجوده."
     },
     "customerController": {
         "getCustomerById": "خطأ في استرجاع العميل",
@@ -76,7 +75,20 @@
         "createFailed": "فشل في إنشاء الحجز.",
         "updateSuccefull": "تم تحديث الحجز بنجاح.",
         "updateFailed": "فشل في تحديث الحجز.",
+        "existReservation": "الحجز غير موجود",
         "deleteSuccessful": "تم حذف الحجز بنجاح.",
         "deleteFailed": "فشل في حذف الحجز."
+    },
+    "reservationValidator": {
+        "requiredDateReservation": "تاريخ الحجز مطلوب.",
+        "requiredDateStart": "تاريخ البدء مطلوب.",
+        "requiredDateEnd": "تاريخ الانتهاء مطلوب.",
+        "typeDate": "تنسيق التاريخ غير صالح.",
+        "requiredRole": "الدور مطلوب.",
+        "requieredId": "المعرف مطلوب.",
+        "userNotFound": "المستخدم غير موجود.",
+        "roomNotFound": "الغرفة غير موجودة.",
+        "customerNotFound": "العميل غير موجود.",
+        "existreservation": "الحجز غير موجود."
     }
 }

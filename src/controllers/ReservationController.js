@@ -1,3 +1,4 @@
+import { ErrorCodes } from "vue";
 import {
   createReservation,
   deleteReservation,
@@ -19,6 +20,7 @@ export default class Reservation {
         
       }
     } catch (error) {
+      
       res.status(500).json({
         message: i18next.t("reservationController.getReservationById"),
       });
@@ -88,6 +90,9 @@ export default class Reservation {
         .status(200)
         .json({ message: i18next.t("reservationController.updateSuccefull") });
     } catch (error) {
+      if(error.code === "P2025"){
+        res.status(404).json({message: i18next.t("reservationController.existReservation")})
+      }
       res.status(500).json({ message: error });
     }
   }

@@ -118,10 +118,15 @@ export const checkEmail = async (id = null, email) => {
         where: { email: email },
       });
     }
-
-
     return result || 0;
   } catch (error) {
     throw error;
   }
+};
+
+export const findUser = async (email) => {
+  const result = prisma.users.findFirst({
+    where: { email: email },
+  });
+  return result;
 };

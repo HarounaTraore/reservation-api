@@ -6,7 +6,6 @@ import i18nextMiddleware from "i18next-express-middleware";
 import translate from "./src/translations/index.js";
 import routes from "./src/routes/index.js";
 import authRoute from "./src/routes/authRoute.js";
-import authenticateJWT from "./src/middlewares/authenticateJWT.js";
 config();
 const port = 3000;
 const app = express();

@@ -35,17 +35,16 @@
         "getRoomById": "Erreur de recuperation de la salle"
     },
     "roomValidator": {
-        "requiredName": "Le nom de la chambre est obligatoire.",
+        "requiredName": "Le nom est requis.",
         "lengthName": "Le nom doit contenir entre 2 et 50 caractères.",
-        "nameUnique": "Ce nom de chambre existe déjà.",
-        "requiredCapacity": "La capacité de la chambre est obligatoire.",
-        "capacityIsInt": "La capacité doit être un nombre entier.",
-        "requiredEquipment": "Les équipements doivent être fournis et contenir entre 2 et 500 caractères.",
-        "requiredStatus": "Le statut de la chambre est obligatoire.",
-        "selectRole": "Le statut doit être soit 'Réservée' soit 'Non Réservée'.",
-        "requiredUserId": "L'utilisateur assigné est obligatoire.",
-        "existroom": "L'ID de la chambre spécifié n'existe pas.",
-        "requieredId": "L'ID de la chambre est requis pour la suppression."
+        "nameUnique": "Le nom de la salle doit être unique.",
+        "requiredCapacity": "La capacité est requise.",
+        "capacityIsInt": "La capacité doit être un entier.",
+        "requiredEquipment": "L'équipement est requis.",
+        "requiredStatus": "Le statut est requis.",
+        "selectStatus": "Veuillez sélectionner un statut valide.",
+        "requiredUserId": "L'ID de l'utilisateur est requis.",
+        "existRoom": "La salle n'existe pas."
     },
     "customerController": {
         "getCustomerById": "Erreur de récupération du client",
@@ -76,7 +75,20 @@
         "createFailed": "Échec de la création de la réservation.",
         "updateSuccefull": "Réservation mise à jour avec succès.",
         "updateFailed": "Échec de la mise à jour de la réservation.",
+        "existReservation": " Réservation non trouvé",
         "deleteSuccessful": "Réservation supprimée avec succès.",
         "deleteFailed": "Échec de la suppression de la réservation."
+    },
+    "reservationValidator": {
+        "requiredDateReservation": "La date de réservation est requise.",
+        "requiredDateStart": "La date de début est requise.",
+        "requiredDateEnd": "La date de fin est requise.",
+        "typeDate": "Le format de la date est invalide.",
+        "requiredRole": "Le rôle est requis.",
+        "requieredId": "L'ID est requis.",
+        "existreservation": "La réservation n'existe pas.",
+        "userNotFound": "Utilisateur non trouvé.",
+        "roomNotFound": "Salle non trouvée.",
+        "customerNotFound": "Client non trouvé."
     }
 }

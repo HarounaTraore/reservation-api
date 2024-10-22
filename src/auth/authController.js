@@ -1,4 +1,4 @@
-import login from "./authService.js"
+import i18next from "i18next";
 
 export const signin = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ export const signin = async (req, res) => {
     const token = await login(email, password);
     res.json({ token });
   } catch (err) {
-    res.status(401).json({ error: err.message });
+    res.status(401).json({ message: i18next.t("authController.accessDenied")  });
   }
 };
 

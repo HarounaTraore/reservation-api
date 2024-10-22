@@ -7,19 +7,25 @@ import {
 } from "../services/userService.js";
 import { StatusCodes } from "http-status-codes";
 
+// Fonction de validation d'ID d'utilisateur
+const validateUserId = async (id) => {
+  const result = await getByIdUser(Number(id));
+  if (!result) {
+    throw new Error(i18next.t("userValidator.existUser"));
+  }
+  return true;
+};
+
 export const addRequestValidator = [
   check("name")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("userValidator.requiredName"))
     .bail()
     .isLength({ min: 5, max: 100 })
-    .withMessage(i18next.t("userValidator.lengthName"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.lengthName")),
 
   check("email")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
     .isEmail()
@@ -30,13 +36,13 @@ export const addRequestValidator = [
       const result = await checkEmail(id, value);
       if (result !== 0) {
         throw new Error(i18next.t("userValidator.emailUnique"));
-      } else return true;
+      }
+      return true;
     }),
 
   check("address")
     .isLength({ min: 2, max: 100 })
-    .withMessage(i18next.t("userValidator.requiredAddress"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.requiredAddress")),
 
   check("phone")
     .isLength({ min: 8, max: 15 })
@@ -53,16 +59,14 @@ export const addRequestValidator = [
 
   check("password")
     .isLength({ min: 8 })
-    .withMessage(i18next.t("userValidator.passwordLength"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.passwordLength")),
 
   check("role")
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()
     .isIn(["Admin", "Manager"])
-    .withMessage(i18next.t("userValidator.selectRole"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.selectRole")),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -74,31 +78,23 @@ export const addRequestValidator = [
     next();
   },
 ];
+
 export const updateRequestValidator = [
   param("id")
     .notEmpty()
-    .withMessage(i18next.t("userValidator.requieredId"))
+    .withMessage(i18next.t("userValidator.requiredId"))
     .bail()
-    .custom(async (value) => {
-      const id = Number(value)
-      const result = await getByIdUser(id);
-      if (result === 0) {
-        throw new Error(i18next.t("userValidator.existUser"));
-      }
-      return true;
-    }),
+    .custom(validateUserId),
+
   check("name")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("userValidator.requiredName"))
     .bail()
     .isLength({ min: 5, max: 100 })
-    .withMessage(i18next.t("userValidator.lengthName"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.lengthName")),
 
   check("email")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
     .isEmail()
@@ -109,13 +105,13 @@ export const updateRequestValidator = [
       const result = await checkEmail(id, value);
       if (result !== 0) {
         throw new Error(i18next.t("userValidator.emailUnique"));
-      } else return true;
+      }
+      return true;
     }),
 
   check("address")
     .isLength({ min: 2, max: 100 })
-    .withMessage(i18next.t("userValidator.requiredAddress"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.requiredAddress")),
 
   check("phone")
     .isLength({ min: 8, max: 15 })
@@ -132,16 +128,14 @@ export const updateRequestValidator = [
 
   check("password")
     .isLength({ min: 8 })
-    .withMessage(i18next.t("userValidator.passwordLength"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.passwordLength")),
 
   check("role")
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()
     .isIn(["Admin", "Manager"])
-    .withMessage(i18next.t("userValidator.selectRole"))
-    .bail(),
+    .withMessage(i18next.t("userValidator.selectRole")),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -156,17 +150,11 @@ export const updateRequestValidator = [
 
 export const deleteRequestValidator = [
   param("id")
-  .notEmpty()
-  .withMessage(i18next.t("userValidator.requieredId"))
-  .bail()
-  .custom(async (value) => {
-    const id = Number(value)
-    const result = await getByIdUser(id);
-    if (result === 0) {
-      throw new Error(i18next.t("userValidator.existUser"));
-    }
-    return true;
-  }),
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredId"))
+    .bail()
+    .custom(validateUserId),
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -176,21 +164,15 @@ export const deleteRequestValidator = [
     }
     next();
   },
-]
+];
 
 export const getRequestValidator = [
   param("id")
-  .notEmpty()
-  .withMessage(i18next.t("userValidator.requieredId"))
-  .bail()
-  .custom(async (value) => {
-    const id = Number(value)
-    const result = await getByIdUser(id);
-    if (result === 0) {
-      throw new Error(i18next.t("userValidator.existUser"));
-    }
-    return true;
-  }),
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredId"))
+    .bail()
+    .custom(validateUserId),
+
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -200,4 +182,4 @@ export const getRequestValidator = [
     }
     next();
   },
-]
+];

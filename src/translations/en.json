@@ -35,17 +35,16 @@
         "getRoomById": "Error retrieving room"
     },
     "roomValidator": {
-        "requiredName": "Room name is required.",
-        "lengthName": "Name must be between 2 and 50 characters.",
-        "nameUnique": "This room name already exists.",
-        "requiredCapacity": "Room capacity is required.",
+        "requiredName": "Name is required.",
+        "lengthName": "Name must be between 2 and 50 characters long.",
+        "nameUnique": "Room name must be unique.",
+        "requiredCapacity": "Capacity is required.",
         "capacityIsInt": "Capacity must be an integer.",
-        "requiredEquipment": "Equipment must be provided and be between 2 and 500 characters.",
-        "requiredStatus": "Room status is required.",
-        "selectRole": "Status must be either 'Reserved' or 'Not Reserved'.",
-        "requiredUserId": "Assigned user is required.",
-        "existroom": "The specified room ID does not exist.",
-        "requieredId": "Room ID is required for deletion."
+        "requiredEquipment": "Equipment is required.",
+        "requiredStatus": "Status is required.",
+        "selectStatus": "Please select a valid status.",
+        "requiredUserId": "User ID is required.",
+        "existRoom": "Room does not exist."
     },
     "customerController": {
         "getCustomerById": "Error getting the customer",
@@ -76,7 +75,20 @@
         "createFailed": "Failed to create reservation.",
         "updateSuccefull": "Reservation updated successfully.",
         "updateFailed": "Failed to update reservation.",
+        "existReservation": "Reservation not found",
         "deleteSuccessful": "Reservation deleted successfully.",
         "deleteFailed": "Failed to delete reservation."
+    },
+    "reservationValidator": {
+        "requiredDateReservation": "Reservation date is required.",
+        "requiredDateStart": "Start date is required.",
+        "requiredDateEnd": "End date is required.",
+        "typeDate": "Invalid date format.",
+        "requiredRole": "Role is required.",
+        "requieredId": "ID is required.",
+        "userNotFound": "User not found.",
+        "roomNotFound": "Room not found.",
+        "customerNotFound": "Customer not found.",
+        "existreservation": "Reservation not found."
     }
 }

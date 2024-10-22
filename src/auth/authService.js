@@ -1,12 +1,16 @@
-import jwt from 'jsonwebtoken';
-import { createUser, checkEmail } from "../services/userService.js";
+import jwt from "jsonwebtoken";
+import { findUser } from "../services/userService.js";
 import i18next from "i18next";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
+ 
+export const login = async (email, password) => {
+  if (!email || !password) {
+    throw new Error(i18next.t("authService.invalidCredentials"));
+  }
 
+  const user = await findUser(email);
+  console.log(user);
 
-
-const login = async (email, password) => {
-  const user = await checkEmail(email);
   if (!user) {
     throw new Error(i18next.t("authService.userNotExist"));
   }
@@ -20,10 +24,20 @@ const login = async (email, password) => {
     { id: user.id, name: user.name, role: user.role },
     process.env.SECRET_AUTH,
     {
-      expiresIn: process.env.DURATION,
+      expiresIn: process.env.DURATION, 
     }
   );
-  return token;
+
+  return {
+    message: i18next.t("authService.loginSuccess"),
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+  };
 };
 
-export default { login };
+
