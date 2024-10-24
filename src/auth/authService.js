@@ -24,18 +24,9 @@ export const login = async (email, password) => {
     { id: user.id, name: user.name, role: user.role },
     process.env.JWT_SECRET,
     {
-      expiresIn: process.env.DURATION,
+      expiresIn: process.env.TOKEN_EXPIRATION,
     },
   );
 
-  return {
-    message: i18next.t("authService.loginSuccess"),
-    token,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    },
-  };
+  return token
 };

@@ -5,30 +5,60 @@ import {
   deleteReservation,
   getAllReservations,
 } from "../src/services/reservationService.js";
+import { createRoom, deleteRoom } from "../src/services/roomService.js";
+import { createCustomer, deleteCustomer } from "../src/services/customerService.js";
 
 describe("Reservation tests", () => {
   let reservationId = null;
+  let roomId = null;
+  let customerId = null;
+
+  beforeAll(async () => {
+    try {
+      const room = await createRoom(
+        "Salle 505",
+        50,
+        "Projecteur, 10 ordinateurs",
+        "Réservé"
+      );
+      roomId = room.id;
+
+      const customer = await createCustomer("Harouna", "Basra", "1234800");
+      customerId = customer.id;
+    } catch (error) {
+      console.error("Error in beforeAll:", error);
+    }
+  });
+
+  afterAll(async () => {
+    try {
+      await deleteRoom(roomId);
+      await deleteCustomer(customerId);
+    } catch (error) {
+      console.error("Error in afterAll:", error);
+    }
+  });
 
   it("can be created", async () => {
     const newReservation = {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
-      roomId: 13,
-      customerId: 5,
-    };
-    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
-      newReservation;
-    const result = await createReservation(
-      dateReservation,
-      dateStart,
-      dateEnd,
       roomId,
       customerId,
+    };
+
+    const result = await createReservation(
+      newReservation.dateReservation,
+      newReservation.dateStart,
+      newReservation.dateEnd,
+      roomId,
+      customerId
     );
 
     reservationId = result.id;
     expect(result).not.toBe(null);
+
     const createdReservation = await getByIdReservation(reservationId);
     expect(createdReservation.dateReservation).toEqual(result.dateReservation);
     expect(createdReservation.dateStart).toEqual(result.dateStart);
@@ -42,16 +72,14 @@ describe("Reservation tests", () => {
       roomId: 999,
       customerId: 999,
     };
-    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
-      newReservation;
 
     try {
       await createReservation(
-        dateReservation,
-        dateStart,
-        dateEnd,
-        roomId,
-        customerId,
+        newReservation.dateReservation,
+        newReservation.dateStart,
+        newReservation.dateEnd,
+        newReservation.roomId,
+        newReservation.customerId
       );
       fail("Expected an error to be thrown");
     } catch (error) {
@@ -64,19 +92,19 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
-      roomId: 13,
-      customerId: 5,
-    };
-    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
-      updatedReservation;
-    const updateResult = await updateReservation(
-      reservationId,
-      dateReservation,
-      dateStart,
-      dateEnd,
       roomId,
       customerId,
+    };
+
+    const updateResult = await updateReservation(
+      reservationId,
+      updatedReservation.dateReservation,
+      updatedReservation.dateStart,
+      updatedReservation.dateEnd,
+      roomId,
+      customerId
     );
+
     const findReservation = await getByIdReservation(reservationId);
     expect(updateResult).not.toBe(null);
     expect(findReservation.roomId).toEqual(updateResult.roomId);
@@ -91,17 +119,15 @@ describe("Reservation tests", () => {
       roomId: 1,
       customerId: 1,
     };
-    const { dateReservation, dateStart, dateEnd, roomId, customerId } =
-      updatedReservation;
 
     try {
       await updateReservation(
         invalidId,
-        dateReservation,
-        dateStart,
-        dateEnd,
-        roomId,
-        customerId,
+        updatedReservation.dateReservation,
+        updatedReservation.dateStart,
+        updatedReservation.dateEnd,
+        updatedReservation.roomId,
+        updatedReservation.customerId
       );
       fail("Expected an error to be thrown");
     } catch (error) {
