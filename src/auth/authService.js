@@ -9,7 +9,6 @@ export const login = async (email, password) => {
   }
 
   const user = await findUser(email);
-  console.log(user);
 
   if (!user) {
     throw new Error(i18next.t("authService.userNotExist"));
@@ -25,8 +24,15 @@ export const login = async (email, password) => {
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.TOKEN_EXPIRATION,
-    },
+    }
   );
 
-  return token
+  return {
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      status: user.status
+    },
+  };
 };

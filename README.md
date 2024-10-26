@@ -76,7 +76,7 @@ L'API sera accessible à `http://localhost:3000`.
 ```json
 {
   "email": "admin@admin.com",
-  "password": "password"
+  "password": "passwordAdmin"
 }
 ```
 
