@@ -48,7 +48,7 @@ export default class Room {
         .status(201)
         .json({ message: i18next.t("roomController.createSuccfull") });
     } catch (error) {
-      res.json({ message: i18next.t("roomController.createFailed") });
+      res.json({ message: i18next.t("roomController.createFailed"), error: error.message });
     }
     next();
   }

@@ -1,5 +1,5 @@
 import prisma from "../config/prisma.js";
-
+import jwt from "jsonwebtoken";
 export const getAllRooms = async () => {
   try {
     const result = await prisma.rooms.findMany();
