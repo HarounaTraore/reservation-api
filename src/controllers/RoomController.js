@@ -48,7 +48,12 @@ export default class Room {
         .status(201)
         .json({ message: i18next.t("roomController.createSuccfull") });
     } catch (error) {
-      res.json({ message: i18next.t("roomController.createFailed"), error: error.message });
+      res
+        .status(500)
+        .json({
+          message: i18next.t("roomController.createFailed"),
+          error: error.message,
+        });
     }
     next();
   }
@@ -65,7 +70,9 @@ export default class Room {
       await updateRoom(id, name, capacity, equipment, status, token);
       res.json({ message: i18next.t("roomController.updateSuccefull") });
     } catch (error) {
-      res.json({ message: i18next.t("roomController.updateFailed") });
+      res
+        .status(500)
+        .json({ message: i18next.t("roomController.updateFailed") });
     }
     next();
   }
@@ -76,7 +83,12 @@ export default class Room {
       await deleteRoom(id);
       res.json({ message: i18next.t("roomController.deleteSuccessful") });
     } catch (error) {
-      res.json({ message: i18next.t("roomController.deleteFailed") });
+      res
+        .status(500)
+        .json({
+          message: i18next.t("roomController.deleteFailed"),
+          error: error.message,
+        });
     }
     next();
   }

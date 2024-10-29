@@ -12,7 +12,13 @@ export const getAllReservations = async () => {
 };
 export const getByIdReservation = async (id) => {
   try {
-    const result = await prisma.reservations.findUnique({ where: { id } });
+    const result = await prisma.reservations.findUnique({
+      where: { id },
+      include: {
+        room: true,
+        customer: true,
+      },
+    });
     return result;
   } catch (error) {
     throw error;
@@ -20,6 +26,7 @@ export const getByIdReservation = async (id) => {
     await prisma.$disconnect();
   }
 };
+
 export const createReservation = async (
   dateReservation,
   dateStart,
@@ -30,7 +37,7 @@ export const createReservation = async (
 ) => {
   let userId = null;
   if (token) {
-    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET)
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
     userId = tokenDecoded.id;
   }
   try {
