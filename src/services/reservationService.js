@@ -2,7 +2,28 @@ import prisma from "../config/prisma.js";
 import jwt from "jsonwebtoken";
 export const getAllReservations = async () => {
   try {
-    const result = await prisma.reservations.findMany();
+    const result = await prisma.reservations.findMany({
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        room: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        customer: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
     return result;
   } catch (error) {
     throw error;
@@ -15,8 +36,24 @@ export const getByIdReservation = async (id) => {
     const result = await prisma.reservations.findUnique({
       where: { id },
       include: {
-        room: true,
-        customer: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        room: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        customer: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
     return result;

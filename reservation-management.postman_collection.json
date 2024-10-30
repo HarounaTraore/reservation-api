@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "85e4aa4b-aab3-4ed1-991c-74630fa46626",
+		"name": "reservation-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38098654"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTYxODk0MiwiZXhwIjoxNzI5NjM2OTQyfQ.brWFaM5Zq5_hNRjI-Ij9afnhMTqWsvak-ukJEidInRw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Harouna Traore\",\r\n  \"email\": \"admin@admin.com\",\r\n  \"address\": \"1234 Street Name\",\r\n  \"phone\": \"100467000\",\r\n  \"password\": \"passwordAdmin\",\r\n  \"role\": \"Admin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/user/"
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTUyMTM1NiwiZXhwIjoxNzI5NTM5MzU2fQ.Bcmlr9VzYRnFMP550C9TH3FiMI6bxK0BrMFS_eMN1jI"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/user/1"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sidi Diallo\",\r\n    \"email\": \"sad@gmail.com\",\r\n    \"address\": \"Sollou\",\r\n    \"phone\": \"12345678\",\r\n    \"password\": \"POSEIDON\",\r\n    \"role\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/user/2"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/user/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rooms",
+			"item": [
+				{
+					"name": "room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTkzLCJuYW1lIjoiSGFyb3VuYSBUcmFvcmUiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTcyOTYxOTMyOSwiZXhwIjoxNzI5NjM3MzI5fQ.dhntmluaBVEqyi60VNEq8yv1ug4tKDlIwFYggc8odlY"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Conference Room C\",\r\n  \"capacity\": 20,\r\n  \"equipment\": \"Projector, Whiteboard\",\r\n  \"status\": \"Non Réservée\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/room/"
+					},
+					"response": []
+				},
+				{
+					"name": "rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTkzLCJuYW1lIjoiSGFyb3VuYSBUcmFvcmUiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTcyOTYxOTMyOSwiZXhwIjoxNzI5NjM3MzI5fQ.dhntmluaBVEqyi60VNEq8yv1ug4tKDlIwFYggc8odlY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/rooms"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/room/2"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Salle 002\",\r\n  \"capacity\": 90,\r\n  \"equipment\": \"90 chaises, deux ecrans projecteurs ...\",\r\n  \"status\": \" Reservée\",\r\n  \"userId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/room/2"
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/room/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Smith\",\r\n  \"address\": \"5678 Avenue Place\",\r\n  \"phone\": \"0987654é321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/customer/"
+					},
+					"response": []
+				},
+				{
+					"name": "customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTkzLCJuYW1lIjoiSGFyb3VuYSBUcmFvcmUiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTcyOTcxMTc2NSwiZXhwIjoxNzI5NzI5NzY1fQ.GuagGkgmd16i-cnnFCt1tnPZtbDDrDQIPxv4ss87C1c"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Harouna\",\r\n    \"address\": \"Basra\",\r\n    \"phone\": \"12345678\",\r\n    \"userId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/customer/2"
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/customer/2"
+					},
+					"response": []
+				},
+				{
+					"name": "customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/customer/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservations",
+			"item": [
+				{
+					"name": "reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTYxODk0MiwiZXhwIjoxNzI5NjM2OTQyfQ.brWFaM5Zq5_hNRjI-Ij9afnhMTqWsvak-ukJEidInRw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dateReservation\": \"2024-10-19\",\r\n  \"dateStart\": \"2024-10-20\",\r\n  \"dateEnd\": \"2024-10-20\",\r\n  \"userId\": 88,\r\n  \"roomId\": 13,\r\n  \"customerId\": 109\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/reservation/"
+					},
+					"response": []
+				},
+				{
+					"name": "reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTYxODk0MiwiZXhwIjoxNzI5NjM2OTQyfQ.brWFaM5Zq5_hNRjI-Ij9afnhMTqWsvak-ukJEidInRw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/reservations"
+					},
+					"response": []
+				},
+				{
+					"name": "reservation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dateReservation\": \"2025-10-19T10:00:00Z\",\r\n  \"dateStart\": \"2025-10-20T09:00:00Z\",\r\n  \"dateEnd\": \"2025-10-20T17:00:00Z\",\r\n  \"roomId\": 13,\r\n  \"customerId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/reservation/3"
+					},
+					"response": []
+				},
+				{
+					"name": "reservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/reservation/1"
+					},
+					"response": []
+				},
+				{
+					"name": "reservation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/reservation/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"ht@gmail.com\",\r\n  \"password\": \"poseidon\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/login/"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -60,7 +60,7 @@ export default class Reservation {
     } catch (error) {
       res
         .status(500)
-        .json({ message: error });
+        .json({ message: i18next.t("roomController.createFailed"), error: error.message });
     }
   }
 

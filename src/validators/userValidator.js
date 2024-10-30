@@ -7,7 +7,6 @@ import {
 } from "../services/userService.js";
 import { StatusCodes } from "http-status-codes";
 
-// Fonction de validation d'ID d'utilisateur
 const validateUserId = async (id) => {
   const result = await getByIdUser(Number(id));
   if (!result) {
