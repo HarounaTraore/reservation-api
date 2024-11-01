@@ -25,6 +25,7 @@ model users {
   rooms     rooms[]   
   customers customers[] 
   reservations reservations[] 
+  passwordResets PasswordReset[]
 }
 
 model rooms {
@@ -59,4 +60,12 @@ model reservations {
   user            users?     @relation(fields: [userId], references: [id])
   room            rooms     @relation(fields: [roomId], references: [id]) 
   customer        customers @relation(fields: [customerId], references: [id])
+}
+model PasswordReset {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  code          String   
+  expireAt      DateTime 
+  createdAt     DateTime @default(now()) 
+  user          users    @relation(fields: [userId], references: [id])
 }

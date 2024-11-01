@@ -324,7 +324,7 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "auth",
+					"name": "login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -338,6 +338,42 @@
 							}
 						},
 						"url": "http://127.0.0.1:3000/api/login/"
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-pwd",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"harouna.traore0903@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "resert-pwd",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"harouna.traore0903@gmail.com\",\r\n  \"code\": \"256549\",\r\n  \"newPassword\":\"46524340\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/reset-password"
 					},
 					"response": []
 				}
