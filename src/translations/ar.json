@@ -89,7 +89,9 @@
     "userNotFound": "المستخدم غير موجود.",
     "roomNotFound": "الغرفة غير موجودة.",
     "customerNotFound": "العميل غير موجود.",
-    "existreservation": "الحجز غير موجود."
+    "existreservation": "الحجز غير موجود.",
+    "statusRequired": "حالة الحجز مطلوبة",
+    "status": "يجب أن تكون الحالة إما مؤكد CONFIRMED أو قيد الانتظار PENDING"
   },
   "authService": {
     "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",

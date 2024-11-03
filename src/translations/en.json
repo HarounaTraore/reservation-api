@@ -89,7 +89,9 @@
     "userNotFound": "User not found.",
     "roomNotFound": "Room not found.",
     "customerNotFound": "Customer not found.",
-    "existreservation": "Reservation not found."
+    "existreservation": "Reservation not found.",
+    "statusRequired": "Reservation status is required",
+    "status": "Status must be either CONFIRMED or PENDING"
   },
   "authService": {
     "invalidCredentials": "Invalid email or password.",

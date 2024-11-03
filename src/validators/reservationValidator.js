@@ -64,6 +64,13 @@ const idValidation = (field, service, messageKey) =>
     .bail();
 
 export const addRequestValidator = [
+  check("status").toUpperCase()
+    .notEmpty()
+    .withMessage(i18next.t("reservationValidator.statusRequis"))
+    .bail()
+    .isIn(["CONFIRMED", "PENDING"])
+    .withMessage(i18next.t("reservationValidator.status"))
+    .bail(),
   dateValidation(
     "dateReservation",
     "reservationValidator.requiredDateReservation"
@@ -100,6 +107,14 @@ export const updateRequestValidator = [
       )
     )
     .bail(),
+  check("status")
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredRole"))
+    .bail()
+    .isIn(["CONFIRMED", "PENDING"])
+    .withMessage(i18next.t("reservationValidator.status"))
+    .bail(),
+
   dateValidation(
     "dateReservation",
     "reservationValidator.requiredDateReservation"

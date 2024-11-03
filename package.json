@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npx jasmine",
+    "seed": "node prisma/seed.js",
     "studio": "npx prisma studio",
     "generate": "npx prisma generate",
     "start": "nodemon app.js",

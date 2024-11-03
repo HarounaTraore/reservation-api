@@ -89,7 +89,9 @@
     "existreservation": "La réservation n'existe pas.",
     "userNotFound": "Utilisateur non trouvé.",
     "roomNotFound": "Salle non trouvée.",
-    "customerNotFound": "Client non trouvé."
+    "customerNotFound": "Client non trouvé.",
+    "statusRequis": "Statut de la réservation est obligatoire",
+    "status": "Statut  soit CONFIRMED ou PENDING"
   },
   "authService": {
     "invalidCredentials": "Email ou mot de passe invalide.",

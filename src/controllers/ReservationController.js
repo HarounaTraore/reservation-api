@@ -44,14 +44,16 @@ export default class Reservation {
       if (authHeader) {
         token = authHeader.split(" ")[1];
       }
-      const { dateReservation, dateStart, dateEnd, roomId, customerId } =
+      const { dateReservation, dateStart, dateEnd, roomId, customerId, status } =
         req.body;
+        const statusUpercase = status.toUpperCase()
       await createReservation(
         dateReservation,
         dateStart,
         dateEnd,
         roomId,
         customerId,
+        statusUpercase,
         token,
       );
       res
@@ -72,7 +74,7 @@ export default class Reservation {
       if (authHeader) {
         token = authHeader.split(" ")[1];
       }
-      const { dateReservation, dateStart, dateEnd, roomId, customerId } =
+      const { dateReservation, dateStart, dateEnd, roomId, customerId, status } =
         req.body;
       await updateReservation(
         id,
@@ -81,6 +83,7 @@ export default class Reservation {
         dateEnd,
         roomId,
         customerId,
+        status,
         token,
       );
       res

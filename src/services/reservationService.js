@@ -70,9 +70,11 @@ export const createReservation = async (
   dateEnd,
   roomId,
   customerId,
+  status,
   token = null
 ) => {
   let userId = null;
+  const statusUpercase= status.toUpperCase()
   if (token) {
     const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
     userId = tokenDecoded.id;
@@ -82,7 +84,15 @@ export const createReservation = async (
     dateStart = new Date(dateStart).toISOString();
     dateEnd = new Date(dateEnd).toISOString();
     const result = await prisma.reservations.create({
-      data: { dateReservation, dateStart, dateEnd, userId, roomId, customerId },
+      data: {
+        dateReservation,
+        dateStart,
+        dateEnd,
+        userId,
+        roomId,
+        customerId,
+        status: statusUpercase,
+      },
     });
     return result;
   } catch (error) {
@@ -99,6 +109,7 @@ export const updateReservation = async (
   dateEnd,
   roomId,
   customerId,
+  status,
   token = null
 ) => {
   let userId = null;
@@ -112,7 +123,15 @@ export const updateReservation = async (
     dateEnd = new Date(dateEnd).toISOString();
     const result = await prisma.reservations.update({
       where: { id },
-      data: { dateReservation, dateStart, dateEnd, userId, roomId, customerId },
+      data: {
+        dateReservation,
+        dateStart,
+        dateEnd,
+        userId,
+        roomId,
+        customerId,
+        status,
+      },
     });
     return result;
   } catch (error) {
