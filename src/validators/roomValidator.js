@@ -39,13 +39,6 @@ export const addRequestValidator = [
     .isLength({ min: 2, max: 500 })
     .withMessage(i18next.t("roomValidator.requiredEquipment")),
 
-  check("status")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredStatus"))
-    .bail()
-    .isIn(["Réservée", "Non Réservée"])
-    .withMessage(i18next.t("roomValidator.selectStatus")),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -92,14 +85,6 @@ export const updateRequestValidator = [
   check("equipment")
     .isLength({ min: 2, max: 500 })
     .withMessage(i18next.t("roomValidator.requiredEquipment")),
-
-  check("status")
-    .notEmpty()
-    .withMessage(i18next.t("roomValidator.requiredStatus"))
-    .bail()
-    .isIn(["Réservée", "Non Réservée"])
-    .withMessage(i18next.t("roomValidator.selectStatus")),
-
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

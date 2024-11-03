@@ -42,8 +42,8 @@ export default class Room {
       if (authHeader) {
         token = authHeader.split(" ")[1];
       }
-      const { name, capacity, equipment, status } = req.body;
-      await createRoom(name, capacity, equipment, status, token);
+      const { name, capacity, equipment } = req.body;
+      await createRoom(name, capacity, equipment, token);
       res
         .status(201)
         .json({ message: i18next.t("roomController.createSuccfull") });
@@ -66,8 +66,8 @@ export default class Room {
         token = authHeader.split(" ")[1];
       }
       const id = Number(req.params.id);
-      const { name, capacity, equipment, status } = req.body;
-      await updateRoom(id, name, capacity, equipment, status, token);
+      const { name, capacity, equipment } = req.body;
+      await updateRoom(id, name, capacity, equipment,  token);
       res.json({ message: i18next.t("roomController.updateSuccefull") });
     } catch (error) {
       res

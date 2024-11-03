@@ -107,7 +107,7 @@ export const updateRequestValidator = [
       )
     )
     .bail(),
-  check("status")
+  check("status").toUpperCase()
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()

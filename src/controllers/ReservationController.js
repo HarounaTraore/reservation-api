@@ -76,6 +76,8 @@ export default class Reservation {
       }
       const { dateReservation, dateStart, dateEnd, roomId, customerId, status } =
         req.body;
+        const statusUpercase = status.toUpperCase()
+
       await updateReservation(
         id,
         dateReservation,
@@ -83,7 +85,7 @@ export default class Reservation {
         dateEnd,
         roomId,
         customerId,
-        status,
+        statusUpercase,
         token,
       );
       res

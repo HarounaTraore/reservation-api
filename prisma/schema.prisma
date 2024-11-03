@@ -35,7 +35,6 @@ model rooms {
   name       String    @db.VarChar(50) @unique
   capacity   Int
   equipment  String
-  status     String    @db.VarChar(20)
   userId     Int?       
   user       users?     @relation(fields: [userId], references: [id]) 
   reservations reservations[] 

@@ -24,7 +24,6 @@ export const createRoom = async (
   name,
   capacity,
   equipment,
-  status,
   token = null,
 ) => {
   let userId = null;
@@ -34,7 +33,7 @@ export const createRoom = async (
   }
   try {
     const result = await prisma.rooms.create({
-      data: { name, capacity, equipment, status, userId },
+      data: { name, capacity, equipment, userId },
     });
     return result;
   } catch (error) {
@@ -49,7 +48,6 @@ export const updateRoom = async (
   name,
   capacity,
   equipment,
-  status,
   token = null,
 ) => {
   let userId = null;
@@ -60,7 +58,7 @@ export const updateRoom = async (
   try {
     const result = await prisma.rooms.update({
       where: { id },
-      data: { name, capacity, equipment, status, userId },
+      data: { name, capacity, equipment, userId },
     });
     return result;
   } catch (error) {
