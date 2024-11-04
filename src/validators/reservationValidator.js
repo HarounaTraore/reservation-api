@@ -111,7 +111,7 @@ export const updateRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()
-    .isIn(["CONFIRMED", "PENDING"])
+    .isIn(["CONFIRMED", "PENDING", "CANCELED"])
     .withMessage(i18next.t("reservationValidator.status"))
     .bail(),
 
