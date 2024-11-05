@@ -74,7 +74,7 @@ export const createReservation = async (
   token = null
 ) => {
   let userId = null;
-  const statusUpercase= status.toUpperCase()
+  const statusUpercase = status.toUpperCase();
   if (token) {
     const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
     userId = tokenDecoded.id;
@@ -138,6 +138,22 @@ export const updateReservation = async (
     throw error;
   } finally {
     await prisma.$disconnect();
+  }
+};
+export const updateStatus = async (id, status, token = null) => {
+  let userId = null;
+  if (token) {
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    userId = tokenDecoded.id;
+  }
+  try {
+    const result = await prisma.reservations.update({
+      where: { id: id },
+      data: { status: status, userId },
+    });
+    return result;
+  } catch (error) {
+    throw error;
   }
 };
 export const deleteReservation = async (id) => {

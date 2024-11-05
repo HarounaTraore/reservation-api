@@ -64,7 +64,8 @@ const idValidation = (field, service, messageKey) =>
     .bail();
 
 export const addRequestValidator = [
-  check("status").toUpperCase()
+  check("status")
+    .toUpperCase()
     .notEmpty()
     .withMessage(i18next.t("reservationValidator.statusRequis"))
     .bail()
@@ -107,7 +108,8 @@ export const updateRequestValidator = [
       )
     )
     .bail(),
-  check("status").toUpperCase()
+  check("status")
+    .toUpperCase()
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()
@@ -173,6 +175,38 @@ export const deleteRequestValidator = [
         "reservationValidator.existreservation"
       )
     ),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    }
+    next();
+  },
+];
+
+export const updateStatusRequestValidator = [
+  param("id")
+    .notEmpty()
+    .withMessage(i18next.t("reservationValidator.requieredId"))
+    .bail()
+    .custom(async (value) =>
+      validateIdExists(
+        value,
+        getByIdReservation,
+        "reservationValidator.existreservation"
+      )
+    )
+    .bail(),
+  check("status")
+    .toUpperCase()
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredRole"))
+    .bail()
+    .isIn(["CONFIRMED", "PENDING", "CANCELED"])
+    .withMessage(i18next.t("reservationValidator.status"))
+    .bail(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

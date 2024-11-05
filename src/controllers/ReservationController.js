@@ -4,6 +4,7 @@ import {
   getAllReservations,
   getByIdReservation,
   updateReservation,
+  updateStatus,
 } from "../services/reservationService.js";
 import i18next from "i18next";
 
@@ -44,9 +45,15 @@ export default class Reservation {
       if (authHeader) {
         token = authHeader.split(" ")[1];
       }
-      const { dateReservation, dateStart, dateEnd, roomId, customerId, status } =
-        req.body;
-        const statusUpercase = status.toUpperCase()
+      const {
+        dateReservation,
+        dateStart,
+        dateEnd,
+        roomId,
+        customerId,
+        status,
+      } = req.body;
+      const statusUpercase = status.toUpperCase();
       await createReservation(
         dateReservation,
         dateStart,
@@ -54,15 +61,16 @@ export default class Reservation {
         roomId,
         customerId,
         statusUpercase,
-        token,
+        token
       );
       res
         .status(201)
         .json({ message: i18next.t("reservationController.createSuccfull") });
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: i18next.t("roomController.createFailed"), error: error.message });
+      res.status(500).json({
+        message: i18next.t("roomController.createFailed"),
+        error: error.message,
+      });
     }
   }
 
@@ -74,9 +82,15 @@ export default class Reservation {
       if (authHeader) {
         token = authHeader.split(" ")[1];
       }
-      const { dateReservation, dateStart, dateEnd, roomId, customerId, status } =
-        req.body;
-        const statusUpercase = status.toUpperCase()
+      const {
+        dateReservation,
+        dateStart,
+        dateEnd,
+        roomId,
+        customerId,
+        status,
+      } = req.body;
+      const statusUpercase = status.toUpperCase();
 
       await updateReservation(
         id,
@@ -86,7 +100,7 @@ export default class Reservation {
         roomId,
         customerId,
         statusUpercase,
-        token,
+        token
       );
       res
         .status(200)
@@ -101,6 +115,26 @@ export default class Reservation {
     }
   }
 
+  static async updateStatus(req, res) {
+    try {
+      const id = Number(req.params.id);
+      const { status } = req.body;
+      let token = null;
+      const authHeader = req.headers.authorization;
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
+      await updateStatus(id, status, token);
+      res.status(200).json({
+        message: i18next.t("reservationController.updateStatusSuccessfull"),
+      });
+    } catch (error) {
+      res.status(404).json({
+        message: i18next.t("reservationController.updateStatusFailed"),
+        error: error.message,
+      });
+    }
+  }
   static async deleteReservation(req, res) {
     try {
       const id = Number(req.params.id);

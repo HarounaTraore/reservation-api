@@ -39,7 +39,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTUyMTM1NiwiZXhwIjoxNzI5NTM5MzU2fQ.Bcmlr9VzYRnFMP550C9TH3FiMI6bxK0BrMFS_eMN1jI"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4gSGFyb3VuYSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczMDgzMDI5OSwiZXhwIjoxNzMwODY2Mjk5fQ.kggrlHR7eThnqGKwUDzlJw854H2yRKKqYZEJyLoAGPQ"
 							}
 						},
 						"method": "GET",
@@ -95,14 +95,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTkzLCJuYW1lIjoiSGFyb3VuYSBUcmFvcmUiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTcyOTYxOTMyOSwiZXhwIjoxNzI5NjM3MzI5fQ.dhntmluaBVEqyi60VNEq8yv1ug4tKDlIwFYggc8odlY"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDc0MzUsImV4cCI6MTczMDYxMTAzNX0.dSWRW6AAmX6GU5RMv5bUdgkhdXE02oRuJ_uxU8TdIS4"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Conference Room C\",\r\n  \"capacity\": 20,\r\n  \"equipment\": \"Projector, Whiteboard\",\r\n  \"status\": \"Non Réservée\"\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Conference Room C\",\r\n  \"capacity\": 20,\r\n  \"equipment\": \"Projector, Whiteboard\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -119,7 +119,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTkzLCJuYW1lIjoiSGFyb3VuYSBUcmFvcmUiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTcyOTYxOTMyOSwiZXhwIjoxNzI5NjM3MzI5fQ.dhntmluaBVEqyi60VNEq8yv1ug4tKDlIwFYggc8odlY"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDc0MzUsImV4cCI6MTczMDYxMTAzNX0.dSWRW6AAmX6GU5RMv5bUdgkhdXE02oRuJ_uxU8TdIS4"
 							}
 						},
 						"method": "GET",
@@ -140,18 +140,24 @@
 				{
 					"name": "room",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDc0MzUsImV4cCI6MTczMDYxMTAzNX0.dSWRW6AAmX6GU5RMv5bUdgkhdXE02oRuJ_uxU8TdIS4"
+							}
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Salle 002\",\r\n  \"capacity\": 90,\r\n  \"equipment\": \"90 chaises, deux ecrans projecteurs ...\",\r\n  \"status\": \" Reservée\",\r\n  \"userId\": 4\r\n}",
+							"raw": "{\r\n    \"name\": \"Salle 002\",\r\n  \"capacity\": 90,\r\n  \"equipment\": \"90 chaises, deux ecrans projecteurs ...\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:3000/api/room/2"
+						"url": "http://127.0.0.1:3000/api/room/262"
 					},
 					"response": []
 				},
@@ -249,14 +255,14 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTYxODk0MiwiZXhwIjoxNzI5NjM2OTQyfQ.brWFaM5Zq5_hNRjI-Ij9afnhMTqWsvak-ukJEidInRw"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDM1NDMsImV4cCI6MTczMDYwNzE0M30.xh0vY2U0T-Fte7XzqdWFWgtzOSvQ7E2XuNvrfqTz1tA"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"dateReservation\": \"2024-10-19\",\r\n  \"dateStart\": \"2024-10-20\",\r\n  \"dateEnd\": \"2024-10-20\",\r\n  \"userId\": 88,\r\n  \"roomId\": 13,\r\n  \"customerId\": 109\r\n}\r\n",
+							"raw": "{\r\n  \"dateReservation\": \"2024-10-19\",\r\n  \"dateStart\": \"2024-10-20\",\r\n  \"dateEnd\": \"2024-10-20\",\r\n  \"roomId\": 262,\r\n  \"customerId\": 243,\r\n  \"status\": \"Confirmed\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -273,7 +279,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODgsIm5hbWUiOiJKb2huIERvZSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyOTYxODk0MiwiZXhwIjoxNzI5NjM2OTQyfQ.brWFaM5Zq5_hNRjI-Ij9afnhMTqWsvak-ukJEidInRw"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDM1NDMsImV4cCI6MTczMDYwNzE0M30.xh0vY2U0T-Fte7XzqdWFWgtzOSvQ7E2XuNvrfqTz1tA"
 							}
 						},
 						"method": "GET",
@@ -285,27 +291,63 @@
 				{
 					"name": "reservation",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzA2MDM1NDMsImV4cCI6MTczMDYwNzE0M30.xh0vY2U0T-Fte7XzqdWFWgtzOSvQ7E2XuNvrfqTz1tA"
+							}
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"dateReservation\": \"2025-10-19T10:00:00Z\",\r\n  \"dateStart\": \"2025-10-20T09:00:00Z\",\r\n  \"dateEnd\": \"2025-10-20T17:00:00Z\",\r\n  \"roomId\": 13,\r\n  \"customerId\": 5\r\n}",
+							"raw": "{\r\n  \"dateReservation\": \"2024-10-19\",\r\n  \"dateStart\": \"2024-10-20\",\r\n  \"dateEnd\": \"2024-10-20\",\r\n  \"roomId\": 262,\r\n  \"customerId\": 243,\r\n  \"status\": \"Confired\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://127.0.0.1:3000/api/reservation/3"
+						"url": "http://127.0.0.1:3000/api/reservation/188"
+					},
+					"response": []
+				},
+				{
+					"name": "reservation status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4gSGFyb3VuYSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczMDgzMDI5OSwiZXhwIjoxNzMwODY2Mjk5fQ.kggrlHR7eThnqGKwUDzlJw854H2yRKKqYZEJyLoAGPQ"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"CANCELED\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/reservation-status/195"
 					},
 					"response": []
 				},
 				{
 					"name": "reservation",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4gSGFyb3VuYSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczMDgzMDI5OSwiZXhwIjoxNzMwODY2Mjk5fQ.kggrlHR7eThnqGKwUDzlJw854H2yRKKqYZEJyLoAGPQ"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:3000/api/reservation/1"
+						"url": "http://127.0.0.1:3000/api/reservation/195"
 					},
 					"response": []
 				},
@@ -330,7 +372,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"ht@gmail.com\",\r\n  \"password\": \"poseidon\"\r\n}\r\n",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin1234\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -366,7 +408,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"harouna.traore0903@gmail.com\",\r\n  \"code\": \"256549\",\r\n  \"newPassword\":\"46524340\"\r\n}\r\n",
+							"raw": "{\r\n  \"email\": \"harouna.traore0903@gmail.com\",\r\n  \"code\": \"682438\",\r\n  \"newPassword\":\"46524340\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"

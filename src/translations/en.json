@@ -77,7 +77,9 @@
     "updateFailed": "Failed to update reservation.",
     "existReservation": "Reservation not found",
     "deleteSuccessful": "Reservation deleted successfully.",
-    "deleteFailed": "Failed to delete reservation."
+    "deleteFailed": "Failed to delete reservation.",
+    "updateStatusSuccessfull": "Status updated successfully.",
+    "updateStatusFailed": "Failed to update status."
   },
   "reservationValidator": {
     "requiredDateReservation": "Reservation date is required.",
