@@ -4,7 +4,9 @@ import {
   addRequestValidator,
   deleteRequestValidator,
   getRequestValidator,
+  updateCurrentRequestValidator,
   updateRequestValidator,
+  updtePwdCurrentRequestValidator,
 } from "../validators/userValidator.js";
 import authenticateJWT from "../middlewares/authenticateJWT.js";
 import authorizeRoles from "../middlewares/authorizeRoles.js";
@@ -15,35 +17,50 @@ router.get(
   "/users",
   authenticateJWT,
   authorizeRoles("Admin"),
-  User.getAllUsers,
+  User.getAllUsers
 );
 router.get(
   "/user/:id",
   authenticateJWT,
   authorizeRoles("Admin"),
   getRequestValidator,
-  User.getByIdUser,
+  User.getByIdUser
 );
 router.post(
   "/user",
   authenticateJWT,
   authorizeRoles("Admin"),
   addRequestValidator,
-  User.createUser,
+  User.createUser
 );
 router.put(
   "/user/:id",
   authenticateJWT,
   authorizeRoles("Admin"),
   updateRequestValidator,
-  User.updateUser,
+  User.updateUser
 );
+router.put(
+  "/user-current",
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
+  updateCurrentRequestValidator,
+  User.updateCurrentUser
+);
+router.put(
+  "/user-password",
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
+  updtePwdCurrentRequestValidator,
+  User.updatePwdCurrentUser
+);
+
 router.delete(
   "/user/:id",
   authenticateJWT,
   authorizeRoles("Admin"),
   deleteRequestValidator,
-  User.deleteUser,
+  User.deleteUser
 );
 
 export default router;

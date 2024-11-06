@@ -3,6 +3,8 @@ import {
   deleteUser,
   getAllUsers,
   getByIdUser,
+  updateCurrentUser,
+  updatePwdCurrentUser,
   updateUser,
 } from "../services/userService.js";
 import i18next from "i18next";
@@ -59,7 +61,41 @@ export default class User {
     }
     next();
   }
+  static async updateCurrentUser(req, res) {
+    try {
+      let token = null;
+      const authHeader = req.headers.authorization;
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
+      const { name, email, address, phone } = req.body;
 
+      await updateCurrentUser(name, email, address, phone, token);
+      res.json({ message: i18next.t("userController.updateSuccefull") });
+    } catch (error) {
+      res.json({
+        message: i18next.t("userController.updateFailed"),
+        error: error.message,
+      });
+    }
+  }
+  static async updatePwdCurrentUser(req, res) {
+    try {
+      let token = null;
+      const authHeader = req.headers.authorization;
+      if (authHeader) {
+        token = authHeader.split(" ")[1];
+      }
+      const { oldPassword, newPassword } = req.body;
+      await updatePwdCurrentUser(oldPassword, newPassword, token);
+      res.json({ message: i18next.t("userController.updateSuccefull") });
+    } catch (error) {
+      res.json({
+        message: i18next.t("userController.updateFailed"),
+        error: error.message,
+      });
+    }
+  }
   static async deleteUser(req, res, next) {
     try {
       const id = Number(req.params.id);

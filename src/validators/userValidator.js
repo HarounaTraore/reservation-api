@@ -1,4 +1,6 @@
 import { check, param, validationResult } from "express-validator";
+
+import jwt from "jsonwebtoken";
 import i18next from "i18next";
 import {
   checkEmail,
@@ -136,6 +138,79 @@ export const updateRequestValidator = [
     .isIn(["Admin", "Manager"])
     .withMessage(i18next.t("userValidator.selectRole")),
 
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    }
+    next();
+  },
+];
+export const updateCurrentRequestValidator = [
+  check("name")
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredName"))
+    .bail()
+    .isLength({ min: 5, max: 100 })
+    .withMessage(i18next.t("userValidator.lengthName")),
+
+  check("email")
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredEmail"))
+    .bail()
+    .isEmail()
+    .withMessage(i18next.t("userValidator.requiredValidEmail"))
+    .bail()
+    .custom(async (value, { req }) => {
+      const token = req.headers.authorization.split(" ")[1];
+      const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+      const id = Number(tokenDecoded.id);
+      const result = await checkEmail(id, value);
+      if (result !== 0) {
+        throw new Error(i18next.t("userValidator.emailUnique"));
+      }
+      return true;
+    }),
+
+  check("address")
+    .isLength({ min: 2, max: 100 })
+    .withMessage(i18next.t("userValidator.requiredAddress")),
+
+  check("phone")
+    .isLength({ min: 8, max: 15 })
+    .withMessage(i18next.t("userValidator.requiredPhone"))
+    .bail()
+    .custom(async (value, { req }) => {
+      const token = req.headers.authorization.split(" ")[1];
+      const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+      const id = Number(tokenDecoded.id);
+      const result = await checkPhone(id, value);
+      if (result !== 0) {
+        throw new Error(i18next.t("userValidator.phoneUnique"));
+      }
+      return true;
+    }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    }
+    next();
+  },
+];
+
+export const updtePwdCurrentRequestValidator = [
+  check("oldPassword")
+    .notEmpty()
+    .withMessage("L'encien mot de passe est requis")
+    .bail(),
+  check("newPassword")
+    .isLength({ min: 8 })
+    .withMessage(i18next.t("userValidator.passwordLength")),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

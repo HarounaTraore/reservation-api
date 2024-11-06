@@ -1,5 +1,7 @@
 import prisma from "../config/prisma.js";
+import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
+import i18next from "i18next";
 export const getAllUsers = async () => {
   try {
     const result = await prisma.users.findMany();
@@ -10,6 +12,7 @@ export const getAllUsers = async () => {
     await prisma.$disconnect();
   }
 };
+
 export const getByIdUser = async (id) => {
   try {
     const result = await prisma.users.findUnique({ where: { id } });
@@ -26,7 +29,7 @@ export const createUser = async (
   address,
   phone,
   password,
-  role,
+  role
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
   try {
@@ -48,7 +51,7 @@ export const updateUser = async (
   address,
   phone,
   password,
-  role,
+  role
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
 
@@ -62,6 +65,69 @@ export const updateUser = async (
     throw error;
   } finally {
     await prisma.$disconnect();
+  }
+};
+export const updateCurrentUser = async (
+  name,
+  email,
+  address,
+  phone,
+  token = null
+) => {
+  try {
+    let id = null;
+    if (token) {
+      const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+      id = Number(tokenDecoded.id);
+      const result = prisma.users.update({
+        where: { id: id },
+        data: { name, email, address, phone },
+      });
+      return result;
+    } else {
+      throw new Error("Identifiant non reconnu");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+export const updatePwdCurrentUser = async (
+  oldPassword,
+  newPassword,
+  token = null
+) => {
+  try {
+    if (!token) {
+      throw new Error(i18next.t("authService.tokenMissing"));
+    }
+
+    const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
+    const id = tokenDecoded.id;
+
+    const user = await prisma.users.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new Error(i18next.t("authService.userNotFound"));
+    }
+
+    const isPasswordValid = await bcryptjs.compare(oldPassword, user.password);
+    console.log("IS PASSWORD", isPasswordValid);
+
+    if (!isPasswordValid) {
+      throw new Error(i18next.t("authService.pwsNotExist"));
+    }
+    const passwordHash = await bcryptjs.hash(newPassword, 10);
+
+    const result = await prisma.users.update({
+      where: { id },
+      data: { password: passwordHash },
+    });
+
+    return result;
+  } catch (error) {
+    throw error;
   }
 };
 

@@ -76,6 +76,54 @@
 					"response": []
 				},
 				{
+					"name": "user-current",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4gSGFyb3VuYSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczMDg5MzE4NCwiZXhwIjoxNzMwOTI5MTg0fQ.nnIyDA7Gzahzolb5qsYMRmhXvAlup2OMd0C4U5rgWW8"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Admin\",\r\n    \"email\": \"admin@admin.com\",\r\n    \"address\": \"NKTT, Basra\",\r\n    \"phone\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/user-current"
+					},
+					"response": []
+				},
+				{
+					"name": "user-change-pwd",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiQWRtaW4gSGFyb3VuYSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczMDg5MzE4NCwiZXhwIjoxNzMwOTI5MTg0fQ.nnIyDA7Gzahzolb5qsYMRmhXvAlup2OMd0C4U5rgWW8"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"12345678\",\r\n    \"newPassword\":\"admin1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/user-password"
+					},
+					"response": []
+				},
+				{
 					"name": "user",
 					"request": {
 						"method": "DELETE",
