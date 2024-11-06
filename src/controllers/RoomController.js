@@ -28,9 +28,11 @@ export default class Room {
   static async getAllRooms(_req, res, next) {
     try {
       const result = await getAllRooms();
-      res.json({ result });
+      res.status(200).json({ result });
     } catch (error) {
-      res.json({ message: i18next.t("roomController.getAllRoomsFailed") });
+      res
+        .status(400)
+        .json({ message: i18next.t("roomController.getAllRoomsFailed") });
     }
     next();
   }
@@ -48,12 +50,10 @@ export default class Room {
         .status(201)
         .json({ message: i18next.t("roomController.createSuccfull") });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: i18next.t("roomController.createFailed"),
-          error: error.message,
-        });
+      res.status(500).json({
+        message: i18next.t("roomController.createFailed"),
+        error: error.message,
+      });
     }
     next();
   }
@@ -67,11 +67,13 @@ export default class Room {
       }
       const id = Number(req.params.id);
       const { name, capacity, equipment } = req.body;
-      await updateRoom(id, name, capacity, equipment,  token);
-      res.json({ message: i18next.t("roomController.updateSuccefull") });
-    } catch (error) {
+      await updateRoom(id, name, capacity, equipment, token);
       res
-        .status(500)
+        .status(200)
+        .json({ message: i18next.t("roomController.updateSuccefull") });
+    } catch (error) {
+      res.res
+        .status(400)
         .json({ message: i18next.t("roomController.updateFailed") });
     }
     next();
@@ -83,12 +85,10 @@ export default class Room {
       await deleteRoom(id);
       res.json({ message: i18next.t("roomController.deleteSuccessful") });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: i18next.t("roomController.deleteFailed"),
-          error: error.message,
-        });
+      res.status(400).json({
+        message: i18next.t("roomController.deleteFailed"),
+        error: error.message,
+      });
     }
     next();
   }

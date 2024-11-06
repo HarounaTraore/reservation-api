@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import { findUser } from "../services/userService.js";
 import i18next from "i18next";
 import bcrypt from "bcryptjs";
-import crypto from 'crypto';
-import { sendOtpEmail } from './mailService.js';
+import crypto from "crypto";
+import { sendOtpEmail } from "./mailService.js";
 import prisma from "../config/prisma.js";
 
 export const login = async (email, password) => {
@@ -35,7 +35,8 @@ export const login = async (email, password) => {
     user: {
       id: user.id,
       name: user.name,
-      status: user.status
+      status: user.status,
+      role: user.role,
     },
   };
 };
@@ -47,8 +48,7 @@ export const forgotPassword = async (email) => {
   }
 
   const code = Math.floor(100000 + Math.random() * 900000).toString();
-  const expireAt = new Date(Date.now() + 15 * 60 * 1000); 
-
+  const expireAt = new Date(Date.now() + 15 * 60 * 1000);
 
   await prisma.passwordReset.create({
     data: {
@@ -74,7 +74,7 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
       userId: user.id,
       code,
       expireAt: {
-        gte: new Date(), 
+        gte: new Date(),
       },
     },
   });
@@ -83,7 +83,10 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
     throw new Error(i18next.t("authService.invalidOrExpiredOtp"));
   }
 
-  const hashedPassword = await bcrypt.hash(newPassword, parseInt(process.env.SALT_ROUNDS, 10));
+  const hashedPassword = await bcrypt.hash(
+    newPassword,
+    parseInt(process.env.SALT_ROUNDS, 10)
+  );
 
   await prisma.users.update({
     where: { id: user.id },
@@ -98,4 +101,3 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
 
   return { message: i18next.t("authService.passwordResetSuccess") };
 };
-

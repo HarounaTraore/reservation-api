@@ -111,7 +111,7 @@ export default class Reservation {
           message: i18next.t("reservationController.existReservation"),
         });
       }
-      res.status(500).json({ message: error });
+      res.status(400).json({ message: error });
     }
   }
 
@@ -129,7 +129,7 @@ export default class Reservation {
         message: i18next.t("reservationController.updateStatusSuccessfull"),
       });
     } catch (error) {
-      res.status(404).json({
+      res.status(400).json({
         message: i18next.t("reservationController.updateStatusFailed"),
         error: error.message,
       });
@@ -144,7 +144,7 @@ export default class Reservation {
         .json({ message: i18next.t("reservationController.deleteSuccessful") });
     } catch (error) {
       res
-        .status(404)
+        .status(400)
         .json({ message: i18next.t("reservationController.deleteFailed") });
     }
   }

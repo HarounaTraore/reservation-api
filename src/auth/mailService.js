@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export const sendOtpEmail = async (email, otp) => {
   const transporter = nodemailer.createTransport({
-    // Configuration du transporteur
+  
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,

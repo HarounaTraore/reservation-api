@@ -22,7 +22,9 @@ export default class User {
           .json({ message: i18next.t("userController.getUserById") });
       }
     } catch (error) {
-      res.json({ message: i18next.t("userController.getUserById") });
+      res
+        .status(400)
+        .json({ message: i18next.t("userController.getUserById") });
     }
     next();
   }
@@ -32,7 +34,9 @@ export default class User {
       const result = await getAllUsers();
       res.json({ result });
     } catch (error) {
-      res.json({ message: i18next.t("userController.getAllUsersFailed") });
+      res
+        .status(400)
+        .json({ message: i18next.t("userController.getAllUsersFailed") });
     }
     next();
   }
@@ -45,7 +49,9 @@ export default class User {
         .status(201)
         .json({ message: i18next.t("userController.createSuccfull") });
     } catch (error) {
-      res.json({ message: i18next.t("userController.createFailed") });
+      res
+        .status(400)
+        .json({ message: i18next.t("userController.createFailed") });
     }
     next();
   }
@@ -55,9 +61,13 @@ export default class User {
       const id = Number(req.params.id);
       const { name, email, address, phone, password, role } = req.body;
       await updateUser(id, name, email, address, phone, password, role);
-      res.json({ message: i18next.t("userController.updateSuccefull") });
+      res
+        .status(200)
+        .json({ message: i18next.t("userController.updateSuccefull") });
     } catch (error) {
-      res.json({ message: i18next.t("userController.updateFailed") });
+      res
+        .status(400)
+        .json({ message: i18next.t("userController.updateFailed") });
     }
     next();
   }
@@ -71,9 +81,11 @@ export default class User {
       const { name, email, address, phone } = req.body;
 
       await updateCurrentUser(name, email, address, phone, token);
-      res.json({ message: i18next.t("userController.updateSuccefull") });
+      res
+        .status(200)
+        .json({ message: i18next.t("userController.updateSuccefull") });
     } catch (error) {
-      res.json({
+      res.status(400).json({
         message: i18next.t("userController.updateFailed"),
         error: error.message,
       });
@@ -88,9 +100,11 @@ export default class User {
       }
       const { oldPassword, newPassword } = req.body;
       await updatePwdCurrentUser(oldPassword, newPassword, token);
-      res.json({ message: i18next.t("userController.updateSuccefull") });
+      res
+        .status(200)
+        .json({ message: i18next.t("userController.updateSuccefull") });
     } catch (error) {
-      res.json({
+      res.status(400).json({
         message: i18next.t("userController.updateFailed"),
         error: error.message,
       });
@@ -100,9 +114,13 @@ export default class User {
     try {
       const id = Number(req.params.id);
       await deleteUser(id);
-      res.json({ message: i18next.t("userController.deleteSuccessful") });
+      res
+        .status(200)
+        .json({ message: i18next.t("userController.deleteSuccessful") });
     } catch (error) {
-      res.json({ message: i18next.t("userController.deleteFailed") });
+      res
+        .status(400)
+        .json({ message: i18next.t("userController.deleteFailed") });
     }
     next();
   }
