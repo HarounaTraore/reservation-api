@@ -27,7 +27,7 @@ export default class Room {
   }
   static async romsNotReserved(req, res) {
     try {
-      const { dateStart, dateEnd } = req.body;
+      const { dateStart, dateEnd } = req.query;
       const atStart = new Date(dateStart).toISOString();
       const atEnd = new Date(dateEnd).toISOString();
       const result = await roomsNotReserved(atStart, atEnd);

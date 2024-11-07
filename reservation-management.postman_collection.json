@@ -178,9 +178,6 @@
 				},
 				{
 					"name": "rooms-not-reserved",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -190,16 +187,32 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"dateStart\": \"2024-11-09\",\r\n    \"dateEnd\": \"2024-11-10\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "http://127.0.0.1:3000/api/rooms/not-reserved?dateStart=2024-11-08&dateEnd=2024-11-10",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"rooms",
+								"not-reserved"
+							],
+							"query": [
+								{
+									"key": "dateStart",
+									"value": "2024-11-08"
+								},
+								{
+									"key": "dateEnd",
+									"value": "2024-11-10"
 								}
-							}
-						},
-						"url": "http://127.0.0.1:3000/api/rooms/not-reserved"
+							]
+						}
 					},
 					"response": []
 				},
