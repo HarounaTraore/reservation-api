@@ -177,6 +177,33 @@
 					"response": []
 				},
 				{
+					"name": "rooms-not-reserved",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiTWFyeSBUcmFvcsOpIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzMwOTkxNzk5LCJleHAiOjE3MzEwMjc3OTl9.J1alHkB3DvvcBK-vkWcwliq0c3m5bJm0lePKB7OhrfQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dateStart\": \"2024-11-09\",\r\n    \"dateEnd\": \"2024-11-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:3000/api/rooms/not-reserved"
+					},
+					"response": []
+				},
+				{
 					"name": "room",
 					"request": {
 						"method": "GET",

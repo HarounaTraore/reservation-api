@@ -3,6 +3,7 @@ import {
   deleteRoom,
   getAllRooms,
   getByIdRoom,
+  roomsNotReserved,
   updateRoom,
 } from "../services/roomService.js";
 import i18next from "i18next";
@@ -24,7 +25,17 @@ export default class Room {
     }
     next();
   }
-
+  static async romsNotReserved(req, res) {
+    try {
+      const { dateStart, dateEnd } = req.body;
+      const atStart = new Date(dateStart).toISOString();
+      const atEnd = new Date(dateEnd).toISOString();
+      const result = await roomsNotReserved(atStart, atEnd);
+      res.status(200).json({ result: result });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
   static async getAllRooms(_req, res, next) {
     try {
       const result = await getAllRooms();

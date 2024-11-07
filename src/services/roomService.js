@@ -10,6 +10,41 @@ export const getAllRooms = async () => {
     await prisma.$disconnect();
   }
 };
+export const roomsNotReserved = async (dateStart, dateEnd) => {
+  try {
+    const result = await prisma.rooms.findMany({
+      where: {
+        // Sélectionner les salles où aucune réservation confirmée n'existe pendant la période donnée
+        reservations: {
+          none: {
+            dateStart: {
+              lte: dateEnd,
+            },
+            dateEnd: {
+              gte: dateStart,
+            },
+            status: 'CONFIRMED', 
+          },
+        },
+      },
+      include: {
+        reservations: {
+          select: {
+            id: true,
+            status: true, 
+          },
+        },
+      },
+    });
+    return result;
+  } catch (error) {
+    throw error;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+
 export const getByIdRoom = async (id) => {
   try {
     const result = await prisma.rooms.findUnique({ where: { id } });
@@ -20,12 +55,7 @@ export const getByIdRoom = async (id) => {
     await prisma.$disconnect();
   }
 };
-export const createRoom = async (
-  name,
-  capacity,
-  equipment,
-  token = null,
-) => {
+export const createRoom = async (name, capacity, equipment, token = null) => {
   let userId = null;
   if (token) {
     const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -48,7 +78,7 @@ export const updateRoom = async (
   name,
   capacity,
   equipment,
-  token = null,
+  token = null
 ) => {
   let userId = null;
   if (token) {
