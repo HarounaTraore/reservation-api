@@ -113,7 +113,6 @@ export const updatePwdCurrentUser = async (
     }
 
     const isPasswordValid = await bcryptjs.compare(oldPassword, user.password);
-    console.log("IS PASSWORD", isPasswordValid);
 
     if (!isPasswordValid) {
       throw new Error(i18next.t("authService.pwsNotExist"));
