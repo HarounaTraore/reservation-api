@@ -72,7 +72,10 @@ export default class Customer {
     } catch (error) {
       res
         .status(400)
-        .json({ message: i18next.t("customerController.updateFailed"), error: error.message });
+        .json({
+          message: i18next.t("customerController.updateFailed"),
+          error: error.message,
+        });
     }
     next();
   }
@@ -83,7 +86,12 @@ export default class Customer {
       await deleteCustomer(id);
       res.json({ message: i18next.t("customerController.deleteSuccessful") });
     } catch (error) {
-      res.status(400).json({ message: i18next.t("customerController.deleteFailed"), error: error.message });
+      res
+        .status(400)
+        .json({
+          message: i18next.t("customerController.deleteFailed"),
+          error: error.message,
+        });
     }
     next();
   }

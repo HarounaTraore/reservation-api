@@ -56,7 +56,7 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   check("name")
@@ -102,7 +102,7 @@ export const deleteRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   (req, res, next) => {
@@ -122,7 +122,7 @@ export const getRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
     ),
 
   (req, res, next) => {

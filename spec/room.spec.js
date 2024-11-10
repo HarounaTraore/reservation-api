@@ -14,7 +14,6 @@ describe("Room tests", () => {
       name: "Room 005",
       capacity: 60,
       equipment: "Projector, wifi, 75 chairs",
-      status: "Not Reserved",
     };
     const { name, capacity, equipment, status } = newRoom;
     const result = await createRoom(name, capacity, equipment, status);
@@ -30,7 +29,6 @@ describe("Room tests", () => {
       name: "Room 005",
       capacity: 60,
       equipment: "Projector, wifi, 75 chairs",
-      status: "Not Reserved",
     };
     const { name, capacity, equipment, status } = newRoom;
 
@@ -49,7 +47,6 @@ describe("Room tests", () => {
       name: "Room 006",
       capacity: 70,
       equipment: "Projector, wifi, 80 chairs",
-      status: "Reserved",
     };
     const { name, capacity, equipment, status, userId } = updatedRoom;
     const updateResult = await updateRoom(
@@ -70,7 +67,6 @@ describe("Room tests", () => {
       name: "Room 007",
       capacity: 80,
       equipment: "Projector, wifi, 90 chairs",
-      status: "Reserved",
     };
     const { name, capacity, equipment, status } = updatedRoom;
 

@@ -6,7 +6,10 @@ import {
   getAllReservations,
 } from "../src/services/reservationService.js";
 import { createRoom, deleteRoom } from "../src/services/roomService.js";
-import { createCustomer, deleteCustomer } from "../src/services/customerService.js";
+import {
+  createCustomer,
+  deleteCustomer,
+} from "../src/services/customerService.js";
 
 describe("Reservation tests", () => {
   let reservationId = null;
@@ -19,7 +22,6 @@ describe("Reservation tests", () => {
         "Salle 505",
         50,
         "Projecteur, 10 ordinateurs",
-        "Réservé"
       );
       roomId = room.id;
 
@@ -44,6 +46,7 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
+      status: "CONFIRMED",
       roomId,
       customerId,
     };
@@ -53,7 +56,8 @@ describe("Reservation tests", () => {
       newReservation.dateStart,
       newReservation.dateEnd,
       roomId,
-      customerId
+      customerId,
+      newReservation.status,
     );
 
     reservationId = result.id;
@@ -69,6 +73,7 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20T00:00:00.000Z",
       dateStart: "2024-10-25T00:00:00.000Z",
       dateEnd: "2024-10-26T00:00:00.000Z",
+      status: "CONFIRMED",
       roomId: 999,
       customerId: 999,
     };
@@ -79,7 +84,8 @@ describe("Reservation tests", () => {
         newReservation.dateStart,
         newReservation.dateEnd,
         newReservation.roomId,
-        newReservation.customerId
+        newReservation.customerId,
+        newReservation.status,
       );
       fail("Expected an error to be thrown");
     } catch (error) {
@@ -92,6 +98,7 @@ describe("Reservation tests", () => {
       dateReservation: "2024-10-20",
       dateStart: "2024-10-25",
       dateEnd: "2024-10-26",
+      status: "CONFIRMED",
       roomId,
       customerId,
     };
@@ -102,7 +109,8 @@ describe("Reservation tests", () => {
       updatedReservation.dateStart,
       updatedReservation.dateEnd,
       roomId,
-      customerId
+      customerId,
+      updatedReservation.status,
     );
 
     const findReservation = await getByIdReservation(reservationId);
@@ -118,6 +126,7 @@ describe("Reservation tests", () => {
       dateEnd: new Date(Date.now()).toISOString(),
       roomId: 1,
       customerId: 1,
+      status: "confirmed",
     };
 
     try {
@@ -127,7 +136,8 @@ describe("Reservation tests", () => {
         updatedReservation.dateStart,
         updatedReservation.dateEnd,
         updatedReservation.roomId,
-        updatedReservation.customerId
+        updatedReservation.customerId,
+        "Confirmed",
       );
       fail("Expected an error to be thrown");
     } catch (error) {

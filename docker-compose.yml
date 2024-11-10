@@ -7,7 +7,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - db  # Assure que la base de données démarre avant le serveur
+      - db # Assure que la base de données démarre avant le serveur
 
   db:
     image: postgres
@@ -23,7 +23,7 @@ services:
     expose:
       - 5432
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: ["CMD", "pg_isready"]
       interval: 10s
       timeout: 5s
       retries: 5

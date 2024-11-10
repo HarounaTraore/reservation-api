@@ -29,7 +29,7 @@ export const createUser = async (
   address,
   phone,
   password,
-  role
+  role,
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
   try {
@@ -51,7 +51,7 @@ export const updateUser = async (
   address,
   phone,
   password,
-  role
+  role,
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
 
@@ -72,7 +72,7 @@ export const updateCurrentUser = async (
   email,
   address,
   phone,
-  token = null
+  token = null,
 ) => {
   try {
     let id = null;
@@ -94,7 +94,7 @@ export const updateCurrentUser = async (
 export const updatePwdCurrentUser = async (
   oldPassword,
   newPassword,
-  token = null
+  token = null,
 ) => {
   try {
     if (!token) {

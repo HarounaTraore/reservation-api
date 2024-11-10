@@ -61,7 +61,7 @@ export default class Reservation {
         roomId,
         customerId,
         statusUpercase,
-        token
+        token,
       );
       res
         .status(201)
@@ -100,7 +100,7 @@ export default class Reservation {
         roomId,
         customerId,
         statusUpercase,
-        token
+        token,
       );
       res
         .status(200)

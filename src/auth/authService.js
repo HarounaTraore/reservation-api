@@ -27,7 +27,7 @@ export const login = async (email, password) => {
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.TOKEN_EXPIRATION,
-    }
+    },
   );
 
   return {
@@ -85,7 +85,7 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
 
   const hashedPassword = await bcrypt.hash(
     newPassword,
-    parseInt(process.env.SALT_ROUNDS, 10)
+    parseInt(process.env.SALT_ROUNDS, 10),
   );
 
   await prisma.users.update({

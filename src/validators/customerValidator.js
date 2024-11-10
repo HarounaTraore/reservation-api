@@ -61,8 +61,8 @@ export const updateRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer"
-      )
+        "customerValidator.existCustomer",
+      ),
     ),
 
   check("name")
@@ -114,8 +114,8 @@ export const deleteRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer"
-      )
+        "customerValidator.existCustomer",
+      ),
     ),
 
   (req, res, next) => {
@@ -137,8 +137,8 @@ export const getRequestValidator = [
       validateIdExists(
         value,
         getByIdCustomer,
-        "customerValidator.existCustomer"
-      )
+        "customerValidator.existCustomer",
+      ),
     ),
 
   (req, res, next) => {

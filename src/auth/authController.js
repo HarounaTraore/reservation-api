@@ -6,12 +6,10 @@ export const signin = async (req, res) => {
     const token = await login(email, password);
     res.json({ token });
   } catch (err) {
-    res
-      .status(401)
-      .json({
-        message: i18next.t("authController.accessDenied"),
-        error: err.message,
-      });
+    res.status(401).json({
+      message: i18next.t("authController.accessDenied"),
+      error: err.message,
+    });
   }
 };
 

@@ -490,8 +490,6 @@ npm run format
 
 Pour tester les différents endpoints de l'API, vous pouvez utiliser la collection Postman incluse dans ce projet.
 
-
-
 ## Auteur
 
 [Harouna Adama Traoré](https://github.com/HarounaTraore)

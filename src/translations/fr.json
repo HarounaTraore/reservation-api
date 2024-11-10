@@ -78,7 +78,7 @@
     "existReservation": " Réservation non trouvé",
     "deleteSuccessful": "Réservation supprimée avec succès.",
     "deleteFailed": "Échec de la suppression de la réservation.",
-       "updateStatusSuccessfull": "Statut mis à jour avec succès.",
+    "updateStatusSuccessfull": "Statut mis à jour avec succès.",
     "updateStatusFailed": "Échec de la mise à jour du statut."
   },
   "reservationValidator": {

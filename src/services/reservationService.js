@@ -71,7 +71,7 @@ export const createReservation = async (
   roomId,
   customerId,
   status,
-  token = null
+  token = null,
 ) => {
   let userId = null;
   const statusUpercase = status.toUpperCase();
@@ -110,7 +110,7 @@ export const updateReservation = async (
   roomId,
   customerId,
   status,
-  token = null
+  token = null,
 ) => {
   let userId = null;
   if (token) {

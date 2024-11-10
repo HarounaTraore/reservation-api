@@ -15,7 +15,6 @@ const destroys = async () => {
   }
 };
 
-
 async function main() {
   const destroyData = await destroys();
   if (destroyData) {

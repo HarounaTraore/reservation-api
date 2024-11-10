@@ -23,7 +23,7 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
             dateEnd: {
               gte: dateStart,
             },
-            status: 'CONFIRMED', 
+            status: "CONFIRMED",
           },
         },
       },
@@ -31,7 +31,7 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
         reservations: {
           select: {
             id: true,
-            status: true, 
+            status: true,
           },
         },
       },
@@ -43,7 +43,6 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
     await prisma.$disconnect();
   }
 };
-
 
 export const getByIdRoom = async (id) => {
   try {
@@ -78,7 +77,7 @@ export const updateRoom = async (
   name,
   capacity,
   equipment,
-  token = null
+  token = null,
 ) => {
   let userId = null;
   if (token) {
