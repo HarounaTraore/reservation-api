@@ -33,7 +33,7 @@ router.get(
 router.post(
   "/room",
   authenticateJWT,
-  authorizeRoles("Admin"),
+  authorizeRoles("Admin","Manager"),
   addRequestValidator,
   Room.createRoom,
 );
