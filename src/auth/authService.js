@@ -80,9 +80,12 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
   });
 
   if (!passwordReset) {
-    throw new Error(i18next.t("authService.invalidOrExpiredOtp"));
+    throw new Error("Veuillez verifier votre code de réinitialisation.");
   }
-
+  if (newPassword.length < 8) {
+    throw new Error("Le mot de passe doit être au moins 8 caractères");
+  }
+  
   const hashedPassword = await bcrypt.hash(
     newPassword,
     parseInt(process.env.SALT_ROUNDS, 10),

@@ -14,7 +14,7 @@
     "lengthName": "Name must be between 5 and 100 characters!",
     "requierdEmail": "Email is required",
     "requierdValidEmail": "Entered email is not valid",
-    "requierdAddress": "Address must be between 2 and 100 characters!",
+    "requiredAddress": "Address must be between 2 and 100 characters!",
     "requierdPhone": "Phone number must be between 8 and 15 characters",
     "phoneUnique": "This phone number already exists!",
     "passwordLength": "Password must be at least 8 characters long",
