@@ -36,7 +36,7 @@ model rooms {
   capacity   Int
   equipment  String
   userId     Int?       
-  user       users?     @relation(fields: [userId], references: [id]) 
+  user       users?     @relation(fields: [userId], references: [id], onDelete: SetNull) 
   reservations reservations[] 
 }
 
@@ -46,7 +46,7 @@ model customers {
   address   String    @db.VarChar(100)
   phone     String    @db.VarChar(15) @unique
   userId    Int?       
-  user      users?     @relation(fields: [userId], references: [id])
+  user      users?     @relation(fields: [userId], references: [id], onDelete: SetNull)
   reservations reservations[]
 }
 
@@ -59,7 +59,7 @@ model reservations {
   userId          Int?       
   roomId          Int      
   customerId      Int       
-  user            users?     @relation(fields: [userId], references: [id])
+  user            users?     @relation(fields: [userId], references: [id], onDelete: SetNull)
   room            rooms     @relation(fields: [roomId], references: [id]) 
   customer        customers @relation(fields: [customerId], references: [id])
 }
@@ -69,5 +69,5 @@ model PasswordReset {
   code          String   
   expireAt      DateTime 
   createdAt     DateTime @default(now()) 
-  user          users    @relation(fields: [userId], references: [id])
+  user          users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
