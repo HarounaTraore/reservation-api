@@ -36,8 +36,22 @@ npm install
 
 ## Configuration de la base de données
 
-1. **Créez une base de données PostgreSQL**
-2. Modifiez le fichier `.env.example` en le renommant `.env` et remplissez-le avec vos informations de connexion.
+### 1. **Créez une base de données PostgreSQL**
+
+- Connectez-vous au serveur PostgreSQL en utilisant la commande ci-dessous (remplacez `user_name` par votre nom d'utilisateur) :
+
+  ```bash
+  psql -U user_name
+  ```
+
+- Une fois connecté, créez votre base de données (remplacez `db_name` par le nom de votre base) :
+
+  ```bash
+  CREATE DATABASE db_name;
+  ```
+
+### 2. **Configurez le fichier `.env`  :**
+Renommez le fichier .env.example en .env, puis remplissez-le avec vos informations de connexion :
 
 Exemple de fichier `.env` :
 
@@ -48,10 +62,30 @@ TOKEN_EXPIRATION=EXPIRE_IN_TIME ( 1h, 7d)
 LANGUAGE=fr # Langue de la traduction (fr, en, ar)
 ```
 
-### **Migrations Prisma :**
+### 3. **Migrations Prisma :**
+Déployez les migrations pour initialiser la base de données :
+```bash
+npx prisma migrate deploy
+```
+
+### 4. **Insérez les données avec le script seed :**
+Lancez le script pour ajouter des données initiales (comme les utilisateurs administrateurs) :
 
 ```bash
-npx prisma migrate dev
+npm run seed
+```
+
+### 5. **Utilisateurs créer par seed :**
+Après l'exécution du script, les utilisateurs suivants seront disponibles dans la base de données :
+```json
+{
+  "email": "admin@admin.com",
+  "password": "admin1234"
+},
+{
+  "email": "manager@manager.com",
+  "password": "manager1234"
+}
 ```
 
 ## Utilisation
@@ -76,7 +110,7 @@ L'API sera accessible à `http://localhost:3000`.
 ```json
 {
   "email": "admin@admin.com",
-  "password": "passwordAdmin"
+  "password": "admin1234"
 }
 ```
 
@@ -84,7 +118,18 @@ L'API sera accessible à `http://localhost:3000`.
 
 ```json
 {
-  "token": "JWT_TOKEN"
+    "token": {
+        "token": "JWT_TOKEN",
+        "user": {
+            "id": 5,
+            "email": "admin@gmail.com",
+            "name": "Admin",
+            "address": "NKTT, Admin",
+            "phone": "00000000",
+            "status": true,
+            "role": "Manager"
+        }
+    }
 }
 ```
 
