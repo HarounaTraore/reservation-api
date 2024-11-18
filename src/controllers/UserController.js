@@ -5,6 +5,7 @@ import {
   getByIdUser,
   updateCurrentUser,
   updatePwdCurrentUser,
+  updateStatusUser,
   updateUser,
 } from "../services/userService.js";
 import i18next from "i18next";
@@ -59,8 +60,8 @@ export default class User {
   static async updateUser(req, res, next) {
     try {
       const id = Number(req.params.id);
-      const { name, email, address, phone, password, role } = req.body;
-      await updateUser(id, name, email, address, phone, password, role);
+      const { name, email, address, phone, password, role, status } = req.body;
+      await updateUser(id, name, email, address, phone, password, role, status);
       res
         .status(200)
         .json({ message: i18next.t("userController.updateSuccefull") });
@@ -68,6 +69,20 @@ export default class User {
       res
         .status(400)
         .json({ message: i18next.t("userController.updateFailed") });
+    }
+    next();
+  }
+  static async updateStatusUser(req, res, next) {
+    try {
+      const id = Number(req.params.id);
+      const { status } = req.body;
+      const statusBoolen = Boolean(status)
+      console.log(statusBoolen);
+
+      await updateStatusUser(id, statusBoolen);
+      res.status(200).json({ message: "Statut moidifier avec succès" });
+    } catch (error) {
+      res.status(400).json({ message: "Erreur de modification de statut" });
     }
     next();
   }

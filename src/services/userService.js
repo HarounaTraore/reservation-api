@@ -29,7 +29,7 @@ export const createUser = async (
   address,
   phone,
   password,
-  role,
+  role
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
   try {
@@ -52,13 +52,22 @@ export const updateUser = async (
   phone,
   password,
   role,
+  status = true
 ) => {
   const hashedPassword = await bcryptjs.hash(password, 10);
 
   try {
     const result = await prisma.users.update({
       where: { id },
-      data: { name, email, address, phone, password: hashedPassword, role },
+      data: {
+        name,
+        email,
+        address,
+        phone,
+        password: hashedPassword,
+        role,
+        status,
+      },
     });
     return result;
   } catch (error) {
@@ -67,12 +76,27 @@ export const updateUser = async (
     await prisma.$disconnect();
   }
 };
+
+export const updateStatusUser = async (id, status) => {
+  try {
+    const result = await prisma.users.update({
+      where: { id },
+      data: { status },
+    });
+    return result;
+  } catch (error) {
+    throw error;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
 export const updateCurrentUser = async (
   name,
   email,
   address,
   phone,
-  token = null,
+  token = null
 ) => {
   try {
     let id = null;
@@ -94,7 +118,7 @@ export const updateCurrentUser = async (
 export const updatePwdCurrentUser = async (
   oldPassword,
   newPassword,
-  token = null,
+  token = null
 ) => {
   try {
     if (!token) {

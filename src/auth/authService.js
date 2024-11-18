@@ -23,11 +23,11 @@ export const login = async (email, password) => {
   }
 
   const token = jwt.sign(
-    { id: user.id, name: user.name, role: user.role },
+    { id: user.id, name: user.name, role: user.role, status: user.status },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.TOKEN_EXPIRATION,
-    },
+    }
   );
 
   return {
@@ -88,10 +88,10 @@ export const resetPasswordWithOtp = async (email, code, newPassword) => {
   if (newPassword.length < 8) {
     throw new Error("Le mot de passe doit être au moins 8 caractères");
   }
-  
+
   const hashedPassword = await bcrypt.hash(
     newPassword,
-    parseInt(process.env.SALT_ROUNDS, 10),
+    parseInt(process.env.SALT_ROUNDS, 10)
   );
 
   await prisma.users.update({

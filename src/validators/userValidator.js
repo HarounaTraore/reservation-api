@@ -148,6 +148,31 @@ export const updateRequestValidator = [
     next();
   },
 ];
+export const updateStatusRequestValidator = [
+  param("id")
+    .notEmpty()
+    .withMessage(i18next.t("userValidator.requiredId"))
+    .bail()
+    .custom(validateUserId),
+
+  check("status")
+    .notEmpty()
+    .withMessage("Statut est obligatoire")
+    .bail()
+    .isBoolean()
+    .withMessage("Statut doit etre Boolean")
+    .bail(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    }
+    next();
+  },
+];
 export const updateCurrentRequestValidator = [
   check("name")
     .notEmpty()
