@@ -63,25 +63,6 @@ export const getByIdCustomer = async (id) => {
   }
 };
 
-export const customerAndThisReservation = async (name) => {
-  return await prisma.customers.findMany({
-    where: {
-      name: {
-        contains: name, // Recherche partielle
-        mode: "insensitive", // Rend la recherche insensible à la casse
-      },
-    },
-    include: {
-      reservations: {
-        include: {
-          room: {
-            select: { name: true },
-          },
-        },
-      },
-    },
-  });
-};
 
 export const createCustomer = async (name, address, phone, token = null) => {
   let userId = null;
