@@ -8,9 +8,10 @@ Cette API permet de gérer des réservations dans des espaces événementiels. E
 
 Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
-- [**Node.js** : (version 18.x LTS ou supérieure)](https://nodejs.org/fr)
-- [**PostgreSQL** : (version 13.x ou supérieure)](https://www.postgresql.org/download/)
-- [**Postman** (pour tester l'API)](https://www.postman.com/downloads/)
+- **Node.js** : (version 18.x LTS ou supérieure)
+- **PostgreSQL** : (version 13.x ou supérieure)
+- **Postman** (pour tester l'API)
+- **Git** : Pour cloner le dépôt et gérer les versions du code.
 
 ## Installation
 
