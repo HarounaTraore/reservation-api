@@ -40,6 +40,7 @@ export const getByIdCustomer = async (id) => {
             dateStart: true,
             dateEnd: true,
             dateReservation: true,
+            status: true,
             room: {
               select: {
                 name: true,
@@ -62,7 +63,6 @@ export const getByIdCustomer = async (id) => {
     await prisma.$disconnect();
   }
 };
-
 
 export const createCustomer = async (name, address, phone, token = null) => {
   let userId = null;

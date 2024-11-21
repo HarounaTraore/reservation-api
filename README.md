@@ -8,9 +8,9 @@ Cette API permet de gérer des réservations dans des espaces événementiels. E
 
 Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
-- **Node.js**
-- **PostgreSQL**
-- **Postman** (pour tester l'API)
+- [**Node.js** : (version 18.x LTS ou supérieure)](https://nodejs.org/fr)
+- [**PostgreSQL** : (version 13.x ou supérieure)](https://www.postgresql.org/download/)
+- [**Postman** (pour tester l'API)](https://www.postman.com/downloads/)
 
 ## Installation
 
@@ -50,7 +50,8 @@ npm install
   CREATE DATABASE db_name;
   ```
 
-### 2. **Configurez le fichier `.env`  :**
+### 2. **Configurez le fichier `.env` :**
+
 Renommez le fichier .env.example en .env, puis remplissez-le avec vos informations de connexion :
 
 Exemple de fichier `.env` :
@@ -63,12 +64,15 @@ LANGUAGE=fr # Langue de la traduction (fr, en, ar)
 ```
 
 ### 3. **Migrations Prisma :**
+
 Déployez les migrations pour initialiser la base de données :
+
 ```bash
 npx prisma migrate deploy
 ```
 
 ### 4. **Insérez les données avec le script seed :**
+
 Lancez le script pour ajouter des données initiales (comme les utilisateurs administrateurs) :
 
 ```bash
@@ -76,7 +80,9 @@ npm run seed
 ```
 
 ### 5. **Utilisateurs créer par seed :**
+
 Après l'exécution du script, les utilisateurs suivants seront disponibles dans la base de données :
+
 ```json
 {
   "email": "admin@admin.com",
@@ -88,427 +94,10 @@ Après l'exécution du script, les utilisateurs suivants seront disponibles dans
 }
 ```
 
-## Utilisation
-
-Pour démarrer l'application :
-
-```bash
-npm start
-```
-
-L'API sera accessible à `http://localhost:3000`.
-
-## Endpoints de l'API
-
-### **Authentification**
-
-#### POST /api/login
-
-- **Description** : Authentifie un utilisateur et renvoie un token JWT.
-- **Corps de la requête** :
-
-```json
-{
-  "email": "admin@admin.com",
-  "password": "admin1234"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-    "token": {
-        "token": "JWT_TOKEN",
-        "user": {
-            "id": 5,
-            "email": "admin@gmail.com",
-            "name": "Admin",
-            "address": "NKTT, Admin",
-            "phone": "00000000",
-            "status": true,
-            "role": "Manager"
-        }
-    }
-}
-```
-
-### **Gestion des utilisateurs**
-
-#### GET /api/users
-
-- **Description** : Récupère la liste des utilisateurs.
-- **Réponse** :
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Super Admin",
-    "email": "admin@admin.dev",
-    "address": "Address ST",
-    "phone": "12300000",
-    "password": "lfsfeoifzOFJZF$NGVOGNONVZFPJNGOVENF",
-    "role": "Admin",
-    "status": true
-  }
-]
-```
-
-#### POST /api/user
-
-- **Description** : Crée un nouveau utilisateur.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "User Manager",
-  "email": "manager@manager.dev",
-  "address": "Address ST",
-  "phone": "12304000",
-  "password": "password",
-  "role": "Manager"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Utilisateur crée avec succès"
-}
-```
-
-#### PUT /api/user/:id
-
-- **Description** : Met à jour un utilisateur existant par ID.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "User A",
-  "email": "manager@manager.dev",
-  "address": "Address ST",
-  "phone": "12304000",
-  "password": "password",
-  "role": "Manager"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Utilisateur mise à jour avec succès"
-}
-```
-
-#### GET /api/user/:id
-
-- **Description** : Récuperer un utilisateur existant par ID.
-- **Corps de la requête** :
-
-```json
-{
-  "id": 1,
-  "name": "Super Admin",
-  "email": "admin@admin.dev",
-  "address": "Address ST",
-  "phone": "12300000",
-  "password": "lfsfeoifzOFJZF$NGVOGNONVZFPJNGOVENF",
-  "role": "Admin",
-  "status": true
-}
-```
-
-#### DELETE /api/user/:id
-
-- **Description** : Supprime un utilisateur par ID.
-- **Réponse** :
-
-```json
-{
-  "message": "Utilisateur supprimé avec succès"
-}
-```
-
-### **Gestion des Salles**
-
-#### GET /api/rooms
-
-- **Description** : Récupère la liste des salles.
-- **Réponse** :
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Salle de Conférence",
-    "capacity": 200,
-    "equipement": "Projecteur, Sonorisation, 210 Chaises",
-    "status": "Reservée",
-    "user_id": null
-  }
-]
-```
-
-#### POST /api/room
-
-- **Description** : Crée une nouvelle salle.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "Salle de Réunion",
-  "capacity": 50,
-  "equipment": "Table, 60 Chaises",
-  "status": "Non reservée"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Salle créée avec succès"
-}
-```
-
-#### PUT /api/room/:id
-
-- **Description** : Met à jour une salle existante par ID.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "Salle de Réunion VIP",
-  "capacity": 70,
-  "equipment": "Table, 60 Chaises",
-  "status": "Non reservée"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Salle mise à jour avec succès"
-}
-```
-
-#### GET /api/room/:id
-
-- **Description** : Récupère une salle existante par ID.
-- **Réponse** :
-
-```json
-{
-  "id": 1,
-  "name": "Salle de Conférence",
-  "capacity": 200,
-  "equipement": "Projecteur, Sonorisation, 210 Chaises",
-  "status": "Reservée",
-  "user_id": null
-}
-```
-
-#### DELETE /api/room/:id
-
-- **Description** : Supprime une salle par ID.
-- **Réponse** :
-
-```json
-{
-  "message": "Salle supprimée avec succès"
-}
-```
-
-### **Gestion des clients**
-
-#### GET /api/customers
-
-- **Description** : Récupère la liste des clients.
-- **Réponse** :
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Sidi Dia",
-    "address": "Address A",
-    "phone": "12345678",
-    "user_id": 1
-  }
-]
-```
-
-#### POST /api/customer
-
-- **Description** : Crée un nouveau client.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "Sally Dia",
-  "address": "Address A",
-  "phone": "12345678"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Client créée avec succès"
-}
-```
-
-#### PUT /api/customer/:id
-
-- **Description** : Met à jour une client existante par ID.
-- **Corps de la requête** :
-
-```json
-{
-  "name": "Saly Dia",
-  "address": "Address A",
-  "phone": "12345678",
-  "user_id": 1
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "client mise à jour avec succès"
-}
-```
-
-#### GET /api/customer/:id
-
-- **Description** : Recupère un client existant par ID.
-- **Réponse** :
-
-```json
-{
-  "id": 1,
-  "name": "Sidi Dia",
-  "address": "Address A",
-  "phone": "12345678",
-  "user_id": 1
-}
-```
-
-#### DELETE /api/customer/:id
-
-- **Description** : Supprime une customer par ID.
-- **Réponse** :
-
-```json
-{
-  "message": "Customer supprimée avec succès"
-}
-```
-
-### **Gestion des Réservations**
-
-#### GET /api/reservations
-
-- **Description** : Récupère toutes les réservations.
-- **Réponse** :
-
-```json
-{
-  "id": 1,
-  "room_id": 1,
-  "user_id": 1,
-  "date_reservation": "2024-09-01",
-  "date_start": "2024-10-01",
-  "date_end": "2024-10-02"
-}
-```
-
-#### POST /api/reservation
-
-- **Description** : Crée une nouvelle réservation.
-- **Corps de la requête** :
-
-```json
-{
-  "id": 1,
-  "room_id": 1,
-  "user_id": 1,
-  "date_reservation": "2024-09-01",
-  "date_start": "2024-10-01",
-  "date_end": "2024-10-02"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Réservation effectuée avec succès"
-}
-```
-
-#### PUT /api/reservation/:id
-
-- **Description** : Met à jour une réservation existante par ID.
-- **Corps de la requête** :
-
-```json
-{
-  "id": 1,
-  "room_id": 1,
-  "user_id": 2,
-  "date_reservation": "2024-09-01",
-  "date_start": "2024-10-20",
-  "date_end": "2024-10-02"
-}
-```
-
-- **Réponse** :
-
-```json
-{
-  "message": "Réservation mise à jour avec succès"
-}
-```
-
-#### GET /api/reservation/:id
-
-- **Description** : Récupère une réservation existante par ID.
-- **Réponse** :
-
-```json
-{
-  "id": 1,
-  "room_id": 1,
-  "user_id": 2,
-  "date_reservation": "2024-09-01",
-  "date_start": "2024-10-20",
-  "date_end": "2024-10-02"
-}
-```
-
-#### DELETE /api/reservation/:id
-
-- **Description** : Supprime une réservation par ID.
-- **Réponse** :
-
-```json
-{
-  "message": "Réservation annulée avec succès"
-}
-```
-
 ## Tests unitaires
 
-Des tests unitaires sont fournis pour vérifier le bon fonctionnement des fonctionnalités CRUD.
+Des tests unitaires sont fournis pour vérifier le bon fonctionnement des fonctionnalités principales.
 
-- **Framework utilisé** : Jasmine
 - **Exécution des tests** :
 
 ```bash
@@ -531,9 +120,19 @@ npm run lint
 npm run format
 ```
 
+## Utilisation
+
+Pour démarrer l'application :
+
+```bash
+npm start
+```
+
+L'API sera accessible à `http://localhost:3000`.
+
 ## Documentation et Collection Postman
 
-Pour tester les différents endpoints de l'API, vous pouvez utiliser la collection Postman incluse dans ce projet.
+Vous pouvez consulter la documentation des endpoints et tester les différents points d'accès de l'API grâce à la collection Postman fournie dans ce projet : `reservation-management.postman_collection.json`. Importez ce fichier dans **[Postman](https://www.postman.com/)** pour faciliter les tests et accéder rapidement à tous les points d'accès.
 
 ## Auteur
 
