@@ -46,7 +46,17 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
 
 export const getByIdRoom = async (id) => {
   try {
-    const result = await prisma.rooms.findUnique({ where: { id } });
+    const result = await prisma.rooms.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
     return result;
   } catch (error) {
     throw error;
@@ -77,7 +87,7 @@ export const updateRoom = async (
   name,
   capacity,
   equipment,
-  token = null,
+  token = null
 ) => {
   let userId = null;
   if (token) {

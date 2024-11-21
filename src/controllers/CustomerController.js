@@ -25,9 +25,10 @@ export default class Customer {
     next();
   }
 
-  static async getAllCustomers(_req, res, next) {
+  static async getAllCustomers(req, res, next) {
     try {
-      const result = await getAllCustomers();
+      const { name = "" } = req.query;
+      const result = await getAllCustomers(name);
       res.json({ result });
     } catch (error) {
       res.status(404).json({
@@ -70,12 +71,10 @@ export default class Customer {
       await updateCustomer(id, name, address, phone, token);
       res.json({ message: i18next.t("customerController.updateSuccefull") });
     } catch (error) {
-      res
-        .status(400)
-        .json({
-          message: i18next.t("customerController.updateFailed"),
-          error: error.message,
-        });
+      res.status(400).json({
+        message: i18next.t("customerController.updateFailed"),
+        error: error.message,
+      });
     }
     next();
   }
@@ -86,12 +85,10 @@ export default class Customer {
       await deleteCustomer(id);
       res.json({ message: i18next.t("customerController.deleteSuccessful") });
     } catch (error) {
-      res
-        .status(400)
-        .json({
-          message: i18next.t("customerController.deleteFailed"),
-          error: error.message,
-        });
+      res.status(400).json({
+        message: i18next.t("customerController.deleteFailed"),
+        error: error.message,
+      });
     }
     next();
   }

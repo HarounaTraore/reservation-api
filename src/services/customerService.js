@@ -1,19 +1,60 @@
 import prisma from "../config/prisma.js";
 import jwt from "jsonwebtoken";
 
-export const getAllCustomers = async () => {
+export const getAllCustomers = async (name = "") => {
   try {
-    const result = await prisma.customers.findMany();
+    const result = await prisma.customers.findMany({
+      where: name
+        ? {
+            name: {
+              contains: name,
+              mode: "insensitive",
+            },
+          }
+        : {},
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
     return result;
   } catch (error) {
-    throw error;
+    throw error; // Relancer l'erreur pour la gestion
   } finally {
-    await prisma.$disconnect();
+    await prisma.$disconnect(); // Déconnexion propre de Prisma
   }
 };
+
 export const getByIdCustomer = async (id) => {
   try {
-    const result = await prisma.customers.findUnique({ where: { id } });
+    const result = await prisma.customers.findUnique({
+      where: { id },
+      include: {
+        reservations: {
+          select: {
+            dateStart: true,
+            dateEnd: true,
+            dateReservation: true,
+            room: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
     return result;
   } catch (error) {
     throw error;
@@ -21,6 +62,27 @@ export const getByIdCustomer = async (id) => {
     await prisma.$disconnect();
   }
 };
+
+export const customerAndThisReservation = async (name) => {
+  return await prisma.customers.findMany({
+    where: {
+      name: {
+        contains: name, // Recherche partielle
+        mode: "insensitive", // Rend la recherche insensible à la casse
+      },
+    },
+    include: {
+      reservations: {
+        include: {
+          room: {
+            select: { name: true },
+          },
+        },
+      },
+    },
+  });
+};
+
 export const createCustomer = async (name, address, phone, token = null) => {
   let userId = null;
   if (token) {
@@ -44,7 +106,7 @@ export const updateCustomer = async (
   name,
   address,
   phone,
-  token = null,
+  token = null
 ) => {
   let userId = null;
   if (token) {
