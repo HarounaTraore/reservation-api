@@ -27,10 +27,10 @@ export default class Room {
   }
   static async romsNotReserved(req, res) {
     try {
-      const { dateStart, dateEnd } = req.query;
+      const { dateStart, dateEnd, capacity = "" } = req.query;
       const atStart = new Date(dateStart).toISOString();
       const atEnd = new Date(dateEnd).toISOString();
-      const result = await roomsNotReserved(atStart, atEnd);
+      const result = await roomsNotReserved(atStart, atEnd, capacity);
       res.status(200).json({ result: result });
     } catch (error) {
       res.status(400).json({ error: error.message });

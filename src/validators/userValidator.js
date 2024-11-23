@@ -29,9 +29,13 @@ export const addRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
+    .isLength({ max: 50 })
+    .withMessage("L'email ne doit depasser 50 caractères")
+    .bail()
     .isEmail()
     .withMessage(i18next.t("userValidator.requiredValidEmail"))
     .bail()
+
     .custom(async (value, { req }) => {
       const id = Number(req.params.id);
       const result = await checkEmail(id, value);
@@ -98,9 +102,13 @@ export const updateRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
+    .isLength({ max: 50 })
+    .withMessage("L'email ne doit depasser 50 caractères")
+    .bail()
     .isEmail()
     .withMessage(i18next.t("userValidator.requiredValidEmail"))
     .bail()
+
     .custom(async (value, { req }) => {
       const id = Number(req.params.id);
       const result = await checkEmail(id, value);
@@ -185,9 +193,14 @@ export const updateCurrentRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
+    .isLength({ max: 50 })
+    .withMessage("L'email ne doit depasser 50 caractères")
+    .bail()
+
     .isEmail()
     .withMessage(i18next.t("userValidator.requiredValidEmail"))
     .bail()
+
     .custom(async (value, { req }) => {
       const token = req.headers.authorization.split(" ")[1];
       const tokenDecoded = jwt.verify(token, process.env.JWT_SECRET);

@@ -37,6 +37,7 @@ export const getByIdCustomer = async (id) => {
       include: {
         reservations: {
           select: {
+            id: true,
             dateStart: true,
             dateEnd: true,
             dateReservation: true,

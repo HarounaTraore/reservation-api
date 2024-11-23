@@ -10,11 +10,26 @@ export const getAllRooms = async () => {
     await prisma.$disconnect();
   }
 };
-export const roomsNotReserved = async (dateStart, dateEnd) => {
+export const roomsNotReserved = async (dateStart, dateEnd, capacity="") => {
   try {
+    
+    let capacityFilter;
+    if (!capacity) {
+      capacityFilter = undefined;
+    } else if (capacity < 50) {
+      capacityFilter = { lte: 50 };
+    } else if (capacity > 50 && capacity <= 100) {
+      capacityFilter = { gt: 50, lte: 100 };
+    } else if (capacity > 100 && capacity <= 300) {
+      capacityFilter = { gt: 100, lte: 300 };
+    } else if (capacity > 300 && capacity <= 500) {
+      capacityFilter = { gt: 300, lte: 500 };
+    } else {
+      capacityFilter = { gt: 500 };
+    }
+
     const result = await prisma.rooms.findMany({
       where: {
-        // Sélectionner les salles où aucune réservation confirmée n'existe pendant la période donnée
         reservations: {
           none: {
             dateStart: {
@@ -26,6 +41,7 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
             status: "CONFIRMED",
           },
         },
+        ...(capacityFilter && { capacity: capacityFilter }),
       },
       include: {
         reservations: {
@@ -36,6 +52,7 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
         },
       },
     });
+
     return result;
   } catch (error) {
     throw error;
@@ -43,6 +60,7 @@ export const roomsNotReserved = async (dateStart, dateEnd) => {
     await prisma.$disconnect();
   }
 };
+
 
 export const getByIdRoom = async (id) => {
   try {

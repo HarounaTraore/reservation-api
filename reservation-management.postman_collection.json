@@ -60,6 +60,12 @@
 				{
 					"name": "user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFkbWluaXN0cmF0ZXVyIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjp0cnVlLCJpYXQiOjE3MzIxODc5MzYsImV4cCI6MTczMjIyMzkzNn0.i2TVHK3BCv_6PdikaSpPPlcpPTdE4-yYxQvFDa345mA"
+							}
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -99,7 +105,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYyLCJuYW1lIjoiQW1pbnRhIFRyYW9yw6kiLCJyb2xlIjoiTWFuYWdlciIsImlhdCI6MTczMTQ5ODI4NSwiZXhwIjoxNzMxNTM0Mjg1fQ.bSESV8CuHzJ-YX-8mC6XiWuzjKiAwwsb9JUoqnZcXDI"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFkbWluaXN0cmF0ZXVyIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjp0cnVlLCJpYXQiOjE3MzIxODc5MzYsImV4cCI6MTczMjIyMzkzNn0.i2TVHK3BCv_6PdikaSpPPlcpPTdE4-yYxQvFDa345mA"
 							}
 						},
 						"method": "PUT",
@@ -200,13 +206,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU4LCJuYW1lIjoiTWFyeSBUcmFvcsOpIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzMwOTkxNzk5LCJleHAiOjE3MzEwMjc3OTl9.J1alHkB3DvvcBK-vkWcwliq0c3m5bJm0lePKB7OhrfQ"
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFkbWluaXN0cmF0ZXVyIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjp0cnVlLCJpYXQiOjE3MzIzMjc3NTAsImV4cCI6MTczMjM2Mzc1MH0._zOX8g0NeCK6hUwY1jdDO2XO1bI5PXoW9P0zDN6GfT0"
 							}
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/rooms/not-reserved?dateStart=2024-11-08&dateEnd=2024-11-10",
+							"raw": "http://127.0.0.1:3000/api/rooms/not-reserved?dateStart=2024-11-08&dateEnd=2024-11-10&capacity=200",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -228,6 +234,10 @@
 								{
 									"key": "dateEnd",
 									"value": "2024-11-10"
+								},
+								{
+									"key": "capacity",
+									"value": "200"
 								}
 							]
 						}
