@@ -33,7 +33,10 @@ export const addRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredCapacity"))
     .bail()
     .isInt()
-    .withMessage(i18next.t("roomValidator.capacityIsInt")),
+    .withMessage(i18next.t("roomValidator.capacityIsInt"))
+    .isInt({ min: 0 })
+    .withMessage("La capacité doit être un entier positif")
+    .bail(),
 
   check("equipment")
     .isLength({ min: 2, max: 500 })
@@ -80,7 +83,11 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredCapacity"))
     .bail()
     .isInt()
-    .withMessage(i18next.t("roomValidator.capacityIsInt")),
+    .withMessage(i18next.t("roomValidator.capacityIsInt"))
+    .bail()
+    .isInt({ min: 0 })
+    .withMessage("La capacité doit être un entier positif")
+    .bail(),
 
   check("equipment")
     .isLength({ min: 2, max: 500 })

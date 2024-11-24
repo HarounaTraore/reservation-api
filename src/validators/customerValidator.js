@@ -18,6 +18,9 @@ export const addRequestValidator = [
     .bail()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("customerValidator.lengthName"))
+    .bail()
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+    .withMessage("Le nom ne doit contenir que des lettres.")
     .bail(),
 
   check("address")
@@ -71,6 +74,9 @@ export const updateRequestValidator = [
     .bail()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("customerValidator.lengthName"))
+    .bail()
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+    .withMessage("Le nom ne doit contenir que des lettres.")
     .bail(),
 
   check("address")

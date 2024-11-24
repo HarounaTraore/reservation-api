@@ -60,8 +60,8 @@ export default class User {
   static async updateUser(req, res, next) {
     try {
       const id = Number(req.params.id);
-      const { name, email, address, phone, password, role, status } = req.body;
-      await updateUser(id, name, email, address, phone, password, role, status);
+      const { name, email, address, phone, role, status } = req.body;
+      await updateUser(id, name, email, address, phone, role, status);
       res
         .status(200)
         .json({ message: i18next.t("userController.updateSuccefull") });

@@ -50,11 +50,11 @@ export const updateUser = async (
   email,
   address,
   phone,
-  password,
+  // password,
   role,
   status = true
 ) => {
-  const hashedPassword = await bcryptjs.hash(password, 10);
+  // const hashedPassword = await bcryptjs.hash(password, 10);
 
   try {
     const result = await prisma.users.update({
@@ -64,7 +64,7 @@ export const updateUser = async (
         email,
         address,
         phone,
-        password: hashedPassword,
+        // password: hashedPassword,
         role,
         status,
       },

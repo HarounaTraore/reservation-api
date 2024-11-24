@@ -22,8 +22,12 @@ export const addRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredName"))
     .bail()
-    .isLength({ min: 5, max: 100 })
-    .withMessage(i18next.t("userValidator.lengthName")),
+    .isLength({ min: 2, max: 100 })
+    .withMessage(i18next.t("customerValidator.lengthName"))
+    .bail()
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+    .withMessage("Le nom ne doit contenir que des lettres.")
+    .bail(),
 
   check("email")
     .notEmpty()
@@ -33,7 +37,7 @@ export const addRequestValidator = [
     .withMessage("L'email ne doit depasser 50 caractères")
     .bail()
     .isEmail()
-    .withMessage(i18next.t("userValidator.requiredValidEmail"))
+    .withMessage("Veuillez entrer un email valide")
     .bail()
 
     .custom(async (value, { req }) => {
@@ -95,8 +99,12 @@ export const updateRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredName"))
     .bail()
-    .isLength({ min: 5, max: 100 })
-    .withMessage(i18next.t("userValidator.lengthName")),
+    .isLength({ min: 2, max: 100 })
+    .withMessage(i18next.t("customerValidator.lengthName"))
+    .bail()
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+    .withMessage("Le nom ne doit contenir que des lettres.")
+    .bail(),
 
   check("email")
     .notEmpty()
@@ -106,7 +114,7 @@ export const updateRequestValidator = [
     .withMessage("L'email ne doit depasser 50 caractères")
     .bail()
     .isEmail()
-    .withMessage(i18next.t("userValidator.requiredValidEmail"))
+    .withMessage("Veuillez entrer un email valide")
     .bail()
 
     .custom(async (value, { req }) => {
@@ -135,9 +143,9 @@ export const updateRequestValidator = [
       return true;
     }),
 
-  check("password")
-    .isLength({ min: 8 })
-    .withMessage(i18next.t("userValidator.passwordLength")),
+  // check("password")
+  //   .isLength({ min: 8 })
+  //   .withMessage(i18next.t("userValidator.passwordLength")),
 
   check("role")
     .notEmpty()
@@ -186,8 +194,12 @@ export const updateCurrentRequestValidator = [
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredName"))
     .bail()
-    .isLength({ min: 5, max: 100 })
-    .withMessage(i18next.t("userValidator.lengthName")),
+    .isLength({ min: 2, max: 100 })
+    .withMessage(i18next.t("customerValidator.lengthName"))
+    .bail()
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+    .withMessage("Le nom ne doit contenir que des lettres.")
+    .bail(),
 
   check("email")
     .notEmpty()
@@ -198,7 +210,7 @@ export const updateCurrentRequestValidator = [
     .bail()
 
     .isEmail()
-    .withMessage(i18next.t("userValidator.requiredValidEmail"))
+    .withMessage("Veuillez enter un email valide")
     .bail()
 
     .custom(async (value, { req }) => {
