@@ -3,6 +3,7 @@ import {
   deleteRoom,
   getAllRooms,
   getByIdRoom,
+  getStatistics,
   roomsNotReserved,
   updateRoom,
 } from "../services/roomService.js";
@@ -25,6 +26,16 @@ export default class Room {
     }
     next();
   }
+  
+      static async statistics(_req, res, next){
+        try {
+          const result = await getStatistics()
+          res.status(200).json({ result });
+        } catch (error) {
+          res.status(400).json({ error: error.message });
+        }
+        next()
+      }
   static async romsNotReserved(req, res) {
     try {
       const { dateStart, dateEnd, capacity = "" } = req.query;

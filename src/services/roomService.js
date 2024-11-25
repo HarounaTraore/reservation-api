@@ -10,9 +10,8 @@ export const getAllRooms = async () => {
     await prisma.$disconnect();
   }
 };
-export const roomsNotReserved = async (dateStart, dateEnd, capacity="") => {
+export const roomsNotReserved = async (dateStart, dateEnd, capacity = "") => {
   try {
-    
     let capacityFilter;
     if (!capacity) {
       capacityFilter = undefined;
@@ -58,6 +57,40 @@ export const roomsNotReserved = async (dateStart, dateEnd, capacity="") => {
     throw error;
   } finally {
     await prisma.$disconnect();
+  }
+};
+
+export const getStatistics = async () => {
+  try {
+    const statistics = await prisma.rooms.findMany({
+      include: {
+        reservations: {
+          select: {
+            dateStart: true,
+            dateEnd: true,
+            dateReservation: true,
+          },
+        },
+        _count: {
+          select: { reservations: true },
+        },
+      },
+    });
+
+    const formattedStats = statistics.map((room) => ({
+      roomId: room.id,
+      roomName: room.name,
+      reservationsCount: room._count.reservations,
+      reservations: room.reservations.map((reservation) => ({
+        dateStart: reservation.dateStart,
+        dateEnd: reservation.dateEnd,
+        dateReservation: reservation.dateReservation,
+      })),
+    }));
+    return formattedStats;
+  } catch (error) {
+    console.error("Error fetching statistics:", error);
+    throw error;
   }
 };
 

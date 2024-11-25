@@ -15,41 +15,47 @@ router.get(
   "/rooms",
   authenticateJWT,
   authorizeRoles("Admin", "Manager"),
-  Room.getAllRooms,
+  Room.getAllRooms
 );
 router.get(
   "/room/:id",
   authenticateJWT,
   authorizeRoles("Admin", "Manager"),
   getRequestValidator,
-  Room.getByIdRoom,
+  Room.getByIdRoom
 );
 router.get(
   "/rooms/not-reserved",
   authenticateJWT,
   authorizeRoles("Admin", "Manager"),
-  Room.romsNotReserved,
+  Room.romsNotReserved
 );
 router.post(
   "/room",
   authenticateJWT,
-  authorizeRoles("Admin","Manager"),
+  authorizeRoles("Admin", "Manager"),
   addRequestValidator,
-  Room.createRoom,
+  Room.createRoom
 );
 router.put(
   "/room/:id",
   authenticateJWT,
   authorizeRoles("Admin", "Manager"),
   updateRequestValidator,
-  Room.updateRoom,
+  Room.updateRoom
 );
 router.delete(
   "/room/:id",
   authenticateJWT,
   authorizeRoles("Admin"),
   deleteRequestValidator,
-  Room.deleteRoom,
+  Room.deleteRoom
+);
+router.get(
+  "/reservations/statistics",
+  authenticateJWT,
+  authorizeRoles("Admin", "Manager"),
+  Room.statistics
 );
 
 export default router;
