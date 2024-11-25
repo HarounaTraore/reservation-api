@@ -69,6 +69,7 @@ export const getStatistics = async () => {
             dateStart: true,
             dateEnd: true,
             dateReservation: true,
+            status: true, // Vérifiez que ce champ existe et est bien rempli dans votre base de données
           },
         },
         _count: {
@@ -77,22 +78,38 @@ export const getStatistics = async () => {
       },
     });
 
-    const formattedStats = statistics.map((room) => ({
-      roomId: room.id,
-      roomName: room.name,
-      reservationsCount: room._count.reservations,
-      reservations: room.reservations.map((reservation) => ({
-        dateStart: reservation.dateStart,
-        dateEnd: reservation.dateEnd,
-        dateReservation: reservation.dateReservation,
-      })),
-    }));
+    const formattedStats = statistics.map((room) => {
+      const groupedReservations = room.reservations.reduce((acc, reservation) => {
+        const status = reservation.status || "unknown"; // Remplacer undefined ou null par "unknown"
+        if (!acc[status]) {
+          acc[status] = { count: 0, reservations: [] };
+        }
+        acc[status].count += 1;
+        acc[status].reservations.push({
+          dateStart: reservation.dateStart,
+          dateEnd: reservation.dateEnd,
+          dateReservation: reservation.dateReservation,
+        });
+        return acc;
+      }, {});
+
+      return {
+        roomId: room.id,
+        roomName: room.name,
+        reservationsCount: room._count.reservations,
+        groupedReservations,
+      };
+    });
+
+    console.log(formattedStats);
     return formattedStats;
   } catch (error) {
     console.error("Error fetching statistics:", error);
     throw error;
   }
 };
+
+
 
 
 export const getByIdRoom = async (id) => {

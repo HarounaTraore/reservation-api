@@ -201,6 +201,21 @@
 					"response": []
 				},
 				{
+					"name": "statistic",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6IkFkbWluaXN0cmF0ZXVyIEhUIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjp0cnVlLCJpYXQiOjE3MzI1NDA1MDMsImV4cCI6MTczMjU3NjUwM30.iKgeQi0uY0AkV2HOK23GT8qwY6uOVl0AVXLhYbegBRo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:3000/api/reservations/statistics"
+					},
+					"response": []
+				},
+				{
 					"name": "rooms-not-reserved",
 					"request": {
 						"auth": {
@@ -514,7 +529,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin1234\"\r\n}\r\n\r\n// {\r\n//     \"email\": \"harounatraore382@gmail.com\",\r\n//     \"password\": \"12345678\"\r\n// }",
+							"raw": "{\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n\r\n// {\r\n//     \"email\": \"harounatraore382@gmail.com\",\r\n//     \"password\": \"12345678\"\r\n// }",
 							"options": {
 								"raw": {
 									"language": "json"
