@@ -19,6 +19,9 @@ export const addRequestValidator = [
     .isLength({ min: 2, max: 50 })
     .withMessage(i18next.t("roomValidator.lengthName"))
     .bail()
+    .matches(/[a-zA-Z]/)
+    .withMessage("Le nom doit contenir au moins une lettre.")
+    .bail()
     .custom(async (value, { req }) => {
       const id = Number(req.params.id);
       const result = await checkName(id, value);
@@ -34,13 +37,21 @@ export const addRequestValidator = [
     .bail()
     .isInt()
     .withMessage(i18next.t("roomValidator.capacityIsInt"))
-    .isInt({ min: 0 })
-    .withMessage("La capacité doit être un entier positif")
+    .isInt({ min: 1, max: 10000 })
+    .withMessage("La capacité doit etre compris entre 1 et 10000 ")
     .bail(),
 
   check("equipment")
     .isLength({ min: 2, max: 500 })
-    .withMessage(i18next.t("roomValidator.requiredEquipment")),
+    .withMessage("Le champ équipement doit contenir entre 2 et 500 caractères.")
+    .custom((value) => {
+      if (/^[0-9\s!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/.test(value)) {
+        throw new Error(
+          "Le champ équipement ne peut pas contenir uniquement des chiffres ou des caractères spéciaux."
+        );
+      }
+      return true;
+    }),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -59,7 +70,7 @@ export const updateRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   check("name")
@@ -68,6 +79,9 @@ export const updateRequestValidator = [
     .bail()
     .isLength({ min: 2, max: 50 })
     .withMessage(i18next.t("roomValidator.lengthName"))
+    .bail()
+    .matches(/[a-zA-Z]/)
+    .withMessage("Le nom doit contenir au moins une lettre.")
     .bail()
     .custom(async (value, { req }) => {
       const id = Number(req.params.id);
@@ -85,13 +99,21 @@ export const updateRequestValidator = [
     .isInt()
     .withMessage(i18next.t("roomValidator.capacityIsInt"))
     .bail()
-    .isInt({ min: 0 })
-    .withMessage("La capacité doit être un entier positif")
+    .isInt({ min: 1, max: 10000 })
+    .withMessage("La capacité doit etre compris entre 1 et 10000 ")
     .bail(),
 
   check("equipment")
     .isLength({ min: 2, max: 500 })
-    .withMessage(i18next.t("roomValidator.requiredEquipment")),
+    .withMessage("Le champ équipement doit contenir entre 2 et 500 caractères.")
+    .custom((value) => {
+      if (/^[0-9\s!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/.test(value)) {
+        throw new Error(
+          "Le champ équipement ne peut pas contenir uniquement des chiffres ou des caractères spéciaux."
+        );
+      }
+      return true;
+    }),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -109,7 +131,7 @@ export const deleteRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   (req, res, next) => {
@@ -129,7 +151,7 @@ export const getRequestValidator = [
     .withMessage(i18next.t("roomValidator.requiredId"))
     .bail()
     .custom(async (value) =>
-      validateIdExists(value, getByIdRoom, "roomValidator.existRoom"),
+      validateIdExists(value, getByIdRoom, "roomValidator.existRoom")
     ),
 
   (req, res, next) => {
