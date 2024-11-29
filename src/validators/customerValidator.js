@@ -13,6 +13,7 @@ const validateIdExists = async (id, service, errorMessage) => {
 
 export const addRequestValidator = [
   check("name")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("customerValidator.requiredName"))
     .bail()
@@ -24,6 +25,7 @@ export const addRequestValidator = [
     .bail(),
 
   check("address")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("customerValidator.requiredAddress"))
     .bail()
@@ -69,6 +71,7 @@ export const updateRequestValidator = [
     ),
 
   check("name")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("customerValidator.requiredName"))
     .bail()
@@ -80,6 +83,7 @@ export const updateRequestValidator = [
     .bail(),
 
   check("address")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("customerValidator.requiredAddress"))
     .bail()

@@ -13,6 +13,7 @@ const validateIdExists = async (id, service, errorMessage) => {
 
 export const addRequestValidator = [
   check("name")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("roomValidator.requiredName"))
     .bail()
@@ -42,6 +43,7 @@ export const addRequestValidator = [
     .bail(),
 
   check("equipment")
+  .trim()
     .isLength({ min: 2, max: 500 })
     .withMessage("Le champ équipement doit contenir entre 2 et 500 caractères.")
     .custom((value) => {
@@ -74,6 +76,7 @@ export const updateRequestValidator = [
     ),
 
   check("name")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("roomValidator.requiredName"))
     .bail()
@@ -104,6 +107,7 @@ export const updateRequestValidator = [
     .bail(),
 
   check("equipment")
+  .trim()
     .isLength({ min: 2, max: 500 })
     .withMessage("Le champ équipement doit contenir entre 2 et 500 caractères.")
     .custom((value) => {

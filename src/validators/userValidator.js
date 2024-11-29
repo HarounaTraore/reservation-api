@@ -19,8 +19,9 @@ const validateUserId = async (id) => {
 
 export const addRequestValidator = [
   check("name")
+  .trim()
     .notEmpty()
-    .withMessage(i18next.t("userValidator.requiredName"))
+    .withMessage(i18next.t("customerValidator.requiredName"))
     .bail()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("customerValidator.lengthName"))
@@ -30,6 +31,7 @@ export const addRequestValidator = [
     .bail(),
 
   check("email")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
@@ -50,10 +52,12 @@ export const addRequestValidator = [
     }),
 
   check("address")
+  .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("userValidator.requiredAddress")),
 
   check("phone")
+  .trim()
     .isLength({ min: 8, max: 15 })
     .withMessage(i18next.t("userValidator.requiredPhone"))
     .bail()
@@ -96,8 +100,9 @@ export const updateRequestValidator = [
     .custom(validateUserId),
 
   check("name")
+  .trim()
     .notEmpty()
-    .withMessage(i18next.t("userValidator.requiredName"))
+    .withMessage(i18next.t("customerValidator.requiredName"))
     .bail()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("customerValidator.lengthName"))
@@ -107,6 +112,7 @@ export const updateRequestValidator = [
     .bail(),
 
   check("email")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
@@ -127,6 +133,7 @@ export const updateRequestValidator = [
     }),
 
   check("address")
+  .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("userValidator.requiredAddress")),
 
@@ -148,6 +155,7 @@ export const updateRequestValidator = [
   //   .withMessage(i18next.t("userValidator.passwordLength")),
 
   check("role")
+
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredRole"))
     .bail()
@@ -191,8 +199,9 @@ export const updateStatusRequestValidator = [
 ];
 export const updateCurrentRequestValidator = [
   check("name")
+  .trim()
     .notEmpty()
-    .withMessage(i18next.t("userValidator.requiredName"))
+    .withMessage(i18next.t("customerValidator.requiredName"))
     .bail()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("customerValidator.lengthName"))
@@ -202,6 +211,7 @@ export const updateCurrentRequestValidator = [
     .bail(),
 
   check("email")
+  .trim()
     .notEmpty()
     .withMessage(i18next.t("userValidator.requiredEmail"))
     .bail()
@@ -225,6 +235,7 @@ export const updateCurrentRequestValidator = [
     }),
 
   check("address")
+  .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage(i18next.t("userValidator.requiredAddress")),
 
